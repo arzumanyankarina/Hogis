@@ -1,0 +1,1134 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Hogis Flower Atelier</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Noto+Serif+Armenian:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: sticky shop bar, category tabs, product grid; builder is a two-column studio; cart is a side drawer; checkout is a stepped panel */
+/* One look, taken from the Hogis logo: burgundy ground, cream type, glacier-blue accents. Same in light and dark mode. */
+:root{
+  --bg:#5e1a2e;          /* logo burgundy */
+  --surface:#6a2236;     /* raised cards and fields */
+  --surface-2:#4f1526;   /* image wells */
+  --ink:#f7f3ee;         /* logo cream */
+  --muted:#dccbcf;
+  --line:#874457;
+  --accent:#c8d9e3;      /* logo glacier blue */
+  --accent-ink:#4a1424;
+  --accent-soft:#7a4a60;
+  --glacier:#c8d9e3;
+  --brand:#4a1424;       /* header band */
+  --brand-ink:#f7f3ee;
+  --gold:#c8d9e3;
+  --stem:#9cbf96;
+  --ok:#a8d8b4;
+  --warn:#f5c2a8;
+  --shadow:0 18px 40px -20px rgba(20,4,10,.7);
+  --display:"Cormorant Garamond", "Noto Serif Armenian", Georgia, serif;
+  --body:"Cormorant Garamond", "Noto Serif Armenian", Georgia, serif;
+  --mono:"Cormorant Garamond", "Noto Serif Armenian", Georgia, serif;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:19px;font-weight:500;line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--brand)}
+h1,h2,h3{font-family:var(--display);font-weight:600;overflow-wrap:break-word;text-wrap:balance;margin:0;line-height:1.1}
+p{margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--mono);font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* header */
+header.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--brand);color:var(--brand-ink);border-bottom:1px solid var(--line)}
+.bar-in{display:flex;align-items:center;gap:16px;padding-block:14px}
+.logo{font-family:var(--display);display:flex;align-items:center;gap:12px;background:none;border:0;padding:0;color:var(--brand-ink);text-align:left}
+.logo svg{width:32px;height:42px;flex:none}
+.logo .wm{display:flex;flex-direction:column;line-height:1}
+.logo .wm b{font-weight:500;font-size:28px;letter-spacing:.32em;margin-right:-.32em}
+.logo .wm small{font-size:16px;font-style:italic;color:#c8d9e3;margin-top:4px;letter-spacing:.04em}
+.bar-in .spacer{flex:1}
+.prefs{display:flex;gap:6px}
+.prefs select{width:auto;border:1px solid rgba(247,243,238,.45);border-radius:999px;background:transparent;color:var(--brand-ink);padding:7px 10px;font-size:16px;font-weight:500}
+.prefs select option{color:#2e1119;background:#f7f3ee}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.cart-btn{display:flex;align-items:center;gap:8px;border:1px solid var(--brand-ink);background:var(--brand-ink);color:#5e1a2e;border-radius:999px;padding:8px 16px;font-weight:700}
+.cart-count{background:#5e1a2e;color:#f7f3ee;border-radius:999px;min-width:22px;height:22px;display:inline-grid;place-items:center;font-size:14px;font-family:var(--mono)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:center;padding-block:40px 24px}
+.hero h1{font-size:clamp(36px,5.2vw,60px)}
+html[lang="hy"] .hero h1{font-size:clamp(32px,4.4vw,50px)}
+html[lang="hy"] .eyebrow,html[lang="hy"] .spec dt{text-transform:none;letter-spacing:.04em}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero p{margin-top:16px;max-width:52ch;color:var(--muted);font-size:18px}
+.hero-art svg{width:100%;max-width:420px;height:auto;display:block;margin-left:auto}
+.hero-facts{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:22px}
+.hero-facts span{font-family:var(--mono);font-size:15px;color:var(--ink)}
+.hero-facts span::before{content:"✿ ";color:var(--accent)}
+
+/* tabs */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;padding-block:12px 20px;border-bottom:1px solid var(--line);margin-bottom:24px}
+.tab{border:1px solid var(--line);background:transparent;border-radius:999px;padding:9px 18px;font-weight:500}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tab .n{font-family:var(--mono);font-size:14px;opacity:.65;margin-left:6px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.section-head h2{font-size:34px}
+.section-head p{color:var(--muted);max-width:56ch}
+
+/* grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px;padding-bottom:56px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;display:flex;flex-direction:column;overflow:hidden}
+.card .art{background:var(--surface-2);aspect-ratio:1/1;max-width:100%;display:grid;place-items:center;border:0;padding:0;width:100%}
+.card .art svg{width:82%;height:auto}
+.card .body{padding:16px;display:flex;flex-direction:column;gap:10px;flex:1}
+.card .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.card h3{font-size:22px}
+.price{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:500;white-space:nowrap}
+.card .blurb{color:var(--muted);font-size:16px;flex:1;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.tagline{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:13px;letter-spacing:.04em;padding:3px 8px;border-radius:999px;background:var(--surface-2);color:var(--muted)}
+.chip.hot{background:var(--accent-soft);color:var(--accent)}
+.chip.tier{background:var(--glacier);border:1px solid var(--glacier);color:#4a1424}
+.occ{display:flex;gap:6px;flex-wrap:wrap;margin:-4px 0 20px;align-items:center}
+.occ .lbl{font-family:var(--mono);font-size:14px;color:var(--muted);margin-right:4px}
+.occ button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:16px}
+.occ button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:700}
+.extras{display:flex;flex-direction:column;gap:6px}
+.swatch{display:flex;gap:3px;margin-bottom:4px}.swatch i{width:16px;height:16px;border-radius:50%;border:1px solid var(--line)}
+.extras .opt label{flex-direction:row;justify-content:space-between;align-items:center;gap:10px;padding:8px 12px}
+.extras .opt label small{white-space:nowrap}
+header.bar :focus-visible{outline-color:#c8d9e3}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.qty button{border:0;background:transparent;width:34px;height:34px;font-size:18px;line-height:1}
+.qty button:hover{background:var(--surface-2)}
+.qty output,.qty input{width:34px;text-align:center;font-family:var(--mono);border:0;background:transparent}
+.btn{border:1px solid var(--ink);background:transparent;border-radius:999px;padding:8px 16px;font-weight:700}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.primary:hover{filter:brightness(1.07)}
+.btn.ghost{border-color:var(--line);font-weight:500}
+.btn.wide{width:100%;padding:12px 18px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.linkish{background:none;border:0;padding:0;color:var(--ink);text-decoration:underline;text-underline-offset:3px;font-size:16px}
+.card .actions{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+
+/* builder */
+.studio{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:28px;padding-bottom:56px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+.step{display:flex;flex-direction:column;gap:12px;padding-block:18px;border-top:1px solid var(--line)}
+.step:first-child{border-top:0;padding-top:0}
+.step h3{font-size:22px;display:flex;gap:10px;align-items:baseline}
+.step h3 .num{font-family:var(--mono);font-size:15px;color:var(--accent)}
+.opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.opt label{display:flex;flex-direction:column;gap:2px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer;height:100%}
+.opt label b{font-weight:700}
+.opt label small{color:var(--muted);font-family:var(--mono);font-size:14px}
+.opt input:checked + label{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);background:var(--accent-soft)}
+.opt input:focus-visible + label{outline:2px solid var(--accent);outline-offset:2px}
+.stems{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:8px}
+.stem-row .qty button{width:30px;height:30px}
+.stem-row .qty output{width:28px}
+.stem-row{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:10px;padding:6px 8px}
+.stem-row svg{width:40px;height:40px;flex:none}
+.stem-row .nm{flex:1;min-width:0}
+.stem-row .nm b{display:block;font-weight:500;font-size:17px}
+.stem-row .nm small{font-family:var(--mono);color:var(--muted);font-size:14px}
+.stem-row.on{border-color:var(--accent)}
+.preview{position:sticky;top:calc(env(safe-area-inset-top,0px) + 84px);display:flex;flex-direction:column;gap:14px}
+.preview .stage{background:var(--surface-2);border-radius:12px;aspect-ratio:1/1;max-width:100%;display:grid;place-items:center}
+.preview .stage svg{width:88%;height:auto}
+.lines{display:flex;flex-direction:column;gap:4px;font-size:16px}
+.lines div{display:flex;justify-content:space-between;gap:12px}
+.lines .tot{border-top:1px solid var(--line);padding-top:8px;margin-top:4px;font-weight:700;font-size:16px}
+.hint{font-size:15px;color:var(--muted)}
+.err{font-size:15px;color:var(--warn)}
+textarea,input[type=text],input[type=tel],input[type=email],input[type=date],select{width:100%;border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:10px 12px}
+textarea{resize:vertical;min-height:70px}
+
+/* overlay + drawer + modal */
+.scrim{position:fixed;inset:0;background:rgba(15,20,16,.5);z-index:40}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--bg);z-index:50;display:flex;flex-direction:column;box-shadow:var(--shadow);
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-right:env(safe-area-inset-right,0px)}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--line)}
+.drawer-head h2{font-size:28px}
+.x{border:0;background:transparent;font-size:26px;line-height:1;width:40px;height:40px;border-radius:50%}
+.x:hover{background:var(--surface-2)}
+.drawer-body{flex:1;overflow:auto;padding:16px 20px;display:flex;flex-direction:column;gap:14px}
+.drawer-foot{border-top:1px solid var(--line);padding:16px 20px;display:flex;flex-direction:column;gap:12px}
+.ci{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:12px;align-items:center}
+.ci .thumb{background:var(--surface-2);border-radius:10px;aspect-ratio:1/1;display:grid;place-items:center}
+.ci .thumb svg{width:88%;height:auto}
+.ci .meta{min-width:0}
+.ci .meta b{display:block;font-weight:700}
+.ci .meta small{display:block;color:var(--muted);font-size:15px;overflow-wrap:anywhere}
+.ci .side{display:flex;flex-direction:column;align-items:end;gap:6px}
+.empty{text-align:center;color:var(--muted);padding:40px 10px;display:flex;flex-direction:column;gap:12px;align-items:center}
+
+.modal{position:fixed;z-index:50;inset:0;display:grid;place-items:center;padding:16px;pointer-events:none}
+.modal-card{pointer-events:auto;background:var(--bg);border-radius:16px;max-width:820px;width:100%;max-height:calc(100% - 32px);overflow:auto;display:grid;grid-template-columns:1fr 1fr;box-shadow:var(--shadow)}
+.modal-card .art{background:var(--surface-2);display:grid;place-items:center;padding:20px}
+.modal-card .art svg{width:100%;max-width:340px;height:auto}
+.modal-card .info{padding:24px;display:flex;flex-direction:column;gap:14px;position:relative}
+.modal-card .info .x{position:absolute;top:10px;right:10px}
+.modal-card h2{font-size:34px;padding-right:40px}
+.spec{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:16px}
+.spec dt{font-family:var(--mono);font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding-top:2px}
+.spec dd{margin:0}
+.recipe{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:4px;font-size:16px}
+.recipe li{display:flex;gap:8px;align-items:center}
+.dot{width:10px;height:10px;border-radius:50%;flex:none;border:1px solid rgba(0,0,0,.15)}
+
+/* checkout */
+.checkout{max-width:880px;margin:0 auto;padding-bottom:64px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start}
+.checkout h2{font-size:38px;margin-bottom:6px}
+.fs{border:0;padding:0;margin:0 0 22px;display:flex;flex-direction:column;gap:12px}
+.fs legend{font-family:var(--display);font-size:24px;margin-bottom:8px;padding:0}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:16px;font-weight:500}
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.summary{position:sticky;top:calc(env(safe-area-inset-top,0px) + 84px)}
+.summary h3{font-size:22px;margin-bottom:10px}
+.done{max-width:620px;margin:0 auto;padding-block:40px 64px;display:flex;flex-direction:column;gap:16px;text-align:center;align-items:center}
+.done h2{font-size:44px}
+.done .panel{text-align:left;width:100%}
+.note-banner{background:var(--accent-soft);color:var(--ink);border-radius:10px;padding:10px 14px;font-size:16px}
+
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;z-index:60;font-weight:500}
+footer{border-top:1px solid var(--line);padding-block:24px;color:var(--muted);font-size:16px}
+
+
+/* ---- Hogis atelier styling: thin cream lines, square corners, spaced capitals, centred like the logo ---- */
+.btn,.cart-btn,.qty,.chip,.opt label,.occ button,.prefs select,.panel,.card,.modal-card,.preview .stage,.ci .thumb,.note-banner,
+textarea,input[type=text],input[type=tel],input[type=email],input[type=date],select{border-radius:2px}
+textarea,input[type=text],input[type=tel],input[type=email],input[type=date],select{background:transparent;border-color:var(--line)}
+.btn{text-transform:uppercase;letter-spacing:.14em;font-size:15px;font-weight:600;padding:11px 22px}
+.btn.primary{background:var(--ink);border-color:var(--ink);color:var(--accent-ink)}
+.btn.primary:hover{background:var(--glacier);border-color:var(--glacier);filter:none}
+.btn.ghost,.btn:not(.primary){border-color:var(--ink);color:var(--ink);background:transparent}
+.cart-btn{text-transform:uppercase;letter-spacing:.12em;font-size:14px}
+.eyebrow{letter-spacing:.32em}
+.tabs{justify-content:center;gap:6px 30px;padding-block:6px 0}
+.tab{border:0;border-radius:0;background:none;padding:12px 2px;letter-spacing:.16em;text-transform:uppercase;font-size:15px;font-weight:600;border-bottom:1px solid transparent;color:var(--muted)}
+.tab[aria-selected="true"]{background:none;color:var(--glacier);border-bottom-color:var(--glacier)}
+.tab .n{display:none}
+.section-head{flex-direction:column;align-items:center;text-align:center;gap:6px;margin-top:10px}
+.section-head h2{font-size:42px;font-weight:500;letter-spacing:.03em}
+.occ{justify-content:center}
+.occ .lbl{display:none}
+.occ button{background:transparent;color:var(--ink)}
+.occ button[aria-pressed="true"]{background:var(--glacier);border-color:var(--glacier);color:#4a1424}
+.chip{background:transparent;border:1px solid var(--line);color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-size:13px}
+.chip.hot{background:transparent;border-color:var(--glacier);color:var(--glacier)}
+.card{background:transparent}
+.card h3{font-size:26px;font-weight:500}
+.panel{background:transparent}
+.opt input:checked + label{background:var(--accent-soft);border-color:var(--glacier);box-shadow:inset 0 0 0 1px var(--glacier)}
+.stem-row.on{border-color:var(--glacier)}
+.toast{background:var(--glacier);color:#4a1424}
+body,.mono,.price,input,select,textarea,output{font-variant-numeric:lining-nums tabular-nums}
+.toast{border-radius:2px}
+html[lang="hy"] .tab,html[lang="hy"] .btn,html[lang="hy"] .chip,html[lang="hy"] .cart-btn{text-transform:none;letter-spacing:.04em}
+/* illustrations: cream outlines like the logo's line drawing */
+svg[role="img"] :is(circle,ellipse,path,rect){stroke:#f7f3ee;stroke-width:.9;stroke-opacity:.6}
+/* hero, centred like the logo */
+.hero{grid-template-columns:1fr;justify-items:center;text-align:center;gap:14px;padding-block:48px 28px}
+.hero > div:first-child{display:flex;flex-direction:column;align-items:center}
+.hero p{margin-left:auto;margin-right:auto}
+.hero h1{font-weight:500}
+.hero-facts{justify-content:center}
+.hero-art{order:-1}
+.hero-art svg{width:96px;max-width:96px;margin:0 auto}
+/* footer signature */
+footer{text-align:center;border-top:1px solid var(--line);padding-block:40px}
+.sig{display:flex;flex-direction:column;align-items:center;gap:6px;margin-bottom:18px;color:var(--ink)}
+.sig svg{width:40px;height:52px}
+.sig b{font-family:var(--display);font-weight:500;font-size:30px;letter-spacing:.32em;margin-right:-.32em}
+.sig span{font-family:"Noto Serif Armenian",Georgia,serif;letter-spacing:.3em;color:var(--glacier);font-size:16px}
+.sig i{color:var(--glacier);font-size:20px}
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr}
+  .hero-art svg{margin:0 auto;max-width:280px}
+  .studio,.checkout{grid-template-columns:1fr}
+  .preview,.summary{position:static}
+  .modal-card{grid-template-columns:1fr}
+  .modal-card .art svg{max-width:220px}
+}
+@media (max-width:480px){
+  .f2{grid-template-columns:1fr}
+  .logo{font-size:21px}
+  .cart-btn .lbl{display:none}
+  .bar-in{gap:8px}
+  .prefs select{padding:6px 6px;font-size:15px}
+  .logo .wm small{display:none}
+  .logo .wm b{font-size:22px;letter-spacing:.22em;margin-right:-.22em}
+  .section-head h2{font-size:28px}
+}
+@media (prefers-reduced-motion: no-preference){
+  .card{transition:transform .2s ease, box-shadow .2s ease}
+  .card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .drawer{animation:slide .25s ease}
+  @keyframes slide{from{transform:translateX(30px);opacity:.6}to{transform:none;opacity:1}}
+}
+</style>
+
+<header class="bar">
+  <div class="wrap bar-in">
+    <button class="logo" id="home-btn" aria-label="Hogis">
+      <svg viewBox="0 0 100 130" aria-hidden="true"><path d="M50 30c-9 0-15 7-15 14c0 9 7 14 15 14c9 0 15-7 15-15c0-7-5-11-11-11c-5 0-9 4-9 9c0 4 3 7 7 7" fill="none" stroke="#f7f3ee" stroke-width="4" stroke-linecap="round"/><path d="M50 58C50 74 48 92 50 118" fill="none" stroke="#f7f3ee" stroke-width="4" stroke-linecap="round"/><path d="M50 86C58 78 68 77 74 72C68 86 59 90 50 90Z" fill="#c8d9e3" stroke="#f7f3ee" stroke-width="2.4" stroke-linejoin="round"/></svg>
+      <span class="wm"><b>HOGIS</b><small id="brand-name">flower atelier</small></span>
+    </button>
+    <div class="spacer"></div>
+    <div class="prefs">
+      <label class="sr" for="sel-lang" id="lang-lbl">Language</label>
+      <select id="sel-lang"><option value="hy">Հայ</option><option value="en">EN</option><option value="ru">РУ</option></select>
+      <label class="sr" for="sel-cur" id="cur-lbl">Currency</label>
+      <select id="sel-cur"><option value="AMD">֏ AMD</option><option value="USD">$ USD</option><option value="EUR">€ EUR</option><option value="RUB">₽ RUB</option></select>
+    </div>
+    <button class="cart-btn" id="cart-btn"><span class="lbl" id="cart-lbl">Basket</span><span class="cart-count" id="cart-count">0</span></button>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<footer><div class="wrap"><div class="sig"><svg viewBox="0 0 100 130" aria-hidden="true"><path d="M50 30c-9 0-15 7-15 14c0 9 7 14 15 14c9 0 15-7 15-15c0-7-5-11-11-11c-5 0-9 4-9 9c0 4 3 7 7 7" fill="none" stroke="#f7f3ee" stroke-width="2.6" stroke-linecap="round"/><path d="M50 58C50 74 48 92 50 118" fill="none" stroke="#f7f3ee" stroke-width="2.6" stroke-linecap="round"/><path d="M50 86C58 78 68 77 74 72C68 86 59 90 50 90Z" fill="#c8d9e3" stroke="#f7f3ee" stroke-width="1.6" stroke-linejoin="round"/></svg><b>HOGIS</b><span>Հոգիս</span><i>flower atelier</i></div><p id="footer-txt"></p></div></footer>
+
+<div id="layer"></div>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+/* ---------- language + currency ---------- */
+const LOCALE={en:"en-GB",ru:"ru-RU",hy:"hy-AM"};
+// AMD per 1 unit. Placeholder rates: update before going live.
+const RATES={AMD:1,USD:385,EUR:445,RUB:4.8};
+const CURS=["AMD","USD","EUR","RUB"];
+
+const I18N={
+en:{
+ basket:"Basket",lang:"Language",cur:"Currency",
+ eyebrowHero:"Fresh flowers, delivered on your day",
+ heroTitle:"Flowers picked this morning, <em>arranged by hand</em>.",
+ heroText:"Choose single stems, a ready bouquet or arrangement, or create your own. Pick the delivery date, time and address at checkout.",
+ fact1:"You choose the delivery day, time and address",fact2:"Hand-written card included",
+ tab_single:"Single flowers",tab_bouquet:"Bouquets",tab_arrangement:"Arrangements",tab_custom:"Create your own",
+ sub_single:"Buy by the stem. Choose how many of each you want.",
+ sub_bouquet:"Hand-tied and wrapped, ready to give or put in a vase.",
+ sub_arrangement:"Arranged in a box, basket, bowl or vase. Ready to display.",
+ title_custom:"Create your own arrangement",sub_custom:"Pick a container and size, then choose every stem yourself.",
+ perStem:"per stem",perStemShort:"/ stem",viewDesc:"View description",add:"Add to basket",qty:"Quantity",fewer:"Fewer",more:"More",
+ toastAdded:"Added {q} × {name}",
+ type_single:"Single flower",type_bouquet:"Bouquet",type_arrangement:"Arrangement",
+ inside:"What's inside",dHeight:"Height",dPack:"Packaging",dVase:"Vase life",dSeason:"Season",dCare:"Care",dSold:"Sold",soldStem:"By the stem",
+ cm:"≈ {n} cm",days:"{r} days",allYear:"All year",
+ natural:"Flowers are natural, so shades and sizes can vary a little.",
+ pack_kraft:"Kraft paper, ribbon",pack_tissue:"Pink tissue paper",pack_white:"White paper",pack_box:"Round hat box",pack_bowl:"Ceramic bowl, yours to keep",pack_basket:"Lined willow basket",pack_vase:"Glass vase, yours to keep",pack_jar:"Glass jar",
+ tag_bestseller:"Bestseller",tag_seasonal:"Seasonal",tag_value:"Good value",tag_sympathy:"Sympathy",tag_vase:"Vase included",tag_filler:"Filler",
+ step1:"Container",step2:"Size",step3:"Choose your stems",step3hint:"Set how many of each flower you want. The preview and price update as you go.",step4:"Finishing touches",
+ v_wrap:"Hand-tied",vn_wrap:"Wrapped in paper",v_vase:"Glass vase",vn_vase:"Yours to keep",v_box:"Hat box",vn_box:"No vase needed",v_basket:"Willow basket",vn_basket:"Lined, keeps water",v_bowl:"Low bowl",vn_bowl:"For tables",
+ tab_personal:"Personal bouquet",sub_personal:"Tell us who it's for. We'll build a bouquet from their zodiac sign and the colours you choose.",
+ pnName:"Their name",pnNameHint:"We'll write it on the card by hand.",pnBirth:"Birthday",pnDay:"Day",pnMonth:"Month",pnOr:"or choose the sign",pnSign:"Zodiac sign",pnPal:"Colour palette",pnSize:"Size",
+ pnFor:"For {name}",pnForNone:"Your personal bouquet",pnWhy:"{sign} is a {element} sign. Main flowers: {flowers}.",pnPick:"Pick a birthday or a zodiac sign to see their flowers.",
+ pnNote:"Exact flowers depend on the season. We always keep the sign's flowers and your colours.",pnLine:"Personal bouquet",pnBadDate:"That date doesn't exist. Check the day and month.",pnFromBirth:"From the birthday",
+ sg_aries:"Aries",sg_taurus:"Taurus",sg_gemini:"Gemini",sg_cancer:"Cancer",sg_leo:"Leo",sg_virgo:"Virgo",sg_libra:"Libra",sg_scorpio:"Scorpio",sg_sagittarius:"Sagittarius",sg_capricorn:"Capricorn",sg_aquarius:"Aquarius",sg_pisces:"Pisces",
+ el_fire:"fire",el_earth:"earth",el_air:"air",el_water:"water",
+ pal_blush:"Soft pastels",pal_bold:"Bright and bold",pal_white:"White and green",pal_sunset:"Warm sunset",pal_romance:"Deep red",pal_lilac:"Lilac and blue",
+ z_s:"Petite",z_m:"Classic",z_l:"Grand",zn:"{n}+ stems",
+ mood:"Colour mood",moods:["Florist's choice","Soft pastels","Bright and bold","White and green","Warm sunset"],
+ msg:"Message for the card",optional:"(optional)",msgPh:"Happy birthday, Mum! Love, Anna",
+ yourArr:"Your arrangement",stemsN:"{n} stems",arranging:"Arranging",each:"Each",
+ needMore:"{size} needs at least {min} stems. Add {k} more, or pick a smaller size.",
+ customName:"Custom arrangement",cardWord:"Card",
+ yourBasket:"Your basket",close:"Close",each2:"each",remove:"Remove",empty:"Your basket is empty.",browse:"Browse flowers",subtotal:"Subtotal",
+ nextHint:"Delivery date, time and address come next.",chooseDelivery:"Choose delivery",
+ back:"← Back to the shop",delivery:"Delivery",deliveryHint:"Tell us when and where the flowers should arrive.",
+ when:"When",date:"Delivery date",sameDay:"Choose the day and time window that suit you.",window:"Time window",included:"Included",evening:"Evening +{p}",gone:"No longer available",
+ where:"Where",area:"Delivery area",free:"free",
+ zone_z1:"Kentron, Yerevan",zone_z2:"Other Yerevan districts",zone_z3:"Outside Yerevan",zone_pickup:"Collect from the shop",
+ rName:"Recipient name",rPhone:"Recipient phone",street:"Address",streetPh:"Street, building, apartment",city:"City",cityDefault:"Yerevan",
+ notes:"Notes for the courier",notesPh:"Entrance, floor, call before arriving, it's a surprise…",
+ pickupNote:"Collect your order from the shop in the time window you picked. We'll message you when it's ready.",
+ you:"Your details",yName:"Your name",yEmail:"Your email",yPhone:"Your phone",
+ payment:"Payment",payText:"You don't pay on the website. After you place the order, we'll send you a payment link or our card details. Your order is confirmed once payment arrives.",
+ sendBy:"Send me the payment details by",
+ summary:"Order summary",collection:"Collection",eveningLine:"Evening window",total:"Total",pickWindow:"pick a time window",paySent:"Payment details are sent to you after you order.",
+ fxNote:"Prices are set in Armenian dram. Amounts in {cur} are approximate.",
+ place:"Place order",
+ eDate:"Choose a delivery date.",ePast:"That date isn't available. Choose a later date.",eSlot:"Choose a time window.",eAddr:"Fill in: {list}.",eName:"Add your name.",eEmail:"Add an email address so we can reach you.",ePhone:"Add your phone number.",
+ thanks:"Thank you, {name}!",order:"Order",doneText:"We'll send your payment details via {how} to {to}. Your order is confirmed once payment arrives.",
+ protoNote:"This is a prototype, so nothing was actually sent.",dDeliverTo:"Deliver to",dCollect:"Collect from",shopName:"Our shop",items:"Items",backShop:"Back to the shop",
+ tier_petite:"Petite",tier_signature:"Signature",tier_grand:"Grand",
+ filterBy:"Occasion",occ_all:"All",occ_love:"Love",occ_proposal:"Proposal",occ_birthday:"Birthday",occ_mother:"For mum, March 8",occ_thanks:"Thank you",occ_sympathy:"Sympathy",occ_home:"Home and table",
+ noMatch:"Nothing for this occasion here yet. Try another occasion, or create your own.",
+ extras:"Make it a gift set",ex_none:"Flowers only",ex_candle:"Scented candle",ex_sweets:"Box of sweets",ex_jewelry:"Jewelry piece from a partner boutique",
+ jewelryNote:"We'll contact you to choose the piece. The price shown is the starting price.",fromP:"from {p}",
+ minCustom:"Custom orders start at {p}.",belowMin:"Custom orders start at {p}. Add a few more stems or a bigger container.",
+ fact3:"Photo of your flowers before they leave",cardHand:"We write it by hand.",
+ brand:"flower atelier",shopName:"Hogis flower atelier",
+ footer:"Prototype · flowers and prices are placeholders · payment is arranged after ordering"
+},
+ru:{
+ basket:"Корзина",lang:"Язык",cur:"Валюта",
+ eyebrowHero:"Свежие цветы с доставкой в ваш день",
+ heroTitle:"Цветы, срезанные этим утром, <em>собраны вручную</em>.",
+ heroText:"Выберите цветы поштучно, готовый букет или композицию, или соберите свою. Дату, время и адрес доставки укажете при оформлении.",
+ fact1:"Вы выбираете день, время и адрес доставки",fact2:"Открытка, подписанная от руки",
+ tab_single:"Цветы поштучно",tab_bouquet:"Букеты",tab_arrangement:"Композиции",tab_custom:"Собрать свою",
+ sub_single:"Покупайте поштучно. Выберите нужное количество каждого цветка.",
+ sub_bouquet:"Собраны вручную и упакованы, готовы к вручению или в вазу.",
+ sub_arrangement:"В коробке, корзинке, чаше или вазе. Готовы украсить интерьер.",
+ title_custom:"Соберите свою композицию",sub_custom:"Выберите основу и размер, затем каждый цветок.",
+ perStem:"за штуку",perStemShort:"/ шт.",viewDesc:"Посмотреть описание",add:"В корзину",qty:"Количество",fewer:"Меньше",more:"Больше",
+ toastAdded:"Добавлено: {q} × {name}",
+ type_single:"Цветок",type_bouquet:"Букет",type_arrangement:"Композиция",
+ inside:"Состав",dHeight:"Высота",dPack:"Упаковка",dVase:"Стоит в вазе",dSeason:"Сезон",dCare:"Уход",dSold:"Продажа",soldStem:"Поштучно",
+ cm:"≈ {n} см",days:"{r} дней",allYear:"Круглый год",
+ natural:"Цветы живые, поэтому оттенки и размеры могут немного отличаться.",
+ pack_kraft:"Крафт-бумага, лента",pack_tissue:"Розовая тишью-бумага",pack_white:"Белая бумага",pack_box:"Круглая шляпная коробка",pack_bowl:"Керамическая чаша, остаётся у вас",pack_basket:"Плетёная корзинка",pack_vase:"Стеклянная ваза, остаётся у вас",pack_jar:"Стеклянная баночка",
+ tag_bestseller:"Хит",tag_seasonal:"Сезонный",tag_value:"Выгодно",tag_sympathy:"Соболезнование",tag_vase:"С вазой",tag_filler:"Для объёма",
+ step1:"Основа",step2:"Размер",step3:"Выберите цветы",step3hint:"Укажите количество каждого цветка. Превью и цена обновляются сразу.",step4:"Последние штрихи",
+ v_wrap:"Букет в упаковке",vn_wrap:"В бумаге",v_vase:"Стеклянная ваза",vn_vase:"Остаётся у вас",v_box:"Шляпная коробка",vn_box:"Ваза не нужна",v_basket:"Корзинка",vn_basket:"Плетёная, держит воду",v_bowl:"Низкая чаша",vn_bowl:"Для стола",
+ tab_personal:"Именной букет",sub_personal:"Расскажите, для кого букет. Мы соберём его по знаку зодиака и выбранным цветам.",
+ pnName:"Имя получателя",pnNameHint:"Мы напишем его на открытке от руки.",pnBirth:"День рождения",pnDay:"День",pnMonth:"Месяц",pnOr:"или выберите знак",pnSign:"Знак зодиака",pnPal:"Цветовая гамма",pnSize:"Размер",
+ pnFor:"Для {name}",pnForNone:"Ваш именной букет",pnWhy:"{sign} — знак стихии «{element}». Основные цветы: {flowers}.",pnPick:"Укажите день рождения или знак зодиака, чтобы увидеть цветы.",
+ pnNote:"Точный состав зависит от сезона. Мы всегда сохраняем цветы знака и вашу гамму.",pnLine:"Именной букет",pnBadDate:"Такой даты нет. Проверьте день и месяц.",pnFromBirth:"По дню рождения",
+ sg_aries:"Овен",sg_taurus:"Телец",sg_gemini:"Близнецы",sg_cancer:"Рак",sg_leo:"Лев",sg_virgo:"Дева",sg_libra:"Весы",sg_scorpio:"Скорпион",sg_sagittarius:"Стрелец",sg_capricorn:"Козерог",sg_aquarius:"Водолей",sg_pisces:"Рыбы",
+ el_fire:"Огонь",el_earth:"Земля",el_air:"Воздух",el_water:"Вода",
+ pal_blush:"Нежная пастель",pal_bold:"Ярко и смело",pal_white:"Белый и зелёный",pal_sunset:"Тёплый закат",pal_romance:"Глубокий красный",pal_lilac:"Сиреневый и голубой",
+ z_s:"Маленький",z_m:"Классический",z_l:"Большой",zn:"от {n} цветков",
+ mood:"Цветовая гамма",moods:["На выбор флориста","Нежная пастель","Ярко и смело","Белый и зелёный","Тёплый закат"],
+ msg:"Текст для открытки",optional:"(необязательно)",msgPh:"С днём рождения, мама! Целую, Аня",
+ yourArr:"Ваша композиция",stemsN:"Цветов: {n}",arranging:"Работа флориста",each:"За штуку",
+ needMore:"Для размера «{size}» нужно минимум {min} цветков. Добавьте ещё {k} или выберите размер меньше.",
+ customName:"Своя композиция",cardWord:"Открытка",
+ yourBasket:"Ваша корзина",close:"Закрыть",each2:"за шт.",remove:"Удалить",empty:"Корзина пуста.",browse:"Смотреть цветы",subtotal:"Сумма",
+ nextHint:"Далее: дата, время и адрес доставки.",chooseDelivery:"Оформить доставку",
+ back:"← Вернуться в магазин",delivery:"Доставка",deliveryHint:"Укажите, когда и куда доставить цветы.",
+ when:"Когда",date:"Дата доставки",sameDay:"Выберите удобные вам день и время.",window:"Время доставки",included:"Включено",evening:"Вечер +{p}",gone:"Уже недоступно",
+ where:"Куда",area:"Район доставки",free:"бесплатно",
+ zone_z1:"Кентрон, Ереван",zone_z2:"Другие районы Еревана",zone_z3:"За пределами Еревана",zone_pickup:"Самовывоз из магазина",
+ rName:"Имя получателя",rPhone:"Телефон получателя",street:"Адрес",streetPh:"Улица, дом, квартира",city:"Город",cityDefault:"Ереван",
+ notes:"Комментарий для курьера",notesPh:"Подъезд, этаж, позвонить заранее, это сюрприз…",
+ pickupNote:"Заберите заказ в магазине в выбранное время. Мы напишем, когда он будет готов.",
+ you:"Ваши данные",yName:"Ваше имя",yEmail:"Ваш email",yPhone:"Ваш телефон",
+ payment:"Оплата",payText:"Оплата не на сайте. После оформления заказа мы отправим вам ссылку на оплату или реквизиты карты. Заказ подтверждается после оплаты.",
+ sendBy:"Куда отправить реквизиты для оплаты",
+ summary:"Ваш заказ",collection:"Самовывоз",eveningLine:"Вечерняя доставка",total:"Итого",pickWindow:"выберите время",paySent:"Реквизиты для оплаты придут после заказа.",
+ fxNote:"Цены установлены в армянских драмах. Суммы в {cur} приблизительные.",
+ place:"Оформить заказ",
+ eDate:"Выберите дату доставки.",ePast:"Эта дата недоступна. Выберите более позднюю.",eSlot:"Выберите время доставки.",eAddr:"Заполните: {list}.",eName:"Укажите ваше имя.",eEmail:"Укажите email, чтобы мы могли связаться с вами.",ePhone:"Укажите номер телефона.",
+ thanks:"Спасибо, {name}!",order:"Заказ",doneText:"Мы отправим реквизиты для оплаты через {how} на {to}. Заказ подтверждается после оплаты.",
+ protoNote:"Это прототип, поэтому ничего не отправлено.",dDeliverTo:"Адрес доставки",dCollect:"Самовывоз",shopName:"Наш магазин",items:"Товары",backShop:"Вернуться в магазин",
+ tier_petite:"Petite",tier_signature:"Signature",tier_grand:"Grand",
+ filterBy:"Повод",occ_all:"Все",occ_love:"Любовь",occ_proposal:"Предложение",occ_birthday:"День рождения",occ_mother:"Маме, 8 Марта",occ_thanks:"Спасибо",occ_sympathy:"Соболезнование",occ_home:"Для дома",
+ noMatch:"Для этого повода здесь пока ничего нет. Выберите другой повод или соберите свою композицию.",
+ extras:"Дополните подарок",ex_none:"Только цветы",ex_candle:"Ароматическая свеча",ex_sweets:"Коробка сладостей",ex_jewelry:"Украшение от партнёрского бутика",
+ jewelryNote:"Мы свяжемся с вами, чтобы выбрать украшение. Указана минимальная цена.",fromP:"от {p}",
+ minCustom:"Своя композиция от {p}.",belowMin:"Своя композиция от {p}. Добавьте ещё цветов или выберите основу побольше.",
+ fact3:"Фото цветов перед отправкой",cardHand:"Мы подпишем её от руки.",
+ brand:"цветочное ателье",shopName:"Цветочное ателье Hogis",
+ footer:"Прототип · цветы и цены условные · оплата согласуется после заказа"
+},
+hy:{
+ basket:"Զամբյուղ",lang:"Լեզու",cur:"Արժույթ",
+ eyebrowHero:"Թարմ ծաղիկներ՝ առաքմամբ ձեր ընտրած օրը",
+ heroTitle:"Այսօր առավոտյան քաղված ծաղիկներ՝ <em>ձեռքով հավաքված</em>։",
+ heroText:"Ընտրեք առանձին ծաղիկներ, պատրաստի ծաղկեփունջ կամ կոմպոզիցիա, կամ ստեղծեք ձերը։ Առաքման օրը, ժամը և հասցեն կնշեք պատվիրելիս։",
+ fact1:"Դուք ընտրում եք առաքման օրը, ժամը և հասցեն",fact2:"Ձեռագիր բացիկ՝ նվեր",
+ tab_single:"Առանձին ծաղիկներ",tab_bouquet:"Ծաղկեփնջեր",tab_arrangement:"Կոմպոզիցիաներ",tab_custom:"Ստեղծել ձերը",
+ sub_single:"Գնեք հատով։ Ընտրեք յուրաքանչյուր ծաղկի քանակը։",
+ sub_bouquet:"Ձեռքով հավաքված և փաթեթավորված, պատրաստ նվիրելու կամ ծաղկաման դնելու։",
+ sub_arrangement:"Տուփում, զամբյուղում, ամանում կամ ծաղկամանում։ Պատրաստ են զարդարելու։",
+ title_custom:"Ստեղծեք ձեր կոմպոզիցիան",sub_custom:"Ընտրեք տարան և չափը, ապա յուրաքանչյուր ծաղիկը։",
+ perStem:"մեկ հատը",perStemShort:"/ հատ",viewDesc:"Դիտել նկարագրությունը",add:"Ավելացնել զամբյուղ",qty:"Քանակ",fewer:"Պակասեցնել",more:"Ավելացնել",
+ toastAdded:"Ավելացված է՝ {q} × {name}",
+ type_single:"Ծաղիկ",type_bouquet:"Ծաղկեփունջ",type_arrangement:"Կոմպոզիցիա",
+ inside:"Կազմը",dHeight:"Բարձրություն",dPack:"Փաթեթավորում",dVase:"Կյանքը ծաղկամանում",dSeason:"Սեզոն",dCare:"Խնամք",dSold:"Վաճառք",soldStem:"Հատով",
+ cm:"≈ {n} սմ",days:"{r} օր",allYear:"Ամբողջ տարին",
+ natural:"Ծաղիկները կենդանի են, ուստի երանգներն ու չափերը կարող են մի փոքր տարբերվել։",
+ pack_kraft:"Կրաֆտ թուղթ, ժապավեն",pack_tissue:"Վարդագույն նուրբ թուղթ",pack_white:"Սպիտակ թուղթ",pack_box:"Կլոր գլխարկի տուփ",pack_bowl:"Կերամիկական աման, մնում է ձեզ",pack_basket:"Հյուսած զամբյուղ",pack_vase:"Ապակե ծաղկաման, մնում է ձեզ",pack_jar:"Ապակե բանկա",
+ tag_bestseller:"Ամենավաճառվող",tag_seasonal:"Սեզոնային",tag_value:"Շահավետ",tag_sympathy:"Ցավակցական",tag_vase:"Ծաղկամանով",tag_filler:"Լրացնող",
+ step1:"Տարա",step2:"Չափ",step3:"Ընտրեք ծաղիկները",step3hint:"Նշեք յուրաքանչյուր ծաղկի քանակը։ Պատկերը և գինը թարմացվում են անմիջապես։",step4:"Վերջնական հպումներ",
+ v_wrap:"Ձեռքով կապված",vn_wrap:"Թղթով փաթաթված",v_vase:"Ապակե ծաղկաման",vn_vase:"Մնում է ձեզ",v_box:"Գլխարկի տուփ",vn_box:"Ծաղկաման պետք չէ",v_basket:"Հյուսած զամբյուղ",vn_basket:"Ջուր պահող",v_bowl:"Ցածր աման",vn_bowl:"Սեղանի համար",
+ tab_personal:"Անվանական ծաղկեփունջ",sub_personal:"Պատմեք՝ ում համար է։ Ծաղկեփունջը կհավաքենք ըստ կենդանակերպի նշանի և ձեր ընտրած գույների։",
+ pnName:"Ստացողի անունը",pnNameHint:"Այն ձեռքով կգրենք բացիկի վրա։",pnBirth:"Ծննդյան օր",pnDay:"Օր",pnMonth:"Ամիս",pnOr:"կամ ընտրեք նշանը",pnSign:"Կենդանակերպի նշան",pnPal:"Գունային գամմա",pnSize:"Չափ",
+ pnFor:"{name}-ի համար",pnForNone:"Ձեր անվանական ծաղկեփունջը",pnWhy:"{sign}՝ «{element}» տարրի նշան։ Հիմնական ծաղիկներ՝ {flowers}։",pnPick:"Նշեք ծննդյան օրը կամ կենդանակերպի նշանը՝ ծաղիկները տեսնելու համար։",
+ pnNote:"Ճշգրիտ կազմը կախված է սեզոնից։ Մենք միշտ պահպանում ենք նշանի ծաղիկներն ու ձեր գամման։",pnLine:"Անվանական ծաղկեփունջ",pnBadDate:"Այդպիսի ամսաթիվ չկա։ Ստուգեք օրը և ամիսը։",pnFromBirth:"Ըստ ծննդյան օրվա",
+ sg_aries:"Խոյ",sg_taurus:"Ցուլ",sg_gemini:"Երկվորյակներ",sg_cancer:"Խեցգետին",sg_leo:"Առյուծ",sg_virgo:"Կույս",sg_libra:"Կշեռք",sg_scorpio:"Կարիճ",sg_sagittarius:"Աղեղնավոր",sg_capricorn:"Այծեղջյուր",sg_aquarius:"Ջրհոս",sg_pisces:"Ձկներ",
+ el_fire:"Կրակ",el_earth:"Հող",el_air:"Օդ",el_water:"Ջուր",
+ pal_blush:"Նուրբ պաստելային",pal_bold:"Վառ ու համարձակ",pal_white:"Սպիտակ և կանաչ",pal_sunset:"Տաք մայրամուտ",pal_romance:"Մուգ կարմիր",pal_lilac:"Յասամանագույն և կապույտ",
+ z_s:"Փոքր",z_m:"Դասական",z_l:"Մեծ",zn:"{n}+ ծաղիկ",
+ mood:"Գունային երանգ",moods:["Ըստ ֆլորիստի ընտրության","Նուրբ պաստելային","Վառ ու համարձակ","Սպիտակ և կանաչ","Տաք մայրամուտ"],
+ msg:"Բացիկի տեքստ",optional:"(ըստ ցանկության)",msgPh:"Շնորհավոր ծնունդդ, մամ։ Սիրով՝ Աննա",
+ yourArr:"Ձեր կոմպոզիցիան",stemsN:"{n} ծաղիկ",arranging:"Ֆլորիստի աշխատանք",each:"Մեկ հատը",
+ needMore:"«{size}» չափի համար պետք է առնվազն {min} ծաղիկ։ Ավելացրեք ևս {k} կամ ընտրեք ավելի փոքր չափ։",
+ customName:"Անհատական կոմպոզիցիա",cardWord:"Բացիկ",
+ yourBasket:"Ձեր զամբյուղը",close:"Փակել",each2:"մեկ հատը",remove:"Հեռացնել",empty:"Զամբյուղը դատարկ է։",browse:"Դիտել ծաղիկները",subtotal:"Ենթագումար",
+ nextHint:"Հաջորդը՝ առաքման օրը, ժամը և հասցեն։",chooseDelivery:"Ընտրել առաքումը",
+ back:"← Վերադառնալ խանութ",delivery:"Առաքում",deliveryHint:"Նշեք՝ երբ և ուր առաքել ծաղիկները։",
+ when:"Երբ",date:"Առաքման օրը",sameDay:"Ընտրեք ձեզ հարմար օրը և ժամը։",window:"Առաքման ժամը",included:"Ներառված է",evening:"Երեկո +{p}",gone:"Այլևս հասանելի չէ",
+ where:"Ուր",area:"Առաքման տարածք",free:"անվճար",
+ zone_z1:"Կենտրոն, Երևան",zone_z2:"Երևանի այլ վարչական շրջաններ",zone_z3:"Երևանից դուրս",zone_pickup:"Վերցնել խանութից",
+ rName:"Ստացողի անունը",rPhone:"Ստացողի հեռախոսը",street:"Հասցե",streetPh:"Փողոց, շենք, բնակարան",city:"Քաղաք",cityDefault:"Երևան",
+ notes:"Նշումներ առաքիչի համար",notesPh:"Մուտք, հարկ, զանգել նախապես, անակնկալ է…",
+ pickupNote:"Վերցրեք պատվերը խանութից ձեր ընտրած ժամին։ Կգրենք, երբ պատրաստ լինի։",
+ you:"Ձեր տվյալները",yName:"Ձեր անունը",yEmail:"Ձեր էլ. փոստը",yPhone:"Ձեր հեռախոսը",
+ payment:"Վճարում",payText:"Կայքում վճարում չկա։ Պատվերից հետո կուղարկենք վճարման հղում կամ քարտի տվյալներ։ Պատվերը հաստատվում է վճարումը ստանալուց հետո։",
+ sendBy:"Ուր ուղարկել վճարման տվյալները",
+ summary:"Պատվերի ամփոփում",collection:"Վերցնել խանութից",eveningLine:"Երեկոյան առաքում",total:"Ընդամենը",pickWindow:"ընտրեք ժամը",paySent:"Վճարման տվյալները կստանաք պատվերից հետո։",
+ fxNote:"Գները սահմանված են ՀՀ դրամով։ {cur}-ով գումարները մոտավոր են։",
+ place:"Պատվիրել",
+ eDate:"Ընտրեք առաքման օրը։",ePast:"Այդ օրը հասանելի չէ։ Ընտրեք ավելի ուշ օր։",eSlot:"Ընտրեք առաքման ժամը։",eAddr:"Լրացրեք՝ {list}։",eName:"Նշեք ձեր անունը։",eEmail:"Նշեք էլ. փոստը, որ կարողանանք կապվել ձեզ հետ։",ePhone:"Նշեք ձեր հեռախոսահամարը։",
+ thanks:"Շնորհակալություն, {name}։",order:"Պատվեր",doneText:"Վճարման տվյալները կուղարկենք {to} ({how})։ Պատվերը հաստատվում է վճարումը ստանալուց հետո։",
+ protoNote:"Սա նախատիպ է, ուստի ոչինչ չի ուղարկվել։",dDeliverTo:"Առաքման հասցե",dCollect:"Վերցնել",shopName:"Մեր խանութը",items:"Ապրանքներ",backShop:"Վերադառնալ խանութ",
+ tier_petite:"Petite",tier_signature:"Signature",tier_grand:"Grand",
+ filterBy:"Առիթ",occ_all:"Բոլորը",occ_love:"Սեր",occ_proposal:"Ամուսնության առաջարկ",occ_birthday:"Ծննդյան օր",occ_mother:"Մայրիկին, Մարտի 8",occ_thanks:"Շնորհակալություն",occ_sympathy:"Ցավակցություն",occ_home:"Տան համար",
+ noMatch:"Այս առիթի համար այստեղ դեռ ոչինչ չկա։ Ընտրեք այլ առիթ կամ ստեղծեք ձերը։",
+ extras:"Լրացրեք նվերը",ex_none:"Միայն ծաղիկներ",ex_candle:"Բուրավետ մոմ",ex_sweets:"Քաղցրավենիքի տուփ",ex_jewelry:"Զարդ գործընկեր խանութից",
+ jewelryNote:"Կկապվենք ձեզ հետ՝ զարդը ընտրելու համար։ Նշված է նվազագույն գինը։",fromP:"{p}-ից",
+ minCustom:"Անհատական պատվերը՝ {p}-ից։",belowMin:"Անհատական պատվերը՝ {p}-ից։ Ավելացրեք ծաղիկներ կամ ընտրեք ավելի մեծ տարա։",
+ fact3:"Ծաղիկների լուսանկարը՝ առաքումից առաջ",cardHand:"Մենք այն կգրենք ձեռքով։",
+ brand:"Հոգիս · ծաղիկների ատելիե",shopName:"Հոգիս ծաղիկների ատելիե",
+ footer:"Նախատիպ · ծաղիկներն ու գները պայմանական են · վճարումը համաձայնեցվում է պատվերից հետո"
+}};
+
+function pickLang(){try{const s=localStorage.getItem("snb-lang");if(I18N[s])return s;}catch(e){}
+  const n=(navigator.language||"").slice(0,2);return I18N[n]?n:"hy";}
+function pickCur(){try{const s=localStorage.getItem("snb-cur");if(RATES[s])return s;}catch(e){}return "AMD";}
+let LANG=pickLang(), CUR=pickCur();
+function t(k,v){let s=(I18N[LANG][k]??I18N.en[k]??k);if(v)for(const x in v)s=s.split("{"+x+"}").join(v[x]);return s;}
+function money(amd,cur=CUR){const dec=(cur==="USD"||cur==="EUR")?2:0;
+  return new Intl.NumberFormat(LOCALE[LANG],{style:"currency",currency:cur,currencyDisplay:"narrowSymbol",minimumFractionDigits:dec,maximumFractionDigits:dec}).format(amd/RATES[cur]);}
+// Armenian fallback for browsers without Armenian date data
+const HY_OK=(()=>{try{return new Intl.DateTimeFormat("hy-AM",{month:"long"}).format(new Date(2026,9,15))!=="October";}catch(e){return false;}})();
+const HY_M=["հունվար","փետրվար","մարտ","ապրիլ","մայիս","հունիս","հուլիս","օգոստոս","սեպտեմբեր","հոկտեմբեր","նոյեմբեր","դեկտեմբեր"];
+const HY_MG=["հունվարի","փետրվարի","մարտի","ապրիլի","մայիսի","հունիսի","հուլիսի","օգոստոսի","սեպտեմբերի","հոկտեմբերի","նոյեմբերի","դեկտեմբերի"];
+const HY_D=["կիրակի","երկուշաբթի","երեքշաբթի","չորեքշաբթի","հինգշաբթի","ուրբաթ","շաբաթ"];
+function monthName(m){if(LANG==="hy"&&!HY_OK)return HY_M[m-1];return new Intl.DateTimeFormat(LOCALE[LANG],{month:"long"}).format(new Date(2026,m-1,15));}
+
+/* ---------- flowers (prices in AMD, placeholders) ---------- */
+const F={
+ rose:{color:"#c2264b",center:"#7e1631",kind:"rose",price:1200,season:null,vase:"7–9"},
+ blush:{color:"#f0a7b4",center:"#d97088",kind:"rose",price:1200,season:null,vase:"7–9"},
+ peony:{color:"#ee8fb0",center:"#f6c7d6",kind:"peony",price:2500,season:[5,7],vase:"5–7"},
+ tulip:{color:"#f27a3a",center:"#c4561e",kind:"tulip",price:700,season:[1,5],vase:"5–7"},
+ ranunculus:{color:"#f6c64a",center:"#c88f19",kind:"rose",price:1000,season:[2,5],vase:"7–10"},
+ sunflower:{color:"#f5b82e",center:"#5a3418",kind:"ray",price:1200,season:[6,10],vase:"6–10"},
+ lily:{color:"#fbf3f1",center:"#e7a2b5",kind:"lily",price:2000,season:null,vase:"10–14"},
+ hydrangea:{color:"#8fa7de",center:"#6c84c4",kind:"cluster",price:3000,season:[6,9],vase:"5–8"},
+ carnation:{color:"#e45d7c",center:"#b23453",kind:"peony",price:600,season:null,vase:"14–21"},
+ lisianthus:{color:"#a98bd3",center:"#e9e2f3",kind:"tulip",price:1200,season:null,vase:"10–14"},
+ eucalyptus:{color:"#8fb3a3",center:"#8fb3a3",kind:"leaf",price:800,season:null,vase:"14+",green:true},
+ gyp:{color:"#ffffff",center:"#e9ecef",kind:"gyp",price:900,season:null,vase:"10–14",green:true},
+};
+// [name, description, care]
+const FT={
+ rose:{en:["Garden rose","Classic many-petalled rose with a soft scent.","Trim 2 cm at an angle, change water every 2 days."],
+       ru:["Садовая роза","Классическая многолепестковая роза с нежным ароматом.","Подрезайте стебель на 2 см под углом, меняйте воду каждые 2 дня."],
+       hy:["Այգու վարդ","Դասական բազմաթերթ վարդ՝ նուրբ բույրով։","Ցողունը թեք կտրեք 2 սմ-ով, ջուրը փոխեք 2 օրը մեկ։"]},
+ blush:{en:["Blush rose","The softest pale pink garden rose we stock.","Trim 2 cm at an angle, change water every 2 days."],
+       ru:["Нежно-розовая роза","Самая нежная бледно-розовая садовая роза.","Подрезайте стебель на 2 см под углом, меняйте воду каждые 2 дня."],
+       hy:["Բաց վարդագույն վարդ","Մեր ամենանուրբ բաց վարդագույն այգու վարդը։","Ցողունը թեք կտրեք 2 սմ-ով, ջուրը փոխեք 2 օրը մեկ։"]},
+ peony:{en:["Peony","Big ruffled blooms that open from tight buds.","Keep cool. Warm water helps buds open."],
+       ru:["Пион","Пышные цветы, раскрываются из тугих бутонов.","Держите в прохладе. Тёплая вода помогает бутонам раскрыться."],
+       hy:["Քաջվարդ","Խոշոր, փարթամ ծաղիկներ, որոնք բացվում են ամուր կոկոններից։","Պահեք զով տեղում։ Տաք ջուրն օգնում է կոկոններին բացվել։"]},
+ tulip:{en:["Tulip","Cup-shaped heads that keep growing in the vase.","Cold water, keep away from fruit."],
+       ru:["Тюльпан","Цветы-бокалы, которые продолжают расти в вазе.","Холодная вода, держите подальше от фруктов."],
+       hy:["Վարդակակաչ","Գավաթաձև ծաղիկներ, որոնք ծաղկամանում շարունակում են աճել։","Սառը ջուր, հեռու պահեք մրգերից։"]},
+ ranunculus:{en:["Ranunculus","Paper-thin layered petals in buttery yellow.","Shallow water, trim stems often."],
+       ru:["Ранункулюс","Тонкие многослойные лепестки сливочно-жёлтого цвета.","Немного воды, чаще подрезайте стебли."],
+       hy:["Ռանունկուլյուս","Բարակ, շերտ-շերտ թերթիկներ՝ կարագի դեղին գույնով։","Քիչ ջուր, հաճախ կտրեք ցողունները։"]},
+ sunflower:{en:["Sunflower","Bright and sturdy. One stem fills a vase.","Deep water, remove lower leaves."],
+       ru:["Подсолнух","Яркий и крепкий. Один стебель заполняет вазу.","Много воды, удалите нижние листья."],
+       hy:["Արևածաղիկ","Վառ ու ամուր։ Մեկ ցողունը լցնում է ամբողջ ծաղկամանը։","Շատ ջուր, հեռացրեք ներքևի տերևները։"]},
+ lily:{en:["Oriental lily","Large star-shaped flowers with a strong perfume.","Pinch off pollen to avoid stains."],
+       ru:["Восточная лилия","Крупные звёздчатые цветы с сильным ароматом.","Удаляйте пыльцу, чтобы не было пятен."],
+       hy:["Շուշան","Խոշոր աստղաձև ծաղիկներ՝ ուժեղ բույրով։","Հեռացրեք ծաղկափոշին, որ բծեր չմնան։"]},
+ hydrangea:{en:["Hydrangea","One stem gives a full cloud of tiny petals.","Thirsty. Submerge the head in water if it wilts."],
+       ru:["Гортензия","Один стебель даёт пышное облако мелких лепестков.","Любит воду. Если поникла, опустите соцветие в воду."],
+       hy:["Հորտենզիա","Մեկ ցողունը տալիս է մանր թերթիկների փարթամ ամպ։","Շատ ջուր է սիրում։ Թառամելիս ծաղկաբույլը ընկղմեք ջրի մեջ։"]},
+ carnation:{en:["Carnation","Frilly edges and a very long vase life.","Change water every 3 days."],
+       ru:["Гвоздика","Резные края и очень долгая жизнь в вазе.","Меняйте воду каждые 3 дня."],
+       hy:["Մեխակ","Ատամնավոր եզրեր և շատ երկար կյանք ծաղկամանում։","Ջուրը փոխեք 3 օրը մեկ։"]},
+ lisianthus:{en:["Lisianthus","Soft lilac petals, like a rose and a poppy at once.","Remove spent buds so new ones open."],
+       ru:["Эустома","Нежные сиреневые лепестки, похожа и на розу, и на мак.","Удаляйте отцветшие бутоны, чтобы раскрывались новые."],
+       hy:["Լիզիանթուս","Նուրբ յասամանագույն թերթիկներ՝ նման և՛ վարդի, և՛ կակաչի։","Հեռացրեք թառամած կոկոնները, որ նորերը բացվեն։"]},
+ eucalyptus:{en:["Eucalyptus","Silver-blue leaves with a fresh scent.","Lasts well and can be dried."],
+       ru:["Эвкалипт","Серебристо-голубые листья со свежим ароматом.","Долго стоит, можно засушить."],
+       hy:["Էվկալիպտ","Արծաթակապտավուն տերևներ՝ թարմ բույրով։","Երկար է մնում, կարելի է չորացնել։"]},
+ gyp:{en:["Baby's breath","Clouds of tiny white flowers to fill gaps.","Very low care, dries beautifully."],
+       ru:["Гипсофила","Облака мелких белых цветов для объёма.","Почти не требует ухода, красиво сохнет."],
+       hy:["Գիպսոֆիլա","Մանր սպիտակ ծաղիկների ամպեր՝ դատարկությունները լրացնելու համար։","Գրեթե խնամք չի պահանջում, գեղեցիկ չորանում է։"]},
+};
+const fName=id=>FT[id][LANG][0];
+
+/* ---------- catalog (prices in AMD) ---------- */
+const SINGLES=Object.keys(F).map(id=>({id:"s-"+id,type:"single",fid:id,price:F[id].price,flowers:{[id]:1},tags:F[id].green?["filler"]:[]}));
+const BOUQUETS=[
+ {id:"b-romance",tier:"signature",price:32000,flowers:{rose:9,gyp:3,eucalyptus:3},tags:["bestseller"],occ:["love","birthday","proposal"],h:45,pack:"kraft",vase:"7–9"},
+ {id:"b-peony",tier:"signature",price:42000,flowers:{peony:7,blush:4,eucalyptus:3},tags:["seasonal"],occ:["love","mother","birthday"],h:50,pack:"tissue",vase:"5–7"},
+ {id:"b-forever",tier:"grand",price:120000,flowers:{rose:51},tags:[],occ:["proposal","love"],h:60,pack:"white",vase:"7–9"},
+ {id:"b-sunny",tier:"petite",price:19000,flowers:{sunflower:3,ranunculus:5,eucalyptus:2},tags:[],occ:["birthday","thanks"],h:45,pack:"kraft",vase:"6–10"},
+ {id:"b-tulip",tier:"petite",price:16000,flowers:{tulip:15},tags:["value"],occ:["mother","thanks","home"],h:40,pack:"white",vase:"5–7"},
+ {id:"b-lilac",tier:"signature",price:36000,flowers:{lisianthus:6,hydrangea:1,blush:3,gyp:2},tags:[],occ:["mother","thanks","birthday"],h:45,pack:"white",vase:"7–10"},
+ {id:"b-white",tier:"signature",price:38000,flowers:{lily:3,gyp:4,eucalyptus:4},tags:[],occ:["home","thanks"],h:55,pack:"white",vase:"10–14"},
+].map(p=>({...p,type:"bouquet"}));
+const ARRANGEMENTS=[
+ {id:"a-box",tier:"signature",price:45000,vessel:"box",flowers:{rose:12,blush:8},tags:["bestseller"],occ:["love","mother","proposal"],h:25,pack:"box",vase:"7–9"},
+ {id:"a-table",tier:"signature",price:40000,vessel:"bowl",flowers:{peony:4,hydrangea:1,ranunculus:4,eucalyptus:3},tags:[],occ:["home","thanks"],h:20,pack:"bowl",vase:"6–8"},
+ {id:"a-basket",tier:"signature",price:34000,vessel:"basket",flowers:{sunflower:3,tulip:5,carnation:4,eucalyptus:2},tags:[],occ:["birthday","thanks"],h:35,pack:"basket",vase:"6–8"},
+ {id:"a-vase",tier:"grand",price:85000,vessel:"vase",flowers:{lily:3,hydrangea:2,lisianthus:5,eucalyptus:4},tags:["vase"],occ:["home","thanks"],h:65,pack:"vase",vase:"8–12"},
+ {id:"a-mini",tier:"petite",price:15000,vessel:"jar",flowers:{ranunculus:3,carnation:2,gyp:1},tags:["value"],occ:["thanks","birthday","home"],h:18,pack:"jar",vase:"5–7"},
+].map(p=>({...p,type:"arrangement"}));
+// [name, description]
+const PT={
+ "b-romance":{en:["First Date","Nine red garden roses with baby's breath and eucalyptus, hand-tied in kraft paper. Simple and confident."],
+   ru:["Первое свидание","Девять красных садовых роз с гипсофилой и эвкалиптом в крафтовой бумаге. Просто и уверенно."],
+   hy:["Առաջին ժամադրություն","Ինը կարմիր այգու վարդ՝ գիպսոֆիլայով և էվկալիպտով, փաթաթված կրաֆտ թղթով։ Պարզ և վստահ։"]},
+ "b-peony":{en:["Peony Cloud","Seven peonies picked in bud so you can watch them open, with blush roses and eucalyptus."],
+   ru:["Пионовое облако","Семь пионов в бутонах, чтобы вы увидели, как они раскрываются, с нежно-розовыми розами и эвкалиптом."],
+   hy:["Քաջվարդի ամպ","Յոթ քաջվարդ կոկոնների մեջ, որ տեսնեք՝ ինչպես են բացվում, բաց վարդագույն վարդերով և էվկալիպտով։"]},
+ "b-forever":{en:["Forever","Fifty-one red garden roses, hand-tied in a dome. Made for proposals and big anniversaries."],
+   ru:["Навсегда","Пятьдесят одна красная садовая роза, собранная куполом. Для предложения руки и сердца и больших годовщин."],
+   hy:["Ընդմիշտ","Հիսունմեկ կարմիր այգու վարդ՝ գմբեթաձև հավաքված։ Ամուսնության առաջարկի և մեծ տարեդարձերի համար։"]},
+ "b-sunny":{en:["Sunday Morning","Three big sunflowers with buttery ranunculus. Good for birthdays or just because."],
+   ru:["Воскресное утро","Три больших подсолнуха и жёлтые ранункулюсы. Для дня рождения или просто так."],
+   hy:["Կիրակի առավոտ","Երեք մեծ արևածաղիկ և դեղին ռանունկուլյուսներ։ Ծննդյան օրվա համար կամ պարզապես առանց առիթի։"]},
+ "b-tulip":{en:["Tulip Market","Fifteen orange tulips, tied loosely like at a flower market. Give them room to grow."],
+   ru:["Тюльпановая ярмарка","Пятнадцать оранжевых тюльпанов, свободно связанных, как на цветочном рынке."],
+   hy:["Վարդակակաչների տոնավաճառ","Տասնհինգ նարնջագույն վարդակակաչ՝ ազատ կապված, ինչպես ծաղկի շուկայում։"]},
+ "b-lilac":{en:["Lavender Hour","A cool-toned bouquet of lilac lisianthus, blue hydrangea and blush roses."],
+   ru:["Лавандовый час","Букет в холодных тонах: сиреневая эустома, голубая гортензия и нежно-розовые розы."],
+   hy:["Լավանդայի ժամ","Սառը երանգների ծաղկեփունջ՝ յասամանագույն լիզիանթուս, կապույտ հորտենզիա և բաց վարդագույն վարդեր։"]},
+ "b-white":{en:["Quiet White","White oriental lilies with baby's breath and eucalyptus. Calm and elegant, with pollen removed."],
+   ru:["Белая тишина","Белые восточные лилии с гипсофилой и эвкалиптом. Спокойно и элегантно, пыльца удалена."],
+   hy:["Սպիտակ լռություն","Սպիտակ շուշաններ՝ գիպսոֆիլայով և էվկալիպտով։ Հանգիստ և նրբագեղ, ծաղկափոշին հեռացված է։"]},
+ "a-box":{en:["Hat Box Roses","Twenty red and blush roses in a round hat box. Ready to display, no vase needed."],
+   ru:["Розы в шляпной коробке","Двадцать красных и нежно-розовых роз в круглой шляпной коробке. Ваза не нужна."],
+   hy:["Վարդեր գլխարկի տուփում","Քսան կարմիր և բաց վարդագույն վարդ՝ կլոր գլխարկի տուփում։ Ծաղկաման պետք չէ։"]},
+ "a-table":{en:["Table Centrepiece","A low arrangement for a dinner table, so guests can still see each other. The ceramic bowl is yours to keep."],
+   ru:["Композиция для стола","Низкая композиция для обеденного стола, чтобы гости видели друг друга. Керамическая чаша остаётся у вас."],
+   hy:["Սեղանի կոմպոզիցիա","Ցածր կոմպոզիցիա ճաշի սեղանի համար, որ հյուրերը միմյանց տեսնեն։ Կերամիկական ամանը մնում է ձեզ։"]},
+ "a-basket":{en:["Country Basket","A lined willow basket full of sunflowers, tulips and carnations."],
+   ru:["Деревенская корзинка","Плетёная корзинка с подсолнухами, тюльпанами и гвоздиками."],
+   hy:["Գյուղական զամբյուղ","Հյուսած զամբյուղ՝ լի արևածաղիկներով, վարդակակաչներով և մեխակներով։"]},
+ "a-vase":{en:["Tall Vase","Our largest piece: lilies, hydrangea and lisianthus in a heavy glass vase you keep."],
+   ru:["Высокая ваза","Наша самая большая композиция: лилии, гортензия и эустома в тяжёлой стеклянной вазе."],
+   hy:["Բարձր ծաղկաման","Մեր ամենամեծ կոմպոզիցիան՝ շուշաններ, հորտենզիա և լիզիանթուս ծանր ապակե ծաղկամանում։"]},
+ "a-mini":{en:["Little Jar","A small jar of seasonal stems for a desk or bedside table."],
+   ru:["Маленькая баночка","Маленькая баночка сезонных цветов для рабочего стола или тумбочки."],
+   hy:["Փոքրիկ բանկա","Փոքրիկ բանկա սեզոնային ծաղիկներով՝ աշխատասեղանի կամ մահճակալի մոտ դնելու համար։"]},
+};
+const ALL=[...SINGLES,...BOUQUETS,...ARRANGEMENTS];
+const byId=id=>ALL.find(p=>p.id===id);
+const pName=p=>p.fid?FT[p.fid][LANG][0]:PT[p.id][LANG][0];
+const pDesc=p=>p.fid?FT[p.fid][LANG][1]:PT[p.id][LANG][1];
+
+/* ---------- builder config (AMD) ---------- */
+const VESSELS=[{id:"wrap",price:1000},{id:"vase",price:5000},{id:"box",price:4000},{id:"basket",price:3500},{id:"bowl",price:4500}];
+const SIZES=[{id:"s",min:5},{id:"m",min:10},{id:"l",min:20}];
+const LABOUR=2000;
+const EXTRAS={none:0,candle:6000,sweets:5000,jewelry:25000};
+const MIN_CUSTOM=15000;
+/* personal bouquet: zodiac sign -> element + main flowers; palettes recolour the blooms */
+const SIGNS={aries:["fire",["tulip","carnation","rose"]],taurus:["earth",["peony","blush","ranunculus"]],gemini:["air",["lisianthus","tulip","gyp"]],
+  cancer:["water",["lily","blush","gyp"]],leo:["fire",["sunflower","ranunculus","rose"]],virgo:["earth",["lisianthus","ranunculus","gyp"]],
+  libra:["air",["blush","hydrangea","lisianthus"]],scorpio:["water",["rose","peony","carnation"]],sagittarius:["fire",["carnation","sunflower","tulip"]],
+  capricorn:["earth",["carnation","lily","rose"]],aquarius:["air",["lisianthus","hydrangea","tulip"]],pisces:["water",["hydrangea","lily","blush"]]};
+const SIGN_ORDER=["aries","taurus","gemini","cancer","leo","virgo","libra","scorpio","sagittarius","capricorn","aquarius","pisces"];
+// [month, first day] when each sign starts
+const SIGN_START=[[1,20,"aquarius"],[2,19,"pisces"],[3,21,"aries"],[4,20,"taurus"],[5,21,"gemini"],[6,21,"cancer"],[7,23,"leo"],[8,23,"virgo"],[9,23,"libra"],[10,23,"scorpio"],[11,22,"sagittarius"],[12,22,"capricorn"]];
+function signOf(d,m){let sg="capricorn";for(const [sm,sd,id] of SIGN_START){if(m>sm||(m===sm&&d>=sd))sg=id;}return sg;}
+const PALETTES={blush:["#f0a7b4","#f6c7d6","#e7a2b5","#fbe3e8"],bold:["#c2264b","#f27a3a","#f5b82e","#e45d7c"],white:["#ffffff","#f4f1ea","#e9ecef","#f7f3e8"],
+  sunset:["#f27a3a","#f6c64a","#ee8fb0","#e9a15a"],romance:["#7e1631","#c2264b","#9c2a3c","#b8455c"],lilac:["#a98bd3","#8fa7de","#c9b8e8","#b7c6ee"]};
+const PERS_SIZES={petite:{stems:7,price:18000},signature:{stems:15,price:35000},grand:{stems:31,price:75000}};
+const DAYS_IN=[31,29,31,30,31,30,31,31,30,31,30,31];
+const OCCASIONS=["all","love","proposal","birthday","mother","thanks","home"];
+
+/* ---------- SVG art ---------- */
+function bloom(x,y,r,f){
+  const c=f.color,k=f.center,out=[];
+  if(f.kind==="leaf"){for(let i=0;i<5;i++){const a=-90+(i-2)*30;out.push(`<ellipse cx="${x+Math.cos(a*Math.PI/180)*r*.8}" cy="${y+Math.sin(a*Math.PI/180)*r*.8}" rx="${r*.38}" ry="${r*.32}" fill="${c}" stroke="#5f8a78" stroke-width=".8"/>`);}return out.join("");}
+  if(f.kind==="gyp"){for(let i=0;i<9;i++){const a=i*40,d=(i%3+1)*r*.28;out.push(`<circle cx="${x+Math.cos(a)*d}" cy="${y+Math.sin(a)*d}" r="${r*.16}" fill="${c}" stroke="#b9c2b5" stroke-width=".6"/>`);}return out.join("");}
+  if(f.kind==="cluster"){for(let i=0;i<14;i++){const a=i*2.4,d=Math.sqrt(i/14)*r*.85;out.push(`<circle cx="${x+Math.cos(a)*d}" cy="${y+Math.sin(a)*d}" r="${r*.26}" fill="${i%2?c:k}"/>`);}return out.join("");}
+  if(f.kind==="tulip"){return `<path d="M${x-r*.7},${y-r*.1} Q${x-r*.75},${y+r*.85} ${x},${y+r*.8} Q${x+r*.75},${y+r*.85} ${x+r*.7},${y-r*.1} L${x+r*.35},${y-r*.75} L${x},${y-r*.2} L${x-r*.35},${y-r*.75} Z" fill="${c}"/><path d="M${x-r*.2},${y-r*.1} Q${x},${y+r*.6} ${x+r*.2},${y-r*.1}" fill="none" stroke="${k}" stroke-width="${r*.08}"/>`;}
+  if(f.kind==="ray"){for(let i=0;i<16;i++){out.push(`<ellipse cx="${x}" cy="${y-r*.68}" rx="${r*.15}" ry="${r*.38}" fill="${c}" transform="rotate(${i*22.5} ${x} ${y})"/>`);}out.push(`<circle cx="${x}" cy="${y}" r="${r*.42}" fill="${k}"/>`);return out.join("");}
+  if(f.kind==="lily"){for(let i=0;i<6;i++){out.push(`<path d="M${x},${y} Q${x-r*.32},${y-r*.6} ${x},${y-r} Q${x+r*.32},${y-r*.6} ${x},${y}Z" fill="${c}" stroke="${k}" stroke-width="1" transform="rotate(${i*60} ${x} ${y})"/>`);}out.push(`<circle cx="${x}" cy="${y}" r="${r*.14}" fill="${k}"/>`);return out.join("");}
+  if(f.kind==="peony"){for(let i=0;i<10;i++){out.push(`<ellipse cx="${x}" cy="${y-r*.5}" rx="${r*.42}" ry="${r*.5}" fill="${c}" transform="rotate(${i*36} ${x} ${y})" opacity=".95"/>`);}out.push(`<circle cx="${x}" cy="${y}" r="${r*.48}" fill="${k}"/><circle cx="${x}" cy="${y}" r="${r*.3}" fill="${c}"/>`);return out.join("");}
+  out.push(`<circle cx="${x}" cy="${y}" r="${r}" fill="${c}"/>`);
+  out.push(`<path d="M${x-r*.55},${y} a${r*.55},${r*.55} 0 1 1 ${r*.55},${r*.55}" fill="none" stroke="${k}" stroke-width="${r*.12}" stroke-linecap="round"/>`);
+  out.push(`<path d="M${x-r*.2},${y} a${r*.22},${r*.22} 0 1 0 ${r*.22},-${r*.22}" fill="none" stroke="${k}" stroke-width="${r*.11}" stroke-linecap="round"/>`);
+  return out.join("");
+}
+function expand(flowers,max){
+  const list=[],entries=Object.entries(flowers).filter(([,n])=>n>0),counts=Object.fromEntries(entries);let left=true;
+  while(left){left=false;for(const [id] of entries){if(counts[id]>0){list.push(id);counts[id]--;left=true;}}}
+  if(list.length>max){const step=list.length/max;return Array.from({length:max},(_,i)=>list[Math.floor(i*step)]);}
+  return list;
+}
+function vesselSVG(v){
+  switch(v){
+    case "vase":return `<path d="M72,128 Q66,160 78,192 L122,192 Q134,160 128,128 Z" fill="#cfe3e8" fill-opacity=".55" stroke="#7fa2ab" stroke-width="2"/><path d="M80,170 L120,170" stroke="#9fc1c9" stroke-width="2"/>`;
+    case "box":return `<rect x="48" y="128" width="104" height="58" rx="6" fill="#2b2b2b"/><ellipse cx="100" cy="128" rx="52" ry="8" fill="#3d3d3d"/><rect x="48" y="150" width="104" height="8" fill="#d8b46a"/>`;
+    case "basket":return `<path d="M44,130 L156,130 L142,188 L58,188 Z" fill="#b98b52"/><g stroke="#8a6231" stroke-width="2"><path d="M50,146 L150,146"/><path d="M54,162 L146,162"/><path d="M57,176 L143,176"/></g>`;
+    case "bowl":return `<path d="M36,138 Q100,210 164,138 Z" fill="#e9e3d6" stroke="#b7ad99" stroke-width="2"/><path d="M84,175 L116,175 L112,186 L88,186Z" fill="#b7ad99"/>`;
+    case "jar":return `<rect x="72" y="134" width="56" height="56" rx="10" fill="#cfe3e8" fill-opacity=".55" stroke="#7fa2ab" stroke-width="2"/><rect x="70" y="128" width="60" height="10" rx="3" fill="#9fc1c9"/>`;
+    case "wrap":return `<path d="M50,110 L100,196 L150,110 L132,118 L100,104 L68,118 Z" fill="#c9a77a"/><path d="M68,118 L100,196 L132,118" fill="#b8935f"/><path d="M86,160 Q100,150 114,160" stroke="var(--accent)" stroke-width="4" fill="none"/>`;
+  }
+  return "";
+}
+function art(item,label){
+  let s=`<svg viewBox="0 0 200 200" role="img" aria-label="${esc(label||"")}">`;
+  if(item.type==="single"){
+    const f=F[item.fid];
+    s+=`<path d="M100,95 Q96,150 100,196" stroke="var(--stem)" stroke-width="4" fill="none"/><ellipse cx="84" cy="150" rx="16" ry="7" fill="var(--stem)" transform="rotate(-30 84 150)"/><ellipse cx="116" cy="168" rx="16" ry="7" fill="var(--stem)" transform="rotate(30 116 168)"/>`;
+    return s+bloom(100,74,f.kind==="cluster"?44:40,f)+"</svg>";
+  }
+  const vessel=item.type==="bouquet"?"wrap":item.vessel;
+  const blooms=expand(item.flowers,16),n=blooms.length;
+  const cx=100,cy=vessel==="bowl"?118:vessel==="vase"?82:vessel==="jar"?100:88;
+  const sx=vessel==="bowl"?62:vessel==="jar"?34:52,sy=vessel==="bowl"?26:vessel==="jar"?26:46;
+  const r0=vessel==="jar"?15:(n>10?17:21);
+  if(vessel==="wrap"||vessel==="vase"||vessel==="jar"){const ey=vessel==="vase"?170:180;for(let i=0;i<Math.min(n,9);i++){s+=`<path d="M${cx+(i-4)*5},${cy} L${cx+(i-4)*2},${ey}" stroke="var(--stem)" stroke-width="2.5"/>`;}}
+  if(n) s+=`<ellipse cx="${cx}" cy="${cy+6}" rx="${sx+10}" ry="${sy+8}" fill="var(--stem)" opacity=".35"/>`;
+  const order=[...blooms].sort((a,b)=>(F[b].green?1:0)-(F[a].green?1:0));
+  const pal=item.pal&&PALETTES[item.pal];
+  order.forEach((fid,i)=>{const tt=(i+.5)/n,ang=i*2.39996,d=Math.sqrt(tt);let f=F[fid];if(pal&&!f.green)f={...f,color:pal[i%pal.length],center:pal[(i+2)%pal.length]};s+=bloom(cx+Math.cos(ang)*d*sx,cy+Math.sin(ang)*d*sy,r0*(f.kind==="cluster"?1.25:1),f);});
+  return s+vesselSVG(vessel)+"</svg>";
+}
+
+/* ---------- state ---------- */
+const S={pers:{name:"",day:"",month:"",sign:"",pal:"blush",size:"signature"},view:"shop",tab:"bouquet",occ:"all",extra:{},qty:{},cart:[],
+  builder:{vessel:"wrap",size:"m",stems:{peony:3,blush:4,eucalyptus:3},mood:0,message:"",extra:"none"},order:null};
+try{const saved=JSON.parse(localStorage.getItem("snb-cart2")||"null");if(Array.isArray(saved))S.cart=saved;}catch(e){}
+const saveCart=()=>{try{localStorage.setItem("snb-cart2",JSON.stringify(S.cart));}catch(e){}};
+
+const $=s=>document.querySelector(s);
+const app=$("#app"),layer=$("#layer");
+function esc(x){return String(x).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+function toast(msg){const el=$("#toast");el.textContent=msg;el.hidden=false;clearTimeout(toast.h);toast.h=setTimeout(()=>el.hidden=true,2200);}
+
+/* cart entries: {key, id, qty} or {key, custom:{vessel,size,stems,mood,message}, price, qty} */
+function lineName(c){if(c.personal){const q=c.personal;return `${t("pnLine")} · ${t("sg_"+q.sign)} · ${t("pal_"+q.pal)}`;}
+  const base=c.custom?`${t("customName")} · ${t("z_"+c.custom.size)} · ${t("v_"+c.custom.vessel)}`:pName(byId(c.id));
+  const ex=c.custom?c.custom.extra:c.extra;return ex&&ex!=="none"?`${base} + ${t("ex_"+ex)}`:base;}
+function linePrice(c){return (c.custom||c.personal)?c.price:byId(c.id).price+(EXTRAS[c.extra]||0);}
+function lineNote(c){if(c.personal){const q=c.personal;return `${t("tier_"+q.size)} · ${t("cardWord")}: ${q.name||"—"}`;}
+  if(!c.custom)return "";const b=c.custom;
+  let s=Object.entries(b.stems).filter(([,n])=>n>0).map(([id,n])=>`${n} × ${fName(id)}`).join(", ");
+  if(b.mood) s+=" · "+t("moods")[b.mood]; if(b.message) s+=` · ${t("cardWord")}: “${b.message}”`; return s;}
+const cartCount=()=>S.cart.reduce((a,c)=>a+c.qty,0);
+const cartTotal=()=>S.cart.reduce((a,c)=>a+c.qty*linePrice(c),0);
+function updateBadge(){$("#cart-count").textContent=cartCount();}
+function addToCart(entry,name){const ex=S.cart.find(c=>c.key===entry.key);if(ex)ex.qty+=entry.qty;else S.cart.push(entry);saveCart();updateBadge();toast(t("toastAdded",{q:entry.qty,name}));}
+
+/* ---------- chrome ---------- */
+function renderChrome(){
+  document.documentElement.lang=LANG;
+  $("#cart-lbl").textContent=t("basket");
+  $("#cart-btn").setAttribute("aria-label",t("basket"));
+  $("#lang-lbl").textContent=t("lang");$("#cur-lbl").textContent=t("cur");
+  $("#sel-lang").value=LANG;$("#sel-cur").value=CUR;
+  $("#footer-txt").textContent=t("footer");
+  $("#brand-name").textContent=t("brand");
+  updateBadge();
+}
+
+/* ---------- shop ---------- */
+const TABS=[{id:"single",list:SINGLES},{id:"bouquet",list:BOUQUETS},{id:"arrangement",list:ARRANGEMENTS},{id:"personal",list:null},{id:"custom",list:null}];
+function renderShop(){
+  const tab=TABS.find(x=>x.id===S.tab);
+  app.innerHTML=`
+  <section class="wrap hero">
+    <div>
+      <p class="eyebrow">${t("eyebrowHero")}</p>
+      <h1 style="margin-top:10px">${t("heroTitle")}</h1>
+      <p>${t("heroText")}</p>
+      <div class="hero-facts"><span>${t("fact2")}</span><span>${t("fact3")}</span></div>
+    </div>
+    <div class="hero-art"><svg viewBox="0 0 100 130" aria-hidden="true"><path d="M50 30c-9 0-15 7-15 14c0 9 7 14 15 14c9 0 15-7 15-15c0-7-5-11-11-11c-5 0-9 4-9 9c0 4 3 7 7 7" fill="none" stroke="#f7f3ee" stroke-width="2.6" stroke-linecap="round"/><path d="M50 58C50 74 48 92 50 118" fill="none" stroke="#f7f3ee" stroke-width="2.6" stroke-linecap="round"/><path d="M50 86C58 78 68 77 74 72C68 86 59 90 50 90Z" fill="#c8d9e3" stroke="#f7f3ee" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+  </section>
+  <div class="wrap">
+    <div class="tabs" role="tablist">
+      ${TABS.map(x=>`<button class="tab" role="tab" id="tab-${x.id}" aria-selected="${x.id===S.tab}" data-tab="${x.id}">${t("tab_"+x.id)}${x.list?`<span class="n">${x.list.length}</span>`:""}</button>`).join("")}
+    </div>
+    <div class="section-head"><h2>${tab.id==="custom"?t("title_custom"):t("tab_"+tab.id)}</h2><p>${t("sub_"+tab.id)}</p></div>
+    <div id="tab-body"></div>
+  </div>`;
+  const body=$("#tab-body");
+  if(tab.id==="custom")renderBuilder(body);
+  else if(tab.id==="personal")renderPersonal(body);
+  else renderGrid(body,tab);
+}
+function renderGrid(body,tab){
+  const filt=tab.id!=="single";
+  const list=filt&&S.occ!=="all"?tab.list.filter(p=>p.occ.includes(S.occ)):tab.list;
+  body.innerHTML=(filt?`<div class="occ" role="group" aria-label="${t("filterBy")}"><span class="lbl">${t("filterBy")}</span>${OCCASIONS.map(o=>`<button type="button" data-occ="${o}" aria-pressed="${S.occ===o}">${t("occ_"+o)}</button>`).join("")}</div>`:"")+
+    (list.length?`<div class="grid">${list.map(cardHTML).join("")}</div>`:`<p class="hint" style="padding-bottom:56px">${t("noMatch")}</p>`);
+}
+function cardHTML(p){
+  const q=S.qty[p.id]||1,name=pName(p);
+  return `<article class="card">
+    <button class="art" data-detail="${p.id}" aria-label="${esc(t("viewDesc"))}: ${esc(name)}">${art(p,name)}</button>
+    <div class="body">
+      <div class="top"><h3>${esc(name)}</h3><span class="price">${money(p.price)}</span></div>
+      ${(p.tier||p.tags.length)?`<div class="tagline">${p.tier?`<span class="chip tier">${t("tier_"+p.tier)}</span>`:""}${p.tags.map(x=>`<span class="chip ${x==="bestseller"?"hot":""}">${t("tag_"+x)}</span>`).join("")}</div>`:""}
+      <p class="blurb">${esc(pDesc(p))}${p.type==="single"?` <span class="hint">${t("perStem")}</span>`:""}</p>
+      <button class="linkish" data-detail="${p.id}" style="align-self:flex-start">${t("viewDesc")}</button>
+      <div class="actions">${qtyHTML(p.id,q)}<button class="btn primary" data-add="${p.id}">${t("add")}</button></div>
+    </div>
+  </article>`;
+}
+function qtyHTML(id,q,attr="data-q"){
+  return `<div class="qty" role="group" aria-label="${t("qty")}"><button type="button" ${attr}="${id}" data-d="-1" aria-label="${t("fewer")}">−</button><output aria-live="polite" id="q-${id}">${q}</output><button type="button" ${attr}="${id}" data-d="1" aria-label="${t("more")}">+</button></div>`;
+}
+function extrasHTML(name,cur,pid){
+  return `<div class="extras"><p class="eyebrow">${t("extras")}</p>${Object.keys(EXTRAS).map(x=>`<div class="opt"><input type="radio" name="${name}" id="${name}-${x}" value="${x}" data-pid="${pid}" ${cur===x?"checked":""}><label for="${name}-${x}"><span>${t("ex_"+x)}</span><small>${x==="none"?"":(x==="jewelry"?t("fromP",{p:"+"+money(EXTRAS[x])}):"+"+money(EXTRAS[x]))}</small></label></div>`).join("")}
+  ${cur==="jewelry"?`<p class="hint">${t("jewelryNote")}</p>`:""}</div>`;
+}
+function seasonText(f){return f.season?`${monthName(f.season[0])} – ${monthName(f.season[1])}`:t("allYear");}
+function openDetail(id){
+  const p=byId(id),q=S.qty[id]||1,name=pName(p);
+  let det;
+  if(p.type==="single"){const f=F[p.fid];
+    det=[[t("dSold"),t("soldStem")],[t("dSeason"),seasonText(f)],[t("dVase"),t("days",{r:f.vase})],[t("dCare"),FT[p.fid][LANG][2]]];}
+  else det=[[t("dHeight"),t("cm",{n:p.h})],[t("dPack"),t("pack_"+p.pack)],[t("dVase"),t("days",{r:p.vase})]];
+  const recipe=Object.entries(p.flowers).map(([fid,n])=>`<li><span class="dot" style="background:${F[fid].color}"></span>${n} × ${esc(fName(fid))}</li>`).join("");
+  layer.innerHTML=`<div class="scrim" data-close></div>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="m-title"><div class="modal-card">
+    <div class="art">${art(p,name)}</div>
+    <div class="info">
+      <button class="x" data-close aria-label="${t("close")}">×</button>
+      <p class="eyebrow">${t("type_"+p.type)}</p>
+      <h2 id="m-title">${esc(name)}</h2>
+      <p class="price" style="font-size:20px">${money(p.price)}${p.type==="single"?` <span class="hint">${t("perStem")}</span>`:""}</p>
+      <p>${esc(pDesc(p))}</p>
+      ${p.type!=="single"?`<div><p class="eyebrow" style="margin-bottom:6px">${t("inside")}</p><ul class="recipe">${recipe}</ul></div>`:""}
+      <dl class="spec">${det.map(([k,v])=>`<dt>${k}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
+      <p class="hint">${t("natural")}</p>
+      ${p.type!=="single"?extrasHTML("x-"+id,S.extra[id]||"none",id):""}
+      <div class="row">${qtyHTML(id,q)}<button class="btn primary" data-add="${id}" data-close-after>${t("add")}</button></div>
+    </div>
+  </div></div>`;
+  layer.querySelector(".x").focus();
+}
+
+/* ---------- personal bouquet ---------- */
+function persSign(q){const d=+q.day,m=+q.month;if(d&&m&&d<=DAYS_IN[m-1])return signOf(d,m);return q.sign||"";}
+function persFlowers(sign,size){const [,fl]=SIGNS[sign],n=PERS_SIZES[size].stems,g=size==="petite"?1:size==="signature"?3:5;
+  const a=Math.round((n-g)*.5),b=Math.round((n-g)*.3),c=n-g-a-b;const out={};[[fl[0],a],[fl[1],b],[fl[2],c]].forEach(([id,k])=>{out[id]=(out[id]||0)+k;});out.eucalyptus=g;return out;}
+function persItem(q){const sg=q.sign;return {type:"bouquet",flowers:persFlowers(sg,q.size),pal:q.pal};}
+function renderPersonal(el){
+  const q=S.pers;
+  const months=Array.from({length:12},(_,i)=>`<option value="${i+1}" ${+q.month===i+1?"selected":""}>${esc(monthName(i+1))}</option>`).join("");
+  const days=Array.from({length:31},(_,i)=>`<option value="${i+1}" ${+q.day===i+1?"selected":""}>${i+1}</option>`).join("");
+  el.innerHTML=`<div class="studio">
+    <div class="panel">
+      <div class="step"><h3><span class="num">1</span>${t("pnName")}</h3>
+        <div class="field"><label class="sr" for="pn-name">${t("pnName")}</label><input type="text" id="pn-name" maxlength="40" value="${esc(q.name)}" placeholder="Anna"><span class="hint">${t("pnNameHint")}</span></div></div>
+      <div class="step"><h3><span class="num">2</span>${t("pnBirth")}</h3>
+        <div class="f2"><div class="field"><label for="pn-day">${t("pnDay")}</label><select id="pn-day"><option value="">—</option>${days}</select></div>
+        <div class="field"><label for="pn-month">${t("pnMonth")}</label><select id="pn-month"><option value="">—</option>${months}</select></div></div>
+        <p class="err" id="pn-err" hidden></p>
+        <div class="field"><label for="pn-sign">${t("pnOr")}</label><select id="pn-sign"><option value="">—</option>${SIGN_ORDER.map(sg=>`<option value="${sg}">${t("sg_"+sg)}</option>`).join("")}</select>
+        <span class="hint" id="pn-signhint"></span></div></div>
+      <div class="step"><h3><span class="num">3</span>${t("pnPal")}</h3>
+        <div class="opts">${Object.keys(PALETTES).map(k=>`<div class="opt"><input type="radio" name="pnpal" id="pp-${k}" value="${k}" ${q.pal===k?"checked":""}><label for="pp-${k}"><span class="swatch">${PALETTES[k].map(c=>`<i style="background:${c}"></i>`).join("")}</span><b>${t("pal_"+k)}</b></label></div>`).join("")}</div></div>
+      <div class="step"><h3><span class="num">4</span>${t("pnSize")}</h3>
+        <div class="opts">${Object.keys(PERS_SIZES).map(k=>`<div class="opt"><input type="radio" name="pnsize" id="ps-${k}" value="${k}" ${q.size===k?"checked":""}><label for="ps-${k}"><b>${t("tier_"+k)}</b><small>${t("stemsN",{n:PERS_SIZES[k].stems})} · ${money(PERS_SIZES[k].price)}</small></label></div>`).join("")}</div></div>
+    </div>
+    <aside class="panel preview" aria-live="polite">
+      <p class="eyebrow" id="pn-title"></p>
+      <div class="stage" id="pn-stage"></div>
+      <p id="pn-why"></p>
+      <p class="hint">${t("pnNote")}</p>
+      <div class="lines" id="pn-lines"></div>
+      <div class="row" style="justify-content:space-between">${qtyHTML("personal",S.qty.personal||1)}<button class="btn primary" id="pn-add">${t("add")}</button></div>
+    </aside>
+  </div>`;
+  updatePersonal();
+}
+function updatePersonal(){
+  const q=S.pers,stage=$("#pn-stage");if(!stage)return;
+  const d=+q.day,m=+q.month,bad=d&&m&&d>DAYS_IN[m-1];
+  const err=$("#pn-err");err.hidden=!bad;err.textContent=bad?t("pnBadDate"):"";
+  const fromBirth=d&&m&&!bad;const sg=persSign(q);
+  $("#pn-sign").value=sg;$("#pn-signhint").textContent=fromBirth?t("pnFromBirth")+": "+t("sg_"+sg):"";
+  $("#pn-title").textContent=q.name?t("pnFor",{name:q.name}):t("pnForNone");
+  if(!sg){stage.innerHTML=`<p class="hint" style="padding:24px;text-align:center">${t("pnPick")}</p>`;$("#pn-why").textContent="";$("#pn-lines").innerHTML="";$("#pn-add").disabled=true;return;}
+  const fl=persFlowers(sg,q.size);
+  stage.innerHTML=art({type:"bouquet",flowers:fl,pal:q.pal},t("pnForNone"));
+  $("#pn-why").textContent=t("pnWhy",{sign:t("sg_"+sg),element:t("el_"+SIGNS[sg][0]),flowers:SIGNS[sg][1].map(fName).join(", ")});
+  $("#pn-lines").innerHTML=`<div><span>${t("tier_"+q.size)} · ${t("pal_"+q.pal)}</span><span class="mono">${money(PERS_SIZES[q.size].price)}</span></div>`;
+  $("#pn-add").disabled=false;
+}
+function addPersonal(){
+  const q=S.pers,sg=persSign(q);if(!sg)return;
+  const entry={key:"p-"+Date.now(),personal:{name:q.name.trim(),day:q.day,month:q.month,sign:sg,pal:q.pal,size:q.size},price:PERS_SIZES[q.size].price,qty:S.qty.personal||1};
+  addToCart(entry,lineName(entry));
+  if(q.name.trim()&&!CO.card)CO.card=q.name.trim();
+}
+
+/* ---------- builder ---------- */
+function bState(){
+  const b=S.builder,stems=Object.values(b.stems).reduce((a,n)=>a+n,0);
+  const flowerCost=Object.entries(b.stems).reduce((a,[id,n])=>a+F[id].price*n,0);
+  const vessel=VESSELS.find(v=>v.id===b.vessel),size=SIZES.find(s=>s.id===b.size);
+  const base=flowerCost+vessel.price+LABOUR,ex=EXTRAS[b.extra]||0;
+  return {stems,flowerCost,vessel,size,base,ex,total:base+ex,enough:stems>=size.min,minOk:base>=MIN_CUSTOM,ok:stems>=size.min&&base>=MIN_CUSTOM};
+}
+function renderBuilder(el){
+  const b=S.builder;
+  el.innerHTML=`<div class="studio">
+    <div class="panel">
+      <div class="step"><h3><span class="num">1</span>${t("step1")}</h3>
+        <div class="opts">${VESSELS.map(v=>`<div class="opt"><input type="radio" name="vessel" id="v-${v.id}" value="${v.id}" ${b.vessel===v.id?"checked":""}><label for="v-${v.id}"><b>${t("v_"+v.id)}</b><small>+${money(v.price)} · ${t("vn_"+v.id)}</small></label></div>`).join("")}</div>
+      </div>
+      <div class="step"><h3><span class="num">2</span>${t("step2")}</h3>
+        <div class="opts">${SIZES.map(s=>`<div class="opt"><input type="radio" name="size" id="z-${s.id}" value="${s.id}" ${b.size===s.id?"checked":""}><label for="z-${s.id}"><b>${t("z_"+s.id)}</b><small>${t("zn",{n:s.min})}</small></label></div>`).join("")}</div>
+      </div>
+      <div class="step"><h3><span class="num">3</span>${t("step3")}</h3>
+        <p class="hint">${t("step3hint")}</p>
+        <div class="stems">${Object.keys(F).map(id=>{const f=F[id],n=b.stems[id]||0;return `<div class="stem-row ${n?"on":""}" id="sr-${id}">
+          <svg viewBox="0 0 60 60" aria-hidden="true">${bloom(30,30,f.kind==="cluster"?24:22,f)}</svg>
+          <div class="nm"><b>${esc(fName(id))}</b><small>${money(f.price)} ${t("perStemShort")}</small></div>
+          ${qtyHTML(id,n,"data-stem")}</div>`}).join("")}</div>
+      </div>
+      <div class="step"><h3><span class="num">4</span>${t("step4")}</h3>
+        <div class="field"><label for="b-mood">${t("mood")}</label>
+          <select id="b-mood">${t("moods").map((o,i)=>`<option value="${i}" ${b.mood===i?"selected":""}>${o}</option>`).join("")}</select></div>
+        <div class="field"><label for="b-msg">${t("msg")} <span class="hint">${t("optional")}</span></label>
+          <textarea id="b-msg" maxlength="200" placeholder="${esc(t("msgPh"))}">${esc(b.message)}</textarea></div>
+        <div id="b-extras">${extrasHTML("bextra",b.extra,"custom")}</div>
+      </div>
+    </div>
+    <aside class="panel preview" aria-label="${t("yourArr")}">
+      <p class="eyebrow">${t("yourArr")}</p><p class="hint">${t("minCustom",{p:money(MIN_CUSTOM)})}</p>
+      <div class="stage" id="b-stage"></div>
+      <div class="lines" id="b-lines"></div>
+      <p class="err" id="b-err" hidden></p>
+      <div class="row" style="justify-content:space-between">${qtyHTML("custom",S.qty.custom||1)}<button class="btn primary" id="b-add">${t("add")}</button></div>
+    </aside>
+  </div>`;
+  updateBuilder();
+}
+function updateBuilder(){
+  const b=S.builder,st=bState(),stage=$("#b-stage");if(!stage)return;
+  stage.innerHTML=art({type:"arrangement",vessel:b.vessel,flowers:b.stems},t("yourArr"));
+  $("#b-lines").innerHTML=`
+    <div><span>${t("stemsN",{n:st.stems})}</span><span class="mono">${money(st.flowerCost)}</span></div>
+    <div><span>${t("v_"+st.vessel.id)}</span><span class="mono">${money(st.vessel.price)}</span></div>
+    <div><span>${t("arranging")}</span><span class="mono">${money(LABOUR)}</span></div>
+    ${st.ex?`<div><span>${t("ex_"+b.extra)}</span><span class="mono">${money(st.ex)}</span></div>`:""}
+    <div class="tot"><span>${t("each")}</span><span class="mono">${money(st.total)}</span></div>`;
+  const err=$("#b-err");
+  if(!st.enough){err.hidden=false;err.textContent=t("needMore",{size:t("z_"+st.size.id),min:st.size.min,k:st.size.min-st.stems});}
+  else if(!st.minOk){err.hidden=false;err.textContent=t("belowMin",{p:money(MIN_CUSTOM)});}else err.hidden=true;
+  $("#b-add").disabled=!st.ok;
+  Object.keys(F).forEach(id=>{const r=$("#sr-"+id);if(r)r.classList.toggle("on",(b.stems[id]||0)>0);});
+}
+function addCustom(){
+  const b=S.builder,st=bState();if(!st.ok)return;
+  const entry={key:"c-"+Date.now(),custom:{vessel:b.vessel,size:b.size,stems:{...b.stems},mood:b.mood,message:b.message,extra:b.extra},price:st.total,qty:S.qty.custom||1};
+  addToCart(entry,lineName(entry));
+}
+
+/* ---------- cart ---------- */
+function thumb(c){if(c.personal)return art(persItem(c.personal),lineName(c));return c.custom?art({type:"arrangement",vessel:c.custom.vessel,flowers:c.custom.stems},lineName(c)):art(byId(c.id),lineName(c));}
+function openCart(){
+  const items=S.cart;
+  layer.innerHTML=`<div class="scrim" data-close></div>
+  <aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="c-title">
+    <div class="drawer-head"><h2 id="c-title">${t("yourBasket")}</h2><button class="x" data-close aria-label="${t("close")}">×</button></div>
+    <div class="drawer-body">${items.length?items.map(c=>`<div class="ci">
+        <div class="thumb">${thumb(c)}</div>
+        <div class="meta"><b>${esc(lineName(c))}</b><small>${money(linePrice(c))} ${t("each2")}</small>${(c.custom||c.personal)?`<small>${esc(lineNote(c))}</small>`:""}</div>
+        <div class="side"><span class="price">${money(linePrice(c)*c.qty)}</span>${qtyHTML(c.key,c.qty,"data-cq")}<button class="linkish" data-rm="${c.key}">${t("remove")}</button></div>
+      </div>`).join(""):`<div class="empty"><p>${t("empty")}</p><button class="btn" data-close>${t("browse")}</button></div>`}</div>
+    ${items.length?`<div class="drawer-foot"><div class="lines"><div class="tot"><span>${t("subtotal")}</span><span class="mono">${money(cartTotal())}</span></div></div>${CUR!=="AMD"?`<p class="hint">${t("fxNote",{cur:CUR})}</p>`:""}<p class="hint">${t("nextHint")}</p><button class="btn primary wide" id="to-checkout">${t("chooseDelivery")}</button></div>`:""}
+  </aside>`;
+  layer.querySelector(".x").focus();
+}
+function closeLayer(){layer.innerHTML="";}
+
+/* ---------- checkout ---------- */
+const SLOTS=[{id:"9-12",label:"09:00 – 12:00",start:9},{id:"12-15",label:"12:00 – 15:00",start:12},{id:"15-18",label:"15:00 – 18:00",start:15},{id:"18-21",label:"18:00 – 21:00",start:18,fee:1500}];
+const ZONES=[{id:"z1",fee:1500},{id:"z2",fee:2500},{id:"z3",fee:5000},{id:"pickup",fee:0}];
+const CHANNELS=[{id:"email",label:{en:"Email",ru:"Email",hy:"Էլ. փոստ"}},{id:"sms",label:{en:"SMS",ru:"SMS",hy:"SMS"}},{id:"whatsapp",label:{en:"WhatsApp"}},{id:"telegram",label:{en:"Telegram"}},{id:"viber",label:{en:"Viber"}}];
+const chLabel=ch=>ch.label[LANG]||ch.label.en;
+const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+const nowH=()=>{const d=new Date();return d.getHours()+d.getMinutes()/60;};
+function minDate(){const d=new Date();d.setDate(d.getDate()+1);return iso(d);}
+function maxDate(){const d=new Date();d.setDate(d.getDate()+60);return iso(d);}
+function defaultDate(){const d=new Date();d.setDate(d.getDate()+1);return iso(d);}
+const CO={date:"",slot:"",zone:"z1",name:"",phone:"",street:"",city:"",notes:"",buyer:"",email:"",bphone:"",pay:"whatsapp",card:""};
+const fmtDate=(isoStr,long)=>(LANG==="hy"&&!HY_OK)?(d=>`${d.getDate()} ${HY_MG[d.getMonth()]}, ${HY_D[d.getDay()]}`)(new Date(isoStr+"T12:00")):new Date(isoStr+"T12:00").toLocaleDateString(LOCALE[LANG],long?{weekday:"long",day:"numeric",month:"long"}:{weekday:"short",day:"numeric",month:"short"});
+
+function renderCheckout(){
+  if(!S.cart.length){S.view="shop";return render();}
+  if(!CO.date)CO.date=defaultDate();
+  if(!CO.city)CO.city=t("cityDefault");
+  app.innerHTML=`<div class="wrap" style="padding-top:28px">
+    <button class="linkish" id="back-shop">${t("back")}</button>
+    <form class="checkout" id="co-form" novalidate style="margin-top:16px">
+      <div>
+        <h2>${t("delivery")}</h2>
+        <p class="hint" style="margin-bottom:22px">${t("deliveryHint")}</p>
+        <fieldset class="fs"><legend>${t("when")}</legend>
+          <div class="field"><label for="co-date">${t("date")}</label><input type="date" id="co-date" lang="${LANG}" min="${minDate()}" max="${maxDate()}" value="${CO.date}" required>
+          <span class="hint">${t("sameDay")}</span></div>
+          <div class="field"><span style="font-size:14px;font-weight:500" id="slot-lbl">${t("window")}</span>
+            <div class="slots" role="radiogroup" aria-labelledby="slot-lbl" id="slots"></div></div>
+          <p class="err" id="e-when" hidden></p>
+        </fieldset>
+        <fieldset class="fs"><legend>${t("where")}</legend>
+          <div class="field"><label for="co-zone">${t("area")}</label><select id="co-zone">${ZONES.map(z=>`<option value="${z.id}" ${CO.zone===z.id?"selected":""}>${t("zone_"+z.id)} · ${z.fee?money(z.fee):t("free")}</option>`).join("")}</select></div>
+          <div id="addr">
+            <div class="f2"><div class="field"><label for="co-name">${t("rName")}</label><input type="text" id="co-name" autocomplete="name" value="${esc(CO.name)}"></div>
+            <div class="field"><label for="co-phone">${t("rPhone")}</label><input type="tel" id="co-phone" autocomplete="tel" placeholder="+374" value="${esc(CO.phone)}"></div></div>
+            <div class="f2" style="margin-top:12px"><div class="field"><label for="co-street">${t("street")}</label><input type="text" id="co-street" autocomplete="street-address" placeholder="${esc(t("streetPh"))}" value="${esc(CO.street)}"></div>
+            <div class="field"><label for="co-city">${t("city")}</label><input type="text" id="co-city" autocomplete="address-level2" value="${esc(CO.city)}"></div></div>
+            <div class="field" style="margin-top:12px"><label for="co-notes">${t("notes")} <span class="hint">${t("optional")}</span></label><textarea id="co-notes" placeholder="${esc(t("notesPh"))}">${esc(CO.notes)}</textarea></div>
+          </div>
+          <p class="note-banner" id="pickup-note" hidden>${t("pickupNote")}</p>
+          <p class="err" id="e-where" hidden></p>
+        </fieldset>
+        <fieldset class="fs"><legend>${t("cardWord")}</legend>
+          <div class="field"><label for="co-card">${t("msg")} <span class="hint">${t("optional")}</span></label>
+          <textarea id="co-card" maxlength="300" placeholder="${esc(t("msgPh"))}">${esc(CO.card)}</textarea><span class="hint">${t("cardHand")}</span></div>
+        </fieldset>
+        <fieldset class="fs"><legend>${t("you")}</legend>
+          <div class="f2"><div class="field"><label for="co-buyer">${t("yName")}</label><input type="text" id="co-buyer" value="${esc(CO.buyer)}"></div>
+          <div class="field"><label for="co-bphone">${t("yPhone")}</label><input type="tel" id="co-bphone" autocomplete="tel" placeholder="+374" value="${esc(CO.bphone)}"></div></div>
+          <div class="field"><label for="co-email">${t("yEmail")}</label><input type="email" id="co-email" autocomplete="email" value="${esc(CO.email)}"></div>
+          <p class="err" id="e-you" hidden></p>
+        </fieldset>
+        <fieldset class="fs"><legend>${t("payment")}</legend>
+          <p>${t("payText")}</p>
+          <div class="field"><label for="co-pay">${t("sendBy")}</label><select id="co-pay">${CHANNELS.map(ch=>`<option value="${ch.id}" ${CO.pay===ch.id?"selected":""}>${chLabel(ch)}</option>`).join("")}</select></div>
+        </fieldset>
+      </div>
+      <aside class="panel summary">
+        <h3>${t("summary")}</h3>
+        <div class="lines" id="co-lines"></div>
+        <button class="btn primary wide" type="submit" style="margin-top:16px">${t("place")}</button>
+      </aside>
+    </form></div>`;
+  renderSlots();updateCheckout();
+}
+function renderSlots(){
+  const today=iso(new Date())===CO.date,h=nowH();
+  $("#slots").innerHTML=SLOTS.map(s=>{const past=today&&h>s.start-2;if(past&&CO.slot===s.id)CO.slot="";
+    return `<div class="opt"><input type="radio" name="slot" id="sl-${s.id}" value="${s.id}" ${CO.slot===s.id?"checked":""} ${past?"disabled":""}><label for="sl-${s.id}" ${past?'style="opacity:.45"':""}><b class="mono">${s.label}</b><small>${past?t("gone"):s.fee?t("evening",{p:money(s.fee)}):t("included")}</small></label></div>`}).join("");
+}
+function fees(){const z=ZONES.find(z=>z.id===CO.zone),s=SLOTS.find(s=>s.id===CO.slot);return {zone:z,slotFee:(s&&s.fee&&z.id!=="pickup")?s.fee:0};}
+function updateCheckout(){
+  const {zone,slotFee}=fees(),tot=cartTotal()+zone.fee+slotFee,pick=zone.id==="pickup";
+  $("#addr").hidden=pick;$("#pickup-note").hidden=!pick;
+  const slot=SLOTS.find(s=>s.id===CO.slot);
+  $("#co-lines").innerHTML=S.cart.map(c=>`<div><span>${c.qty} × ${esc(lineName(c))}</span><span class="mono">${money(c.qty*linePrice(c))}</span></div>`).join("")+
+    `<div style="margin-top:6px"><span>${pick?t("collection"):t("delivery")} · ${t("zone_"+zone.id)}</span><span class="mono">${zone.fee?money(zone.fee):t("free")}</span></div>`+
+    (slotFee?`<div><span>${t("eveningLine")}</span><span class="mono">${money(slotFee)}</span></div>`:"")+
+    `<div class="tot"><span>${t("total")}</span><span class="mono">${money(tot)}</span></div>`+
+    (CUR!=="AMD"?`<div><span></span><span class="mono hint">= ${money(tot,"AMD")}</span></div><p class="hint">${t("fxNote",{cur:CUR})}</p>`:"")+
+    `<p class="hint" style="margin-top:8px">${CO.date?fmtDate(CO.date):"—"}${slot?" · "+slot.label:" · "+t("pickWindow")}</p>
+     <p class="hint">${t("paySent")}</p>`;
+  return tot;
+}
+function readCheckout(){
+  CO.date=$("#co-date").value;CO.zone=$("#co-zone").value;
+  const sel=document.querySelector('input[name="slot"]:checked');CO.slot=sel?sel.value:"";
+  ["name","phone","street","city","notes","buyer","email","bphone","pay","card"].forEach(k=>{const el=$("#co-"+k);if(el)CO[k]=el.value.trim();});
+}
+function validate(){
+  let ok=true;const show=(id,msg)=>{const e=$(id);e.hidden=!msg;e.textContent=msg||"";if(msg)ok=false;};
+  show("#e-when",!CO.date?t("eDate"):CO.date<minDate()?t("ePast"):!CO.slot?t("eSlot"):"");
+  if(CO.zone==="pickup")show("#e-where","");
+  else{const miss=[!CO.name&&t("rName"),!CO.phone&&t("rPhone"),!CO.street&&t("street"),!CO.city&&t("city")].filter(Boolean);
+    show("#e-where",miss.length?t("eAddr",{list:miss.join(", ")}):"");}
+  show("#e-you",!CO.buyer?t("eName"):!CO.bphone?t("ePhone"):(CO.pay==="email"||CO.email)&&!/^\S+@\S+\.\S+$/.test(CO.email)?t("eEmail"):"");
+  return ok;
+}
+function placeOrder(){
+  readCheckout();if(!validate()){const e=document.querySelector(".err:not([hidden])");e&&e.scrollIntoView({behavior:"smooth",block:"center"});return;}
+  const total=updateCheckout();
+  S.order={no:"HG-"+String(Math.floor(1000+Math.random()*9000)),items:S.cart.map(c=>({...c})),total,co:{...CO}};
+  S.cart=[];saveCart();updateBadge();S.view="done";render();window.scrollTo(0,0);
+}
+function renderDone(){
+  const o=S.order,slot=SLOTS.find(s=>s.id===o.co.slot),ch=CHANNELS.find(c=>c.id===o.co.pay),pick=o.co.zone==="pickup";
+  app.innerHTML=`<div class="wrap"><div class="done">
+    <svg viewBox="0 0 200 200" width="140" aria-hidden="true">${bloom(100,100,70,F.peony)}</svg>
+    <p class="eyebrow">${t("order")} ${o.no}</p>
+    <h2>${t("thanks",{name:esc(o.co.buyer.split(" ")[0])})}</h2>
+    <p>${t("doneText",{how:chLabel(ch),to:esc(o.co.pay==="email"?o.co.email:o.co.bphone)})}</p>
+    <p class="hint">${t("protoNote")}</p>
+    <div class="panel"><dl class="spec">
+      <dt>${t("when")}</dt><dd>${fmtDate(o.co.date,true)}, ${slot.label}</dd>
+      <dt>${pick?t("dCollect"):t("dDeliverTo")}</dt><dd>${pick?t("shopName"):`${esc(o.co.name)}, ${esc(o.co.phone)}<br>${esc(o.co.street)}, ${esc(o.co.city)}`}</dd>
+      ${o.co.card?`<dt>${t("cardWord")}</dt><dd>“${esc(o.co.card)}”</dd>`:""}
+      <dt>${t("items")}</dt><dd>${o.items.map(i=>`${i.qty} × ${esc(lineName(i))}`).join("<br>")}</dd>
+      <dt>${t("total")}</dt><dd class="mono">${money(o.total)}${CUR!=="AMD"?` (${money(o.total,"AMD")})`:""}</dd>
+    </dl></div>
+    <button class="btn" id="back-shop">${t("backShop")}</button>
+  </div></div>`;
+}
+
+function render(){
+  renderChrome();
+  if(S.view==="checkout")renderCheckout();else if(S.view==="done")renderDone();else renderShop();
+}
+
+/* ---------- events ---------- */
+document.addEventListener("click",e=>{
+  const b=e.target.closest("button,[data-close]");if(!b)return;
+  const d=b.dataset;
+  if(d.occ){S.occ=d.occ;renderGrid($("#tab-body"),TABS.find(x=>x.id===S.tab));return;}
+  if(d.tab){S.tab=d.tab;renderShop();$("#tab-"+S.tab).focus();return;}
+  if(d.detail){openDetail(d.detail);return;}
+  if(d.q){const id=d.q;S.qty[id]=Math.max(1,Math.min(99,(S.qty[id]||1)+ +d.d));document.querySelectorAll("#q-"+CSS.escape(id)).forEach(o=>o.textContent=S.qty[id]);return;}
+  if(d.stem){const id=d.stem,st=S.builder.stems;st[id]=Math.max(0,Math.min(50,(st[id]||0)+ +d.d));$("#q-"+CSS.escape(id)).textContent=st[id];updateBuilder();return;}
+  if(d.cq){const c=S.cart.find(c=>c.key===d.cq);c.qty=Math.max(1,Math.min(99,c.qty+ +d.d));saveCart();updateBadge();openCart();if(S.view==="checkout")updateCheckout();return;}
+  if(d.rm){S.cart=S.cart.filter(c=>c.key!==d.rm);saveCart();updateBadge();openCart();if(S.view==="checkout")renderCheckout();return;}
+  if(d.add){const p=byId(d.add),ex=p.type==="single"?"none":(S.extra[p.id]||"none");const entry={key:p.id+"|"+ex,id:p.id,extra:ex,qty:S.qty[p.id]||1};addToCart(entry,lineName(entry));if(b.hasAttribute("data-close-after"))closeLayer();return;}
+  if(b.id==="b-add"){addCustom();return;}
+  if(b.id==="pn-add"){addPersonal();return;}
+  if(b.id==="cart-btn"){openCart();return;}
+  if(b.id==="to-checkout"){closeLayer();S.view="checkout";render();window.scrollTo(0,0);return;}
+  if(b.id==="back-shop"||b.id==="home-btn"){closeLayer();S.view="shop";render();window.scrollTo(0,0);return;}
+  if(b.hasAttribute("data-close")){closeLayer();return;}
+});
+document.addEventListener("change",e=>{
+  const el=e.target;
+  if(el.id==="sel-lang"||el.id==="sel-cur"){
+    if(S.view==="checkout")readCheckout();
+    const cityWasDefault=[I18N.en.cityDefault,I18N.ru.cityDefault,I18N.hy.cityDefault].includes(CO.city);
+    if(el.id==="sel-lang"){LANG=el.value;try{localStorage.setItem("snb-lang",LANG);}catch(x){}if(cityWasDefault)CO.city=t("cityDefault");}
+    else{CUR=el.value;try{localStorage.setItem("snb-cur",CUR);}catch(x){}}
+    const wasOpen=layer.querySelector(".drawer");closeLayer();render();if(wasOpen)openCart();return;
+  }
+  if(el.name&&el.name.startsWith("x-")){S.extra[el.dataset.pid]=el.value;const box=el.closest(".extras");box.outerHTML=extrasHTML(el.name,el.value,el.dataset.pid);const f=document.getElementById(el.name+"-"+el.value);f&&f.focus();return;}
+  if(el.id==="pn-day"||el.id==="pn-month"){S.pers[el.id==="pn-day"?"day":"month"]=el.value;updatePersonal();return;}
+  if(el.id==="pn-sign"){S.pers.sign=el.value;S.pers.day="";S.pers.month="";$("#pn-day").value="";$("#pn-month").value="";updatePersonal();return;}
+  if(el.name==="pnpal"){S.pers.pal=el.value;updatePersonal();return;}
+  if(el.name==="pnsize"){S.pers.size=el.value;updatePersonal();return;}
+  if(el.name==="bextra"){S.builder.extra=el.value;$("#b-extras").innerHTML=extrasHTML("bextra",el.value,"custom");const f=document.getElementById("bextra-"+el.value);f&&f.focus();updateBuilder();return;}
+  if(el.name==="vessel"){S.builder.vessel=el.value;updateBuilder();}
+  if(el.name==="size"){S.builder.size=el.value;updateBuilder();}
+  if(el.id==="b-mood"){S.builder.mood=+el.value;}
+  if(S.view==="checkout"&&el.closest("#co-form")){readCheckout();if(el.id==="co-date")renderSlots();updateCheckout();}
+});
+document.addEventListener("input",e=>{if(e.target.id==="b-msg")S.builder.message=e.target.value;if(e.target.id==="pn-name"){S.pers.name=e.target.value;$("#pn-title").textContent=S.pers.name?t("pnFor",{name:S.pers.name}):t("pnForNone");}});
+document.addEventListener("submit",e=>{if(e.target.id==="co-form"){e.preventDefault();placeOrder();}});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&layer.innerHTML)closeLayer();});
+
+render();
+</script>
+
+</body></html>
