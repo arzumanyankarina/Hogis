@@ -1,0 +1,47 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hokis · Floral Atelier</title><style>body{margin:0;background:#fbf9f7;color:#2b1d22;font:16px system-ui,sans-serif}.loading{min-height:100vh;display:grid;place-items:center;text-align:center;padding:24px}.loading h1{font:600 44px Georgia,serif}.loading p{max-width:550px;line-height:1.6}</style></head><body><div class="loading"><div><h1>Hokis</h1><p>Opening the floral atelier…</p></div></div><script>
+// Standalone wording edition: loads the original source, preserving all original design and shop logic.
+// Internet access is required. The original repository is not edited.
+const SOURCE="https://raw.githubusercontent.com/arzumanyankarina/Hokis/main/index.html";
+const COPY={"en": {"eyebrowHero": "HOKIS · A FLORAL ATELIER", "heroTitle": "Some feelings deserve <em>flowers.</em>", "heroText": "Flowers with character, arrangements with soul, and little gestures that leave a lasting impression. Thoughtfully composed in Yerevan, made to be remembered.", "sub_single": "One stem or a handful. Sometimes that’s all it takes.", "sub_bouquet": "Beautifully unexpected. Made to turn an ordinary day into something special.", "sub_arrangement": "More than flowers. Little works of art, made to be admired.", "title_custom": "Make it yours.", "sub_custom": "Your imagination. Our flowers. Choose the blooms, play with colour, and leave the finishing touches to us.", "step1": "Choose your style", "step2": "Find your perfect size", "step3": "Pick your flowers", "step4": "The finishing touch", "tag_value": "Little indulgence", "extras": "A little something extra", "msg": "A few words from the heart", "empty": "Something beautiful belongs here.", "deliveryHint": "Tell us where to send the love — and when you’d like it to arrive.", "customName": "Your signature arrangement", "noMatch": "Not quite the feeling? Explore another occasion or create something all your own."}, "ru": {"eyebrowHero": "HOKIS · ЦВЕТОЧНОЕ АТЕЛЬЕ", "heroTitle": "Есть чувства, которым <em>нужны цветы.</em>", "heroText": "Цветы с характером, композиции с душой и красивые жесты, которые остаются в памяти. Создано с чувством в Ереване — чтобы восхищать.", "sub_single": "Один цветок или целая охапка. Иногда большего и не нужно.", "sub_bouquet": "Неожиданные сочетания, в которые легко влюбиться. Даже без повода.", "sub_arrangement": "Больше, чем цветы. Маленькие произведения искусства, которыми хочется любоваться.", "title_custom": "Цветы по вашим правилам.", "sub_custom": "Ваша фантазия. Наши цветы. Выбирайте любимые оттенки и сочетания, а последние штрихи доверьте нам.", "step1": "Выберите оформление", "step2": "Выберите размер", "step3": "Выберите любимые цветы", "step4": "Последний штрих", "tag_value": "Маленькая радость", "extras": "Ещё немного волшебства", "msg": "Пара слов от сердца", "empty": "Здесь не хватает чего-то прекрасного.", "deliveryHint": "Куда и когда доставить красоту?", "customName": "Композиция с вашим характером", "noMatch": "Не нашли то самое? Попробуйте другой повод или создайте свою композицию."}, "hy": {"eyebrowHero": "ՀՈԳԻՍ · ԾԱՂԿԱՅԻՆ ԱՏԵԼԻԵ", "heroTitle": "Կան զգացմունքներ, որ <em>ծաղիկներ են ուզում։</em>", "heroText": "Բնավորությամբ ծաղիկներ, հոգով ստեղծված կոմպոզիցիաներ ու փոքրիկ ժեստեր, որոնք երկար են հիշվում։ Սիրով ստեղծված Երևանում՝ տպավորելու և հիացնելու համար։", "sub_single": "Մեկ ծաղիկ, թե մի ամբողջ փունջ․ երբեմն հենց դա է բավական։", "sub_bouquet": "Անսպասելի համադրություններ, որոնք սովորական օրը դարձնում են առանձնահատուկ։", "sub_arrangement": "Ավելին, քան ծաղիկներ․ փոքրիկ արվեստի գործեր, որոնցով ուզում ես հիանալ։", "title_custom": "Ձեր պատկերացմամբ, մեր ձեռքերով։", "sub_custom": "Ընտրեք սիրելի ծաղիկները, համադրեք գույներն ու ստեղծեք ձերը։ Իսկ վերջին նրբությունները վստահեք մեզ։", "step1": "Ընտրեք ձևավորումը", "step2": "Ընտրեք չափը", "step3": "Ընտրեք սիրելի ծաղիկները", "step4": "Վերջին նրբագիծը", "tag_value": "Փոքրիկ ուրախություն", "extras": "Մի փոքր ավելին", "msg": "Մի քանի խոսք՝ սրտից", "empty": "Այստեղ մի գեղեցիկ բան է պակասում։", "deliveryHint": "Ո՞ւր և ե՞րբ հասցնենք այս գեղեցկությունը։", "customName": "Ձեր յուրահատուկ կոմպոզիցիան", "noMatch": "Չգտա՞ք ձեր պատկերացրածը։ Ընտրեք մեկ այլ առիթ կամ ստեղծեք ձերը։"}};
+const PRODUCTS={"b-romance": {"en": ["Love, Actually", "Nine red garden roses, a whisper of baby’s breath and eucalyptus. A confident little declaration, tied by hand."], "ru": ["Это любовь", "Девять красных садовых роз с гипсофилой и эвкалиптом. Признание без лишних слов, собранное вручную."], "hy": ["Սա սեր է", "Ինը կարմիր այգու վարդ՝ գիպսոֆիլայով ու էվկալիպտով։ Զգացմունքների խոստովանություն՝ առանց ավելորդ բառերի։"]}, "b-peony": {"en": ["Blush Crush", "Seven lush peonies, blush roses and eucalyptus. A soft, romantic showstopper."], "ru": ["Розовое наваждение", "Семь пышных пионов, нежные розы и эвкалипт. Невозможно не влюбиться."], "hy": ["Վարդագույն հմայք", "Յոթ փարթամ քաջվարդ, նուրբ վարդեր ու էվկալիպտ։ Ռոմանտիկ համադրություն, որին դժվար է դիմադրել։"]}, "b-sunny": {"en": ["A Little Sunshine", "Sunflowers meet golden ranunculus. A pocketful of joy, with or without an occasion."], "ru": ["Солнечный поцелуй", "Подсолнухи и золотистые ранункулюсы. Солнечное настроение — просто так."], "hy": ["Արևի համբույր", "Արևածաղիկներ ու ոսկեգույն ռանունկուլյուսներ։ Փոքրիկ արև՝ առիթով կամ պարզապես այնպես։"]}, "a-box": {"en": ["The Grand Gesture", "Twenty red and blush roses nestled in a round hat box. All the drama, no vase required."], "ru": ["Красивый жест", "Двадцать красных и нежно-розовых роз в элегантной шляпной коробке. Ваза не понадобится."], "hy": ["Գեղեցիկ ժեստ", "Քսան կարմիր ու բաց վարդագույն վարդ՝ նրբագեղ կլոր տուփում։ Ծաղկաման պետք չէ։"]}, "a-table": {"en": ["Dinner with Flowers", "A sculptural, low-set floral arrangement that brings the table to life without getting in the way of conversation. Ceramic bowl included."], "ru": ["Цветы к ужину", "Выразительная невысокая композиция для стола. Красота, которая не мешает разговорам. Керамическая чаша остаётся у вас."], "hy": ["Ծաղիկներ ընթրիքին", "Արտահայտիչ, ցածր կոմպոզիցիա, որը կզարդարի սեղանն ու չի խանգարի զրույցին։ Կերամիկական ամանը մնում է ձեզ։"]}, "a-mini": {"en": ["Just Because", "A charming little jar of seasonal flowers. The sweetest surprise for a desk, bedside or ordinary Tuesday."], "ru": ["Просто так", "Небольшая баночка с сезонными цветами. Приятный сюрприз без всякого повода."], "hy": ["Հենց այնպես", "Սեզոնային ծաղիկներով փոքրիկ կոմպոզիցիա՝ անսպասելի ուրախություն պարգևելու համար։"]}};
+async function load(){
+ const response=await fetch(SOURCE,{cache:'no-store'});
+ if(!response.ok) throw new Error('Could not retrieve the original website ('+response.status+')');
+ let html=await response.text();
+ if(!html.includes('const I18N=')||!html.includes('const PT=')) throw new Error('Original website format has changed.');
+ html=html.replace(/(<meta name="description" content=")[^"]+/, '$1Hokis floral atelier in Yerevan — expressive flowers and memorable arrangements.');
+ // Each language's existing translation dictionary is modified in place.
+ const head=html.indexOf('const I18N='), tail=html.indexOf('function pickLang()',head);
+ let dict=html.slice(head,tail);
+ for(const [lang,values] of Object.entries(COPY)){
+   const start=dict.indexOf(lang+':{');
+   const finish=lang==='en'?dict.indexOf('\nru:{',start):lang==='ru'?dict.indexOf('\nhy:{',start):dict.length;
+   if(start<0||finish<start) throw new Error('Could not find '+lang+' translations');
+   let section=dict.slice(start,finish);
+   for(const [key,value] of Object.entries(values)){
+     const pattern=new RegExp('(^|[\\s,])'+key+':"[^"]*"','m');
+     if(!pattern.test(section))throw new Error('Missing translation '+lang+'.'+key);
+     section=section.replace(pattern,(_match,prefix)=>prefix+key+':'+JSON.stringify(value));
+   }
+   dict=dict.slice(0,start)+section+dict.slice(finish);
+ }
+ html=html.slice(0,head)+dict+html.slice(tail);
+ const pt=html.indexOf('const PT='); const after=html.indexOf('const ALL=',pt);
+ let catalog=html.slice(pt,after);
+ for(const [id,locales] of Object.entries(PRODUCTS)){
+   const start=catalog.indexOf('"'+id+'":{');
+   if(start<0)throw new Error('Missing product '+id);
+   const finish=catalog.indexOf('},',start);
+   let section=catalog.slice(start,finish+1);
+   for(const [lang,values] of Object.entries(locales)){
+     const re=new RegExp(lang+':\\["[^"]*","[^"]*"\\]');
+     if(!re.test(section))throw new Error('Missing product language '+id+' '+lang);
+     section=section.replace(re,lang+':['+JSON.stringify(values[0])+','+JSON.stringify(values[1])+']');
+   }
+   catalog=catalog.slice(0,start)+section+catalog.slice(finish+1);
+ }
+ html=html.slice(0,pt)+catalog+html.slice(after);
+ document.open();document.write(html);document.close();
+}
+load().catch(error=>{document.querySelector('.loading').innerHTML='<div><h1>Hokis</h1><p>The website could not be loaded. An internet connection is required to preview this copy.</p><p style="font-size:12px">'+String(error.message).replace(/</g,'&lt;')+'</p></div>';console.error(error);});
+</script></body></html>
