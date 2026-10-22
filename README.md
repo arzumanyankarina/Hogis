@@ -1,6 +1,6 @@
 # Hogis (Հոգիս) flower studio website
 
-A one-page flower shop for Hokis, a flower studio in Yerevan. Everything is in `index.html`: there is no build step and nothing to install.
+A one-page flower shop for Hogis, a flower studio in Yerevan. Everything is in `index.html`: there is no build step and nothing to install.
 
 ## What's in it
 - Single flowers, bouquets and arrangements, with Petite / Signature / Grand tiers
