@@ -137,6 +137,10 @@ header.bar :focus-visible{outline-color:#c8d9e3}
 .stem-row .qty output{width:28px}
 .stem-row{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:10px;padding:6px 8px}
 .stem-row svg{width:40px;height:40px;flex:none}
+.stem-row .ph-sm{width:48px;height:48px;flex:none;object-fit:contain}
+.card .art .ph{width:88%;height:88%;object-fit:contain;display:block}
+.modal-card .art .ph{width:100%;max-width:320px;aspect-ratio:1/1;object-fit:contain;display:block}
+.ci .thumb .ph{width:88%;height:88%;object-fit:contain}
 .stem-row .nm{flex:1;min-width:0}
 .stem-row .nm b{display:block;font-weight:500;font-size:17px}
 .stem-row .nm small{font-family:var(--mono);color:var(--muted);font-size:14px}
@@ -235,6 +239,9 @@ textarea,input[type=text],input[type=tel],input[type=email],input[type=date],sel
 .toast{background:var(--glacier);color:#4a1424}
 body,.mono,.price,input,select,textarea,output{font-variant-numeric:lining-nums tabular-nums}
 .toast{border-radius:2px}
+/* dropdown lists: browsers draw these on their own white sheet, so set the colours explicitly */
+select option,select optgroup{background:#5e1a2e;color:#f7f3ee}
+select option:checked{background:#c8d9e3;color:#4a1424}
 html[lang="hy"] .tab,html[lang="hy"] .btn,html[lang="hy"] .chip,html[lang="hy"] .cart-btn{text-transform:none;letter-spacing:.04em}
 /* illustrations: cream outlines like the logo's line drawing */
 svg[role="img"] :is(circle,ellipse,path,rect){stroke:#f7f3ee;stroke-width:.9;stroke-opacity:.6}
@@ -348,7 +355,7 @@ en:{
  yourBasket:"Your basket",close:"Close",each2:"each",remove:"Remove",empty:"Your basket is empty.",browse:"Browse flowers",subtotal:"Subtotal",
  nextHint:"Delivery date, time and address come next.",chooseDelivery:"Choose delivery",
  back:"← Back to the shop",delivery:"Delivery",deliveryHint:"Tell us when and where the flowers should arrive.",
- when:"When",date:"Delivery date",sameDay:"Choose the day and time window that suit you.",window:"Time window",included:"Included",evening:"Evening +{p}",gone:"No longer available",
+ when:"When",date:"Delivery date",sameDay:"Choose any day and time window you need. We'll confirm your request.",window:"Time window",included:"Included",evening:"Evening +{p}",gone:"No longer available",
  where:"Where",area:"Delivery area",free:"free",
  zone_z1:"Kentron, Yerevan",zone_z2:"Other Yerevan districts",zone_z3:"Outside Yerevan",zone_pickup:"Collect from the shop",
  rName:"Recipient name",rPhone:"Recipient phone",street:"Address",streetPh:"Street, building, apartment",city:"City",cityDefault:"Yerevan",
@@ -410,7 +417,7 @@ ru:{
  yourBasket:"Ваша корзина",close:"Закрыть",each2:"за шт.",remove:"Удалить",empty:"Корзина пуста.",browse:"Смотреть цветы",subtotal:"Сумма",
  nextHint:"Далее: дата, время и адрес доставки.",chooseDelivery:"Оформить доставку",
  back:"← Вернуться в магазин",delivery:"Доставка",deliveryHint:"Укажите, когда и куда доставить цветы.",
- when:"Когда",date:"Дата доставки",sameDay:"Выберите удобные вам день и время.",window:"Время доставки",included:"Включено",evening:"Вечер +{p}",gone:"Уже недоступно",
+ when:"Когда",date:"Дата доставки",sameDay:"Выберите любой нужный день и время. Мы подтвердим ваш запрос.",window:"Время доставки",included:"Включено",evening:"Вечер +{p}",gone:"Уже недоступно",
  where:"Куда",area:"Район доставки",free:"бесплатно",
  zone_z1:"Кентрон, Ереван",zone_z2:"Другие районы Еревана",zone_z3:"За пределами Еревана",zone_pickup:"Самовывоз из магазина",
  rName:"Имя получателя",rPhone:"Телефон получателя",street:"Адрес",streetPh:"Улица, дом, квартира",city:"Город",cityDefault:"Ереван",
@@ -472,7 +479,7 @@ hy:{
  yourBasket:"Ձեր զամբյուղը",close:"Փակել",each2:"մեկ հատը",remove:"Հեռացնել",empty:"Զամբյուղը դատարկ է։",browse:"Դիտել ծաղիկները",subtotal:"Ենթագումար",
  nextHint:"Հաջորդը՝ առաքման օրը, ժամը և հասցեն։",chooseDelivery:"Ընտրել առաքումը",
  back:"← Վերադառնալ խանութ",delivery:"Առաքում",deliveryHint:"Նշեք՝ երբ և ուր առաքել ծաղիկները։",
- when:"Երբ",date:"Առաքման օրը",sameDay:"Ընտրեք ձեզ հարմար օրը և ժամը։",window:"Առաքման ժամը",included:"Ներառված է",evening:"Երեկո +{p}",gone:"Այլևս հասանելի չէ",
+ when:"Երբ",date:"Առաքման օրը",sameDay:"Ընտրեք ձեզ անհրաժեշտ ցանկացած օր և ժամ։ Մենք կհաստատենք ձեր հարցումը։",window:"Առաքման ժամը",included:"Ներառված է",evening:"Երեկո +{p}",gone:"Այլևս հասանելի չէ",
  where:"Ուր",area:"Առաքման տարածք",free:"անվճար",
  zone_z1:"Կենտրոն, Երևան",zone_z2:"Երևանի այլ վարչական շրջաններ",zone_z3:"Երևանից դուրս",zone_pickup:"Վերցնել խանութից",
  rName:"Ստացողի անունը",rPhone:"Ստացողի հեռախոսը",street:"Հասցե",streetPh:"Փողոց, շենք, բնակարան",city:"Քաղաք",cityDefault:"Երևան",
@@ -567,6 +574,14 @@ const FT={
        hy:["Գիպսոֆիլա","Մանր սպիտակ ծաղիկների ամպեր՝ դատարկությունները լրացնելու համար։","Գրեթե խնամք չի պահանջում, գեղեցիկ չորանում է։"]},
 };
 const fName=id=>FT[id][LANG][0];
+/* ---------- real flower photos ----------
+   Put one photo per flower in a "photos" folder next to index.html, named by the flower id:
+   photos/rose.png, photos/blush.png, photos/peony.png ... (PNG with a transparent background works best).
+   A flower without a photo keeps its drawing, so photos can be added one by one. */
+const PHOTO_DIR="photos/",PHOTO_EXT=".png",PHOTO_OK={};
+const photoSrc=id=>PHOTO_DIR+id+PHOTO_EXT;
+Object.keys(F).forEach(id=>{const im=new Image();im.onload=()=>{PHOTO_OK[id]=true;clearTimeout(photoRefresh.h);photoRefresh.h=setTimeout(photoRefresh,120);};im.src=photoSrc(id);});
+function photoRefresh(){if(typeof render!=="function"||S.view!=="shop")return;const open=layer.innerHTML!=="";if(!open)renderShop();else{document.querySelectorAll(".ci .thumb").length&&openCart();}}
 
 /* ---------- catalog (prices in AMD) ---------- */
 const SINGLES=Object.keys(F).map(id=>({id:"s-"+id,type:"single",fid:id,price:F[id].price,flowers:{[id]:1},tags:F[id].green?["filler"]:[]}));
@@ -687,6 +702,7 @@ function art(item,label){
   let s=`<svg viewBox="0 0 200 200" role="img" aria-label="${esc(label||"")}">`;
   if(item.type==="single"){
     const f=F[item.fid];
+    if(PHOTO_OK[item.fid])return `<img class="ph" src="${photoSrc(item.fid)}" alt="${esc(label||"")}">`;
     s+=`<path d="M100,95 Q96,150 100,196" stroke="var(--stem)" stroke-width="4" fill="none"/><ellipse cx="84" cy="150" rx="16" ry="7" fill="var(--stem)" transform="rotate(-30 84 150)"/><ellipse cx="116" cy="168" rx="16" ry="7" fill="var(--stem)" transform="rotate(30 116 168)"/>`;
     return s+bloom(100,74,f.kind==="cluster"?44:40,f)+"</svg>";
   }
@@ -699,7 +715,9 @@ function art(item,label){
   if(n) s+=`<ellipse cx="${cx}" cy="${cy+6}" rx="${sx+10}" ry="${sy+8}" fill="var(--stem)" opacity=".35"/>`;
   const order=[...blooms].sort((a,b)=>(F[b].green?1:0)-(F[a].green?1:0));
   const pal=item.pal&&PALETTES[item.pal];
-  order.forEach((fid,i)=>{const tt=(i+.5)/n,ang=i*2.39996,d=Math.sqrt(tt);let f=F[fid];if(pal&&!f.green)f={...f,color:pal[i%pal.length],center:pal[(i+2)%pal.length]};s+=bloom(cx+Math.cos(ang)*d*sx,cy+Math.sin(ang)*d*sy,r0*(f.kind==="cluster"?1.25:1),f);});
+  order.forEach((fid,i)=>{const tt=(i+.5)/n,ang=i*2.39996,d=Math.sqrt(tt);let f=F[fid];if(pal&&!f.green)f={...f,color:pal[i%pal.length],center:pal[(i+2)%pal.length]};const x=cx+Math.cos(ang)*d*sx,y=cy+Math.sin(ang)*d*sy,r=r0*(f.kind==="cluster"?1.25:1);
+    if(!pal&&PHOTO_OK[fid]){const w=r*(F[fid].green?3:2.5);s+=`<image href="${photoSrc(fid)}" x="${x-w/2}" y="${y-w/2}" width="${w}" height="${w}" preserveAspectRatio="xMidYMid meet"/>`;}
+    else s+=bloom(x,y,r,f);});
   return s+vesselSVG(vessel)+"</svg>";
 }
 
@@ -896,7 +914,7 @@ function renderBuilder(el){
       <div class="step"><h3><span class="num">3</span>${t("step3")}</h3>
         <p class="hint">${t("step3hint")}</p>
         <div class="stems">${Object.keys(F).map(id=>{const f=F[id],n=b.stems[id]||0;return `<div class="stem-row ${n?"on":""}" id="sr-${id}">
-          <svg viewBox="0 0 60 60" aria-hidden="true">${bloom(30,30,f.kind==="cluster"?24:22,f)}</svg>
+          ${PHOTO_OK[id]?`<img class="ph-sm" src="${photoSrc(id)}" alt="">`:`<svg viewBox="0 0 60 60" aria-hidden="true">${bloom(30,30,f.kind==="cluster"?24:22,f)}</svg>`}
           <div class="nm"><b>${esc(fName(id))}</b><small>${money(f.price)} ${t("perStemShort")}</small></div>
           ${qtyHTML(id,n,"data-stem")}</div>`}).join("")}</div>
       </div>
@@ -964,7 +982,7 @@ const CHANNELS=[{id:"email",label:{en:"Email",ru:"Email",hy:"Էլ. փոստ"}},{
 const chLabel=ch=>ch.label[LANG]||ch.label.en;
 const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
 const nowH=()=>{const d=new Date();return d.getHours()+d.getMinutes()/60;};
-function minDate(){const d=new Date();d.setDate(d.getDate()+1);return iso(d);}
+function minDate(){return iso(new Date());}
 function maxDate(){const d=new Date();d.setDate(d.getDate()+60);return iso(d);}
 function defaultDate(){const d=new Date();d.setDate(d.getDate()+1);return iso(d);}
 const CO={date:"",slot:"",zone:"z1",name:"",phone:"",street:"",city:"",notes:"",buyer:"",email:"",bphone:"",pay:"whatsapp",card:""};
@@ -1024,7 +1042,7 @@ function renderCheckout(){
 }
 function renderSlots(){
   const today=iso(new Date())===CO.date,h=nowH();
-  $("#slots").innerHTML=SLOTS.map(s=>{const past=today&&h>s.start-2;if(past&&CO.slot===s.id)CO.slot="";
+  $("#slots").innerHTML=SLOTS.map(s=>{const past=today&&h>=s.start+3;if(past&&CO.slot===s.id)CO.slot="";
     return `<div class="opt"><input type="radio" name="slot" id="sl-${s.id}" value="${s.id}" ${CO.slot===s.id?"checked":""} ${past?"disabled":""}><label for="sl-${s.id}" ${past?'style="opacity:.45"':""}><b class="mono">${s.label}</b><small>${past?t("gone"):s.fee?t("evening",{p:money(s.fee)}):t("included")}</small></label></div>`}).join("");
 }
 function fees(){const z=ZONES.find(z=>z.id===CO.zone),s=SLOTS.find(s=>s.id===CO.slot);return {zone:z,slotFee:(s&&s.fee&&z.id!=="pickup")?s.fee:0};}
