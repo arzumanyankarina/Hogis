@@ -57,7 +57,7 @@ settings: {
              sell it: the shop then shows "out of season" that month.
    colours   colours the customer can choose; the first one is shown first.
              You can use: red, pink, white, yellow, peach, burgundy, coral,
-             orange, purple, blue, green
+             orange, purple, blue, green, striped (white with red edges)
    bestMonths  first and last month of the natural season, e.g. [5, 7] =
              May to July. Write null if it is available all year.
    vaseDays  how long it lasts in a vase.
@@ -148,7 +148,7 @@ flowers: [
     id: "hydrangea", show: true,
 //          Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov    Dec
     price: [ 4500,  4500,  4500,  3200,  3200,  2500,  2500,  2500,  3200,  3200,  4500,  4500 ],
-    colours: ["blue","white","pink"],
+    colours: ["blue","white","pink","green"],
     bestMonths: [6,9], vaseDays: "5–8",
     shape: "cluster", colour: "#8fa7de", centre: "#6c84c4", filler: false,
     en: { name: "Hydrangea", about: "One stem gives a full cloud of tiny petals.", care: "Thirsty. Submerge the head in water if it wilts." },
@@ -159,7 +159,7 @@ flowers: [
     id: "carnation", show: true,
 //          Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov    Dec
     price: [  600,   600,  1100,   800,   800,   600,   500,   500,   600,   600,   600,   600 ],
-    colours: ["pink","red","white","peach"],
+    colours: ["pink","red","white","peach","striped"],
     bestMonths: null, vaseDays: "14–21",
     shape: "peony", colour: "#e45d7c", centre: "#b23453", filler: false,
     en: { name: "Carnation", about: "Frilly edges and a very long vase life.", care: "Change water every 3 days." },
@@ -187,6 +187,138 @@ flowers: [
     en: { name: "Mimosa", about: "Fluffy yellow pompoms with a sweet scent. The flower of 8 March.", care: "Little water, a cool room, and a light spray on the pompoms. Dries beautifully." },
     ru: { name: "Мимоза", about: "Пушистые жёлтые шарики с нежным ароматом. Цветок 8 Марта.", care: "Немного воды, прохладная комната, слегка опрыскивайте шарики. Красиво сохнет." },
     hy: { name: "Միմոզա", about: "Փափուկ դեղին գնդիկներ՝ քաղցր բույրով։ Մարտի 8-ի ծաղիկը։", care: "Քիչ ջուր, զով սենյակ, թեթևակի ցողեք գնդիկները։ Գեղեցիկ է չորանում։" },
+  },
+  {
+    id: "calla", show: true,
+//          Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov    Dec
+    price: [ 2500,  2500,  2500,  2500,  2500,  2500,  2500,  2500,  2500,  2500,  2500,  2500 ],
+    colours: ["white"],
+    bestMonths: null, vaseDays: "10–14",
+    shape: "lily", colour: "#f7f3ea", centre: "#e8c34a", filler: false,
+    en: { name: "Calla lily", about: "Smooth, sculptural cups on long clean stems. Very elegant.", care: "Shallow water, change it every 2 days. Recut the stems." },
+    ru: { name: "Калла", about: "Гладкие скульптурные чаши на длинных стеблях. Очень элегантно.", care: "Немного воды, меняйте каждые 2 дня. Подрезайте стебли." },
+    hy: { name: "Կալա", about: "Հարթ, քանդակային գավաթներ երկար ցողունների վրա։ Շատ նրբագեղ։", care: "Քիչ ջուր, փոխեք 2 օրը մեկ։ Կտրեք ցողունները։" },
+  },
+  {
+    id: "lilyvalley", show: true,
+//          Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov    Dec
+    price: [    0,     0,     0,  3500,  3500,     0,     0,     0,     0,     0,     0,     0 ],
+    colours: ["white"],
+    bestMonths: [4, 5], vaseDays: "4–6",
+    shape: "gyp", colour: "#fbf7f2", centre: "#e6ddd0", filler: false,
+    en: { name: "Lily of the valley", about: "Tiny white bells with a famous sweet scent. Only in spring.", care: "Keep cool and away from fruit. Change water daily." },
+    ru: { name: "Ландыш", about: "Крошечные белые колокольчики с нежным ароматом. Только весной.", care: "Держите в прохладе, вдали от фруктов. Меняйте воду каждый день." },
+    hy: { name: "Հովտաշուշան", about: "Մանրիկ սպիտակ զանգակներ՝ քաղցր բույրով։ Միայն գարնանը։", care: "Պահեք զով տեղում, մրգերից հեռու։ Ջուրը փոխեք ամեն օր։" },
+  },
+  {
+    id: "lilac", show: true,
+//          Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov    Dec
+    price: [    0,     0,     0,  1500,  1500,     0,     0,     0,     0,     0,     0,     0 ],
+    colours: ["purple"],
+    bestMonths: [4, 5], vaseDays: "4–6",
+    shape: "cluster", colour: "#a98bd3", centre: "#7d5fb0", filler: false,
+    en: { name: "Lilac", about: "Big scented clusters of spring. Pure nostalgia.", care: "Split the woody stem ends and give plenty of water." },
+    ru: { name: "Сирень", about: "Пышные душистые гроздья весны. Чистая ностальгия.", care: "Расщепите одревесневшие концы стеблей, давайте много воды." },
+    hy: { name: "Յասաման", about: "Գարնան բուրավետ փարթամ ողկույզներ։ Մաքուր նոստալգիա։", care: "Ճեղքեք ցողունի փայտացած ծայրը և շատ ջուր տվեք։" },
+  },
+  {
+    id: "stock", show: true,
+//          Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov    Dec
+    price: [ 1500,  1500,  1800,  1500,  1200,  1200,  1200,  1200,  1200,  1500,  1500,  1500 ],
+    colours: ["pink"],
+    bestMonths: [4, 6], vaseDays: "7–10",
+    shape: "cluster", colour: "#f2b8c6", centre: "#e08aa2", filler: false,
+    en: { name: "Stock", about: "Soft ruffled spikes with a warm clove scent.", care: "Remove leaves below the water and change it every 2 days." },
+    ru: { name: "Маттиола", about: "Мягкие махровые колосья с тёплым пряным ароматом.", care: "Уберите листья ниже воды, меняйте воду каждые 2 дня." },
+    hy: { name: "Մատթիոլա", about: "Փափուկ թավշյա հասկեր՝ մեխակի տաք բույրով։", care: "Հեռացրեք ջրի մեջ մնացող տերևները, ջուրը փոխեք 2 օրը մեկ։" },
+  },
+  {
+    id: "anthurium", show: true,
+//          Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov    Dec
+    price: [ 3000,  3000,  3000,  3000,  3000,  3000,  3000,  3000,  3000,  3000,  3000,  3000 ],
+    colours: ["white","red","green"],
+    bestMonths: null, vaseDays: "14–21",
+    shape: "tulip", colour: "#f7f3ea", centre: "#e8c34a", filler: false,
+    en: { name: "Anthurium", about: "Glossy heart-shaped flowers that last for weeks. Modern and bold.", care: "Warm room, a little water, no cold draughts." },
+    ru: { name: "Антуриум", about: "Глянцевые цветы-сердечки, стоят неделями. Современно и смело.", care: "Тёплая комната, немного воды, без сквозняков." },
+    hy: { name: "Անթուրիում", about: "Փայլուն, սրտաձև ծաղիկներ, որոնք մնում են շաբաթներ։ Ժամանակակից և համարձակ։", care: "Տաք սենյակ, քիչ ջուր, առանց սառը քամու։" },
+  },
+  {
+    id: "amaranthus", show: true,
+//          Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov    Dec
+    price: [ 2000,  2000,  2000,  2000,  2000,  2000,  2000,  2000,  2000,  2000,  2000,  2000 ],
+    colours: ["green"],
+    bestMonths: [7, 9], vaseDays: "7–10",
+    shape: "leaf", colour: "#b5c96a", centre: "#8fa64a", filler: true,
+    en: { name: "Hanging amaranthus", about: "Long trailing tassels that spill over the vase.", care: "Recut the stems and change water every 2 days." },
+    ru: { name: "Амарант", about: "Длинные свисающие кисти, красиво спадают из вазы.", care: "Подрезайте стебли, меняйте воду каждые 2 дня." },
+    hy: { name: "Ամարանտ", about: "Երկար կախվող ծոպեր, որոնք գեղեցիկ իջնում են ծաղկամանից։", care: "Կտրեք ցողունները, ջուրը փոխեք 2 օրը մեկ։" },
+  },
+  {
+    id: "freesia", show: true,
+//          Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov    Dec
+    price: [ 1200,  1200,  1500,  1200,  1000,  1000,  1000,  1000,  1000,  1200,  1200,  1200 ],
+    colours: ["white"],
+    bestMonths: null, vaseDays: "7–10",
+    shape: "lily", colour: "#fbf7f2", centre: "#e8d27a", filler: false,
+    en: { name: "Freesia", about: "Delicate arching sprays with a fresh, sweet scent.", care: "Pick off faded flowers so new buds open." },
+    ru: { name: "Фрезия", about: "Изящные изогнутые веточки со свежим сладким ароматом.", care: "Удаляйте отцветшие цветки, чтобы раскрывались новые бутоны." },
+    hy: { name: "Ֆրեզիա", about: "Նուրբ կորացած ճյուղիկներ՝ թարմ, քաղցր բույրով։", care: "Հեռացրեք թառամած ծաղիկները, որ նոր կոկոնները բացվեն։" },
+  },
+  {
+    id: "gladiolus", show: true,
+//          Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov    Dec
+    price: [ 1500,  1500,  1800,  1500,  1200,  1000,  1000,  1000,  1000,  1200,  1500,  1500 ],
+    colours: ["white"],
+    bestMonths: [7, 9], vaseDays: "7–10",
+    shape: "lily", colour: "#fbf7f2", centre: "#e6ddd0", filler: false,
+    en: { name: "Gladiolus", about: "Tall elegant spikes that open from the bottom up.", care: "Tall vase, deep water. Pinch off the top bud for straight stems." },
+    ru: { name: "Гладиолус", about: "Высокие элегантные колосья, раскрываются снизу вверх.", care: "Высокая ваза, много воды. Отщипните верхний бутон, чтобы стебель был прямым." },
+    hy: { name: "Գլադիոլուս", about: "Բարձր նրբագեղ հասկեր, որոնք բացվում են ներքևից վերև։", care: "Բարձր ծաղկաման, շատ ջուր։ Պոկեք վերևի կոկոնը, որ ցողունը ուղիղ մնա։" },
+  },
+  {
+    id: "celosia", show: true,
+//          Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov    Dec
+    price: [ 1500,  1500,  1800,  1500,  1500,  1200,  1200,  1200,  1200,  1200,  1500,  1500 ],
+    colours: ["red"],
+    bestMonths: [7, 10], vaseDays: "10–14",
+    shape: "peony", colour: "#c2264b", centre: "#7e1631", filler: false,
+    en: { name: "Celosia", about: "Velvety crests with a texture like coral. Lasts a long time.", care: "Little water and change it often. Dries well too." },
+    ru: { name: "Целозия", about: "Бархатные гребешки, похожие на коралл. Долго стоит.", care: "Немного воды, меняйте её почаще. Хорошо сохнет." },
+    hy: { name: "Ցելոզիա", about: "Թավշյա կատարներ՝ մարջանի նման։ Երկար է մնում։", care: "Քիչ ջուր, հաճախ փոխեք։ Լավ է չորանում։" },
+  },
+  {
+    id: "chrysanthemum", show: true,
+//          Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov    Dec
+    price: [ 1000,  1000,  1200,  1000,  1000,  1000,  1000,  1000,   900,   900,   900,  1000 ],
+    colours: ["white"],
+    bestMonths: [9, 11], vaseDays: "14–21",
+    shape: "ray", colour: "#fbf7f2", centre: "#e8d27a", filler: false,
+    en: { name: "Chrysanthemum", about: "Full, round heads that stay fresh for weeks.", care: "Remove lower leaves and change water every 3 days." },
+    ru: { name: "Хризантема", about: "Пышные круглые головки, стоят свежими неделями.", care: "Уберите нижние листья, меняйте воду каждые 3 дня." },
+    hy: { name: "Քրիզանթեմ", about: "Փարթամ, կլոր գլխիկներ, որոնք շաբաթներով թարմ են մնում։", care: "Հեռացրեք ներքևի տերևները, ջուրը փոխեք 3 օրը մեկ։" },
+  },
+  {
+    id: "poppy", show: true,
+//          Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov    Dec
+    price: [ 2000,  2000,  2500,  2000,     0,     0,     0,     0,     0,     0,     0,  2000 ],
+    colours: ["orange"],
+    bestMonths: [12, 4], vaseDays: "4–6",
+    shape: "ray", colour: "#f27a3a", centre: "#7d8a2a", filler: false,
+    en: { name: "Icelandic poppy", about: "Silky crinkled petals in sunset colours: orange, peach, yellow and cream.", care: "Recut and dip the stem ends in hot water for a few seconds." },
+    ru: { name: "Исландский мак", about: "Шёлковые мятые лепестки цвета заката: оранжевый, персиковый, жёлтый, кремовый.", care: "Подрежьте стебли и на пару секунд опустите кончики в горячую воду." },
+    hy: { name: "Իսլանդական կակաչ", about: "Մետաքսյա ճմրթված թերթեր մայրամուտի գույներով՝ նարնջագույն, դեղձագույն, դեղին, կրեմ։", care: "Կտրեք ցողունները և ծայրերը մի քանի վայրկյան ընկղմեք տաք ջրի մեջ։" },
+  },
+  {
+    id: "anemone", show: true,
+//          Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov    Dec
+    price: [ 1800,  1800,  2200,  1800,     0,     0,     0,     0,     0,     0,  1800,  1800 ],
+    colours: ["pink"],
+    bestMonths: [11, 4], vaseDays: "5–8",
+    shape: "ray", colour: "#f2a2c0", centre: "#2a1a2e", filler: false,
+    en: { name: "Anemone", about: "Soft pink petals around a dark velvet centre.", care: "Shallow cool water, top it up daily." },
+    ru: { name: "Анемона", about: "Нежно-розовые лепестки вокруг тёмной бархатной серединки.", care: "Немного прохладной воды, доливайте каждый день." },
+    hy: { name: "Անեմոն", about: "Նուրբ վարդագույն թերթեր՝ մուգ թավշյա միջուկի շուրջ։", care: "Քիչ զով ջուր, ամեն օր ավելացրեք։" },
   },
   {
     id: "eucalyptus", show: true,

@@ -362,7 +362,7 @@ en:{
  sub_bouquet:"Hand-tied and wrapped, ready to give or put in a vase.",
  sub_arrangement:"Arranged in a box, basket, bowl or vase. Ready to display.",
  title_custom:"Create your own arrangement",sub_custom:"Pick a container and size, then choose every stem yourself.",
- perStem:"per stem",colour:"Colour",c_red:"red",c_pink:"pink",c_white:"white",c_yellow:"yellow",c_peach:"peach",c_burgundy:"burgundy",c_coral:"coral",c_orange:"orange",c_purple:"purple",c_blue:"blue",c_green:"green",perStemShort:"/ stem",viewDesc:"View description",add:"Add to basket",qty:"Quantity",fewer:"Fewer",more:"More",
+ perStem:"per stem",colour:"Colour",c_red:"red",c_pink:"pink",c_white:"white",c_yellow:"yellow",c_peach:"peach",c_burgundy:"burgundy",c_coral:"coral",c_orange:"orange",c_purple:"purple",c_blue:"blue",c_green:"green",c_striped:"white with red edges",perStemShort:"/ stem",viewDesc:"View description",add:"Add to basket",qty:"Quantity",fewer:"Fewer",more:"More",
  toastAdded:"Added {q} × {name}",
  type_single:"Single flower",type_bouquet:"Bouquet",type_arrangement:"Arrangement",
  inside:"What's inside",dHeight:"Height",dPack:"Packaging",dVase:"Vase life",dSeason:"Season",dCare:"Care",dSold:"Sold",soldStem:"By the stem",
@@ -424,7 +424,7 @@ ru:{
  sub_bouquet:"Собраны вручную и упакованы, готовы к вручению или в вазу.",
  sub_arrangement:"В коробке, корзинке, чаше или вазе. Готовы украсить интерьер.",
  title_custom:"Соберите свою композицию",sub_custom:"Выберите основу и размер, затем каждый цветок.",
- perStem:"за штуку",colour:"Цвет",c_red:"красный",c_pink:"розовый",c_white:"белый",c_yellow:"жёлтый",c_peach:"персиковый",c_burgundy:"бордовый",c_coral:"коралловый",c_orange:"оранжевый",c_purple:"фиолетовый",c_blue:"голубой",c_green:"зелёный",perStemShort:"/ шт.",viewDesc:"Посмотреть описание",add:"В корзину",qty:"Количество",fewer:"Меньше",more:"Больше",
+ perStem:"за штуку",colour:"Цвет",c_red:"красный",c_pink:"розовый",c_white:"белый",c_yellow:"жёлтый",c_peach:"персиковый",c_burgundy:"бордовый",c_coral:"коралловый",c_orange:"оранжевый",c_purple:"фиолетовый",c_blue:"голубой",c_green:"зелёный",c_striped:"белая с красной каймой",perStemShort:"/ шт.",viewDesc:"Посмотреть описание",add:"В корзину",qty:"Количество",fewer:"Меньше",more:"Больше",
  toastAdded:"Добавлено: {q} × {name}",
  type_single:"Цветок",type_bouquet:"Букет",type_arrangement:"Композиция",
  inside:"Состав",dHeight:"Высота",dPack:"Упаковка",dVase:"Стоит в вазе",dSeason:"Сезон",dCare:"Уход",dSold:"Продажа",soldStem:"Поштучно",
@@ -486,7 +486,7 @@ hy:{
  sub_bouquet:"Ձեռքով հավաքված և փաթեթավորված, պատրաստ նվիրելու կամ ծաղկաման դնելու։",
  sub_arrangement:"Տուփում, զամբյուղում, ամանում կամ ծաղկամանում։ Պատրաստ են զարդարելու։",
  title_custom:"Ստեղծեք ձեր կոմպոզիցիան",sub_custom:"Ընտրեք տարան և չափը, ապա յուրաքանչյուր ծաղիկը։",
- perStem:"մեկ հատը",colour:"Գույն",c_red:"կարմիր",c_pink:"վարդագույն",c_white:"սպիտակ",c_yellow:"դեղին",c_peach:"դեղձագույն",c_burgundy:"բորդո",c_coral:"մարջանագույն",c_orange:"նարնջագույն",c_purple:"մանուշակագույն",c_blue:"կապույտ",c_green:"կանաչ",perStemShort:"/ հատ",viewDesc:"Դիտել նկարագրությունը",add:"Ավելացնել զամբյուղ",qty:"Քանակ",fewer:"Պակասեցնել",more:"Ավելացնել",
+ perStem:"մեկ հատը",colour:"Գույն",c_red:"կարմիր",c_pink:"վարդագույն",c_white:"սպիտակ",c_yellow:"դեղին",c_peach:"դեղձագույն",c_burgundy:"բորդո",c_coral:"մարջանագույն",c_orange:"նարնջագույն",c_purple:"մանուշակագույն",c_blue:"կապույտ",c_green:"կանաչ",c_striped:"սպիտակ՝ կարմիր եզրերով",perStemShort:"/ հատ",viewDesc:"Դիտել նկարագրությունը",add:"Ավելացնել զամբյուղ",qty:"Քանակ",fewer:"Պակասեցնել",more:"Ավելացնել",
  toastAdded:"Ավելացված է՝ {q} × {name}",
  type_single:"Ծաղիկ",type_bouquet:"Ծաղկեփունջ",type_arrangement:"Կոմպոզիցիա",
  inside:"Կազմը",dHeight:"Բարձրություն",dPack:"Փաթեթավորում",dVase:"Կյանքը ծաղկամանում",dSeason:"Սեզոն",dCare:"Խնամք",dSold:"Վաճառք",soldStem:"Հատով",
@@ -554,7 +554,7 @@ function monthName(m){if(LANG==="hy"&&!HY_OK)return HY_M[m-1];return new Intl.Da
 
 /* ---------- flowers (from shop-data.js) ---------- */
 /* colour names customers can pick: [petal, centre] */
-const HEX={red:["#c2264b","#7e1631"],pink:["#ee8fb0","#d97088"],white:["#fbf7f2","#e6ddd0"],yellow:["#f6c64a","#c88f19"],peach:["#f6b89a","#e08a6a"],burgundy:["#7a1d38","#4a0f22"],coral:["#f28a72","#d0604a"],orange:["#f27a3a","#c4561e"],purple:["#8a5bc0","#5d3a8c"],blue:["#8fa7de","#6c84c4"],green:["#8fb3a3","#8fb3a3"]};
+const HEX={red:["#c2264b","#7e1631"],pink:["#ee8fb0","#d97088"],white:["#fbf7f2","#e6ddd0"],yellow:["#f6c64a","#c88f19"],peach:["#f6b89a","#e08a6a"],burgundy:["#7a1d38","#4a0f22"],coral:["#f28a72","#d0604a"],orange:["#f27a3a","#c4561e"],purple:["#8a5bc0","#5d3a8c"],blue:["#8fa7de","#6c84c4"],green:["#8fb3a3","#8fb3a3"],striped:["#f6e9ea","#a3173a"]};
 const F={},FT={},COLS={};
 for(const f of (D.flowers||[])){if(!f||!f.id)continue;const pr=priceIn(f.price,NOW_M);
   F[f.id]={color:f.colour||"#f0a7b4",center:f.centre||f.colour||"#d97088",kind:f.shape||"rose",price:pr,off:!pr,back:backIn(f.price),season:f.bestMonths||null,vase:f.vaseDays||"",green:!!f.filler,show:f.show!==false};
@@ -580,7 +580,7 @@ function probePhoto(key,name){[PHOTO_DIR,""].forEach(dir=>[".jpg",".png"].forEac
 Object.keys(F).forEach(id=>COLS[id].forEach(c=>{const k=skey(id,c);probePhoto(k,multi(id)?id+"-"+c:id);}));
 function photoRefresh(){if(typeof render!=="function"||S.view!=="shop")return;const open=layer.innerHTML!=="";if(!open)renderShop();else{document.querySelectorAll(".ci .thumb").length&&openCart();}}
 function swatchHTML(p,where){const id=p.fid;if(!multi(id))return "";const cur=S.col[p.id]||COLS[id][0];
-  return `<div class="swwrap"><span class="colname">${t("colour")}: ${esc(cName(cur))}</span><div class="sw" role="radiogroup" aria-label="${t("colour")}">${COLS[id].map(c=>`<input type="radio" name="col-${where}-${p.id}" id="col-${where}-${p.id}-${c}" value="${c}" data-pid="${p.id}" ${c===cur?"checked":""}><label for="col-${where}-${p.id}-${c}" title="${esc(cName(c))}"><span style="background:${HEX[c][0]}"></span><i>${esc(cName(c))}</i></label>`).join("")}</div></div>`;}
+  return `<div class="swwrap"><span class="colname">${t("colour")}: ${esc(cName(cur))}</span><div class="sw" role="radiogroup" aria-label="${t("colour")}">${COLS[id].map(c=>`<input type="radio" name="col-${where}-${p.id}" id="col-${where}-${p.id}-${c}" value="${c}" data-pid="${p.id}" ${c===cur?"checked":""}><label for="col-${where}-${p.id}-${c}" title="${esc(cName(c))}"><span style="background:${c==="striped"?"linear-gradient(135deg,#fbf7f2 50%,#a3173a 50%)":HEX[c][0]}"></span><i>${esc(cName(c))}</i></label>`).join("")}</div></div>`;}
 
 /* ---------- catalog (prices in AMD) ---------- */
 const byOff=(a,b)=>a.off-b.off;
@@ -671,8 +671,7 @@ function art(item,label){
   const order=[...blooms].sort((a,b)=>(F[baseOf(b)].green?1:0)-(F[baseOf(a)].green?1:0));
   const pal=item.pal&&PALETTES[item.pal];
   order.forEach((fid,i)=>{const tt=(i+.5)/n,ang=i*2.39996,d=Math.sqrt(tt);let f=look(fid);if(pal&&!f.green)f={...f,color:pal[i%pal.length],center:pal[(i+2)%pal.length]};const x=cx+Math.cos(ang)*d*sx,y=cy+Math.sin(ang)*d*sy,r=r0*(f.kind==="cluster"?1.25:1);
-    const pk=skey(baseOf(fid),colOf(fid));if(!pal&&PHOTO_OK[pk]){const w=r*(f.green?3:2.5);s+=`<image href="${photoSrc(pk)}" x="${x-w/2}" y="${y-w/2}" width="${w}" height="${w}" preserveAspectRatio="xMidYMid meet"/>`;}
-    else s+=bloom(x,y,r,f);});
+    s+=bloom(x,y,r,f);});
   return s+vesselSVG(vessel)+"</svg>";
 }
 
@@ -896,7 +895,7 @@ function renderBuilder(el){
 function stemTotal(id){return Object.entries(S.builder.stems).reduce((a,[k,n])=>baseOf(k)===id?a+n:a,0);}
 function stemSummary(id){if(!multi(id))return "";return Object.entries(S.builder.stems).filter(([k,n])=>baseOf(k)===id&&n>0).map(([k,n])=>`${n} ${cName(colOf(k))}`).join(" · ");}
 function stemRowHTML(id){const b=S.builder,f=F[id],act=b.act[id]||COLS[id][0],k=skey(id,act),n=b.stems[k]||0,lk=look(k);
-  const sw=multi(id)?`<div class="sw" role="radiogroup" aria-label="${t("colour")}: ${esc(fName(id))}">${COLS[id].map(c=>`<input type="radio" name="bcol-${id}" id="bcol-${id}-${c}" value="${c}" data-fid="${id}" ${c===act?"checked":""}><label for="bcol-${id}-${c}" title="${esc(cName(c))}"><span style="background:${HEX[c][0]}"></span><i>${esc(cName(c))}</i></label>`).join("")}</div>`:"";
+  const sw=multi(id)?`<div class="sw" role="radiogroup" aria-label="${t("colour")}: ${esc(fName(id))}">${COLS[id].map(c=>`<input type="radio" name="bcol-${id}" id="bcol-${id}-${c}" value="${c}" data-fid="${id}" ${c===act?"checked":""}><label for="bcol-${id}-${c}" title="${esc(cName(c))}"><span style="background:${c==="striped"?"linear-gradient(135deg,#fbf7f2 50%,#a3173a 50%)":HEX[c][0]}"></span><i>${esc(cName(c))}</i></label>`).join("")}</div>`:"";
   return `<div class="stem-row ${stemTotal(id)?"on":""}" id="sr-${id}">
     ${PHOTO_OK[k]?`<img class="ph-sm" src="${photoSrc(k)}" alt="">`:`<svg viewBox="0 0 60 60" aria-hidden="true">${bloom(30,30,lk.kind==="cluster"?24:22,lk)}</svg>`}
     <div class="nm"><b>${esc(fName(id))}${multi(id)?` <span class="colname">· ${esc(cName(act))}</span>`:""}</b><small>${money(f.price)} ${t("perStemShort")}</small>${sw}<small class="ssum" id="ss-${id}">${esc(stemSummary(id))}</small></div>
