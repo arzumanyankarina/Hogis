@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Hogis — flower atelier in Yerevan. Bouquets, arrangements and custom flowers with delivery.">
-<title>Hogis Flower Atelier</title>
+<meta name="description" content="Kyanqs — floral atelier in Yerevan. Bouquets, arrangements and custom flowers with delivery.">
+<title>Kyanqs Floral Atelier</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Noto+Serif+Armenian:wght@400;500;600;700&display=swap">
@@ -17,7 +17,7 @@ img{max-width:100%}
 </style>
 <style>
 /* Layout: sticky shop bar, category tabs, product grid; builder is a two-column studio; cart is a side drawer; checkout is a stepped panel */
-/* One look, taken from the Hogis logo: burgundy ground, cream type, glacier-blue accents. Same in light and dark mode. */
+/* One look, taken from the Kyanqs logo: burgundy ground, cream type, glacier-blue accents. Same in light and dark mode. */
 :root{
   --bg:#5e1a2e;          /* logo burgundy */
   --surface:#6a2236;     /* raised cards and fields */
@@ -231,7 +231,7 @@ textarea{resize:vertical;min-height:70px}
 footer{border-top:1px solid var(--line);padding-block:24px;color:var(--muted);font-size:16px}
 
 
-/* ---- Hogis atelier styling: thin cream lines, square corners, spaced capitals, centred like the logo ---- */
+/* ---- Kyanqs atelier styling: thin cream lines, square corners, spaced capitals, centred like the logo ---- */
 .btn,.cart-btn,.qty,.chip,.opt label,.occ button,.prefs select,.panel,.card,.modal-card,.preview .stage,.ci .thumb,.note-banner,
 textarea,input[type=text],input[type=tel],input[type=email],input[type=date],select{border-radius:2px}
 textarea,input[type=text],input[type=tel],input[type=email],input[type=date],select{background:transparent;border-color:var(--line)}
@@ -311,9 +311,9 @@ footer{text-align:center;border-top:1px solid var(--line);padding-block:40px}
 <body>
 <header class="bar">
   <div class="wrap bar-in">
-    <button class="logo" id="home-btn" aria-label="Hogis">
+    <button class="logo" id="home-btn" aria-label="Kyanqs">
       <svg viewBox="0 0 100 130" aria-hidden="true"><path d="M50 30c-9 0-15 7-15 14c0 9 7 14 15 14c9 0 15-7 15-15c0-7-5-11-11-11c-5 0-9 4-9 9c0 4 3 7 7 7" fill="none" stroke="#f7f3ee" stroke-width="4" stroke-linecap="round"/><path d="M50 58C50 74 48 92 50 118" fill="none" stroke="#f7f3ee" stroke-width="4" stroke-linecap="round"/><path d="M50 86C58 78 68 77 74 72C68 86 59 90 50 90Z" fill="#c8d9e3" stroke="#f7f3ee" stroke-width="2.4" stroke-linejoin="round"/></svg>
-      <span class="wm"><b>HOGIS</b><small id="brand-name">flower atelier</small></span>
+      <span class="wm"><b>Kyanqs</b><small id="brand-name">flower atelier</small></span>
     </button>
     <div class="spacer"></div>
     <div class="prefs">
@@ -328,7 +328,7 @@ footer{text-align:center;border-top:1px solid var(--line);padding-block:40px}
 
 <main id="app"></main>
 
-<footer><div class="wrap"><div class="sig"><svg viewBox="0 0 100 130" aria-hidden="true"><path d="M50 30c-9 0-15 7-15 14c0 9 7 14 15 14c9 0 15-7 15-15c0-7-5-11-11-11c-5 0-9 4-9 9c0 4 3 7 7 7" fill="none" stroke="#f7f3ee" stroke-width="2.6" stroke-linecap="round"/><path d="M50 58C50 74 48 92 50 118" fill="none" stroke="#f7f3ee" stroke-width="2.6" stroke-linecap="round"/><path d="M50 86C58 78 68 77 74 72C68 86 59 90 50 90Z" fill="#c8d9e3" stroke="#f7f3ee" stroke-width="1.6" stroke-linejoin="round"/></svg><b>HOGIS</b><span>Հոգիս</span><i>flower atelier</i></div><p id="footer-txt"></p></div></footer>
+<footer><div class="wrap"><div class="sig"><svg viewBox="0 0 100 130" aria-hidden="true"><path d="M50 30c-9 0-15 7-15 14c0 9 7 14 15 14c9 0 15-7 15-15c0-7-5-11-11-11c-5 0-9 4-9 9c0 4 3 7 7 7" fill="none" stroke="#f7f3ee" stroke-width="2.6" stroke-linecap="round"/><path d="M50 58C50 74 48 92 50 118" fill="none" stroke="#f7f3ee" stroke-width="2.6" stroke-linecap="round"/><path d="M50 86C58 78 68 77 74 72C68 86 59 90 50 90Z" fill="#c8d9e3" stroke="#f7f3ee" stroke-width="1.6" stroke-linejoin="round"/></svg><b>Kyanqs</b><span>Հոգիս</span><i>flower atelier</i></div><p id="footer-txt"></p></div></footer>
 
 <div id="layer"></div>
 <div class="toast" id="toast" role="status" hidden></div>
@@ -337,8 +337,8 @@ footer{text-align:center;border-top:1px solid var(--line);padding-block:40px}
 <script>
 /* ---------- language + currency ---------- */
 /* All shop content (flowers, bouquets, prices, fees) lives in shop-data.js. */
-const D=window.HOGIS||{settings:{},flowers:[],bouquets:[],arrangements:[]};
-if(!window.HOGIS)document.body.insertAdjacentHTML("afterbegin",'<p style="background:#f7f3ee;color:#5e1a2e;padding:16px;margin:0;font:600 18px sans-serif">shop-data.js could not be read. Check the last change you made to it (a missing comma or quote mark).</p>');
+const D=window.Kyanqs||{settings:{},flowers:[],bouquets:[],arrangements:[]};
+if(!window.Kyanqs)document.body.insertAdjacentHTML("afterbegin",'<p style="background:#f7f3ee;color:#5e1a2e;padding:16px;margin:0;font:600 18px sans-serif">shop-data.js could not be read. Check the last change you made to it (a missing comma or quote mark).</p>');
 const ST=D.settings||{};
 const NOW_M=new Date().getMonth();
 /* price: one number for the whole year, or 12 numbers (Jan…Dec); 0 = out of season that month */
@@ -410,7 +410,7 @@ en:{
  jewelryNote:"We'll contact you to choose the piece. The price shown is the starting price.",fromP:"from {p}",
  minCustom:"Custom orders start at {p}.",belowMin:"Custom orders start at {p}. Add a few more stems or a bigger container.",
  fact3:"Photo of your flowers before they leave",cardHand:"We write it by hand.",
- brand:"flower atelier",shopName:"Hogis flower atelier",
+ brand:"flower atelier",shopName:"Kyanqs flower atelier",
  footer:"Prototype · flowers and prices are placeholders · payment is arranged after ordering"
 },
 ru:{
@@ -472,7 +472,7 @@ ru:{
  jewelryNote:"Мы свяжемся с вами, чтобы выбрать украшение. Указана минимальная цена.",fromP:"от {p}",
  minCustom:"Своя композиция от {p}.",belowMin:"Своя композиция от {p}. Добавьте ещё цветов или выберите основу побольше.",
  fact3:"Фото цветов перед отправкой",cardHand:"Мы подпишем её от руки.",
- brand:"цветочное ателье",shopName:"Цветочное ателье Hogis",
+ brand:"цветочное ателье",shopName:"Цветочное ателье Kyanqs",
  footer:"Прототип · цветы и цены условные · оплата согласуется после заказа"
 },
 hy:{
