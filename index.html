@@ -162,6 +162,7 @@ header.bar :focus-visible{outline-color:#c8d9e3}
 .card .art .ph{width:100%;height:100%;object-fit:cover;display:block}
 .modal-card .art .ph{width:100%;max-width:420px;aspect-ratio:1/1;object-fit:cover;display:block}
 .ci .thumb .ph{width:88%;height:88%;object-fit:contain}
+.art svg.pc{width:100%;max-width:420px;display:block}.thumb svg.pc{width:100%;border-radius:10px}
 .chip.off{align-self:flex-start;margin:4px 0 0;font-style:italic}
 .stem-row .nm{flex:1;min-width:0}
 .stem-row .nm b{display:block;font-weight:500;font-size:17px}
@@ -297,7 +298,7 @@ footer{text-align:center;border-top:1px solid var(--line);padding-block:40px}
   .bar-in{gap:8px}
   .prefs select{padding:6px 6px;font-size:15px}
   .logo .wm small{display:none}
-  .logo .wm b{font-size:22px;letter-spacing:.22em;margin-right:-.22em}
+  .logo .wm b{font-size:19px;letter-spacing:.14em;margin-right:-.14em}
   .section-head h2{font-size:28px}
 }
 @media (prefers-reduced-motion: no-preference){
@@ -313,7 +314,7 @@ footer{text-align:center;border-top:1px solid var(--line);padding-block:40px}
   <div class="wrap bar-in">
     <button class="logo" id="home-btn" aria-label="Kyanqs">
       <svg viewBox="0 0 100 130" aria-hidden="true"><path d="M50 30c-9 0-15 7-15 14c0 9 7 14 15 14c9 0 15-7 15-15c0-7-5-11-11-11c-5 0-9 4-9 9c0 4 3 7 7 7" fill="none" stroke="#f7f3ee" stroke-width="4" stroke-linecap="round"/><path d="M50 58C50 74 48 92 50 118" fill="none" stroke="#f7f3ee" stroke-width="4" stroke-linecap="round"/><path d="M50 86C58 78 68 77 74 72C68 86 59 90 50 90Z" fill="#c8d9e3" stroke="#f7f3ee" stroke-width="2.4" stroke-linejoin="round"/></svg>
-      <span class="wm"><b>Kyanqs</b><small id="brand-name">flower atelier</small></span>
+      <span class="wm"><b>KYANQS</b><small id="brand-name">floral atelier</small></span>
     </button>
     <div class="spacer"></div>
     <div class="prefs">
@@ -328,7 +329,7 @@ footer{text-align:center;border-top:1px solid var(--line);padding-block:40px}
 
 <main id="app"></main>
 
-<footer><div class="wrap"><div class="sig"><svg viewBox="0 0 100 130" aria-hidden="true"><path d="M50 30c-9 0-15 7-15 14c0 9 7 14 15 14c9 0 15-7 15-15c0-7-5-11-11-11c-5 0-9 4-9 9c0 4 3 7 7 7" fill="none" stroke="#f7f3ee" stroke-width="2.6" stroke-linecap="round"/><path d="M50 58C50 74 48 92 50 118" fill="none" stroke="#f7f3ee" stroke-width="2.6" stroke-linecap="round"/><path d="M50 86C58 78 68 77 74 72C68 86 59 90 50 90Z" fill="#c8d9e3" stroke="#f7f3ee" stroke-width="1.6" stroke-linejoin="round"/></svg><b>Kyanqs</b><span>Հոգիս</span><i>flower atelier</i></div><p id="footer-txt"></p></div></footer>
+<footer><div class="wrap"><div class="sig"><svg viewBox="0 0 100 130" aria-hidden="true"><path d="M50 30c-9 0-15 7-15 14c0 9 7 14 15 14c9 0 15-7 15-15c0-7-5-11-11-11c-5 0-9 4-9 9c0 4 3 7 7 7" fill="none" stroke="#f7f3ee" stroke-width="2.6" stroke-linecap="round"/><path d="M50 58C50 74 48 92 50 118" fill="none" stroke="#f7f3ee" stroke-width="2.6" stroke-linecap="round"/><path d="M50 86C58 78 68 77 74 72C68 86 59 90 50 90Z" fill="#c8d9e3" stroke="#f7f3ee" stroke-width="1.6" stroke-linejoin="round"/></svg><b>KYANQS</b><span>Կյանքս</span><i>floral atelier</i></div><p id="footer-txt"></p></div></footer>
 
 <div id="layer"></div>
 <div class="toast" id="toast" role="status" hidden></div>
@@ -337,8 +338,8 @@ footer{text-align:center;border-top:1px solid var(--line);padding-block:40px}
 <script>
 /* ---------- language + currency ---------- */
 /* All shop content (flowers, bouquets, prices, fees) lives in shop-data.js. */
-const D=window.Kyanqs||{settings:{},flowers:[],bouquets:[],arrangements:[]};
-if(!window.Kyanqs)document.body.insertAdjacentHTML("afterbegin",'<p style="background:#f7f3ee;color:#5e1a2e;padding:16px;margin:0;font:600 18px sans-serif">shop-data.js could not be read. Check the last change you made to it (a missing comma or quote mark).</p>');
+const D=window.KYANQS||window.HOGIS||{settings:{},flowers:[],bouquets:[],arrangements:[]};
+if(!window.KYANQS&&!window.HOGIS)document.body.insertAdjacentHTML("afterbegin",'<p style="background:#f7f3ee;color:#5e1a2e;padding:16px;margin:0;font:600 18px sans-serif">shop-data.js could not be read. Check the last change you made to it (a missing comma or quote mark).</p>');
 const ST=D.settings||{};
 const NOW_M=new Date().getMonth();
 /* price: one number for the whole year, or 12 numbers (Jan…Dec); 0 = out of season that month */
@@ -410,7 +411,7 @@ en:{
  jewelryNote:"We'll contact you to choose the piece. The price shown is the starting price.",fromP:"from {p}",
  minCustom:"Custom orders start at {p}.",belowMin:"Custom orders start at {p}. Add a few more stems or a bigger container.",
  fact3:"Photo of your flowers before they leave",cardHand:"We write it by hand.",
- brand:"flower atelier",shopName:"Kyanqs flower atelier",
+ brand:"floral atelier",shopName:"Kyanqs floral atelier",
  footer:"Prototype · flowers and prices are placeholders · payment is arranged after ordering"
 },
 ru:{
@@ -472,7 +473,7 @@ ru:{
  jewelryNote:"Мы свяжемся с вами, чтобы выбрать украшение. Указана минимальная цена.",fromP:"от {p}",
  minCustom:"Своя композиция от {p}.",belowMin:"Своя композиция от {p}. Добавьте ещё цветов или выберите основу побольше.",
  fact3:"Фото цветов перед отправкой",cardHand:"Мы подпишем её от руки.",
- brand:"цветочное ателье",shopName:"Цветочное ателье Kyanqs",
+ brand:"цветочное ателье",shopName:"Цветочное ателье Кянкс",
  footer:"Прототип · цветы и цены условные · оплата согласуется после заказа"
 },
 hy:{
@@ -534,7 +535,7 @@ hy:{
  jewelryNote:"Կկապվենք ձեզ հետ՝ զարդը ընտրելու համար։ Նշված է նվազագույն գինը։",fromP:"{p}-ից",
  minCustom:"Անհատական պատվերը՝ {p}-ից։",belowMin:"Անհատական պատվերը՝ {p}-ից։ Ավելացրեք ծաղիկներ կամ ընտրեք ավելի մեծ տարա։",
  fact3:"Ծաղիկների լուսանկարը՝ առաքումից առաջ",cardHand:"Մենք այն կգրենք ձեռքով։",
- brand:"Հոգիս · ծաղիկների ատելիե",shopName:"Հոգիս ծաղիկների ատելիե",
+ brand:"Կյանքս · ծաղիկների ատելիե",shopName:"Կյանքս ծաղիկների ատելիե",
  footer:"Նախատիպ · ծաղիկներն ու գները պայմանական են · վճարումը համաձայնեցվում է պատվերից հետո"
 }};
 
@@ -578,6 +579,10 @@ const photoSrc=k=>PHOTO_OK[k];
 /* looks in photos/ first, and also next to index.html in case photos were uploaded without the folder */
 function probePhoto(key,name){[PHOTO_DIR,""].forEach(dir=>[".jpg",".png"].forEach(ext=>{const im=new Image();im.onload=()=>{if(PHOTO_OK[key])return;PHOTO_OK[key]=dir+name+ext;clearTimeout(photoRefresh.h);photoRefresh.h=setTimeout(photoRefresh,120);};im.src=dir+name+ext;}));}
 Object.keys(F).forEach(id=>COLS[id].forEach(c=>{const k=skey(id,c);probePhoto(k,multi(id)?id+"-"+c:id);}));
+/* cut-out flower heads (cut-rose-red.png ...) with no background: bouquets and the builder are put together from these */
+const CUT_OK={};
+function probeCut(key,name){[PHOTO_DIR,""].forEach(dir=>{const im=new Image();im.onload=()=>{if(CUT_OK[key])return;CUT_OK[key]={src:dir+"cut-"+name+".png",ar:im.naturalWidth/im.naturalHeight};clearTimeout(photoRefresh.h);photoRefresh.h=setTimeout(()=>{photoRefresh();if(typeof updateBuilder==="function")updateBuilder();},150);};im.src=dir+"cut-"+name+".png";});}
+Object.keys(F).forEach(id=>COLS[id].forEach(c=>probeCut(skey(id,c),multi(id)?id+"-"+c:id)));
 function photoRefresh(){if(typeof render!=="function"||S.view!=="shop")return;const open=layer.innerHTML!=="";if(!open)renderShop();else{document.querySelectorAll(".ci .thumb").length&&openCart();}}
 function swatchHTML(p,where){const id=p.fid;if(!multi(id))return "";const cur=S.col[p.id]||COLS[id][0];
   return `<div class="swwrap"><span class="colname">${t("colour")}: ${esc(cName(cur))}</span><div class="sw" role="radiogroup" aria-label="${t("colour")}">${COLS[id].map(c=>`<input type="radio" name="col-${where}-${p.id}" id="col-${where}-${p.id}-${c}" value="${c}" data-pid="${p.id}" ${c===cur?"checked":""}><label for="col-${where}-${p.id}-${c}" title="${esc(cName(c))}"><span style="background:${c==="striped"?"linear-gradient(135deg,#fbf7f2 50%,#a3173a 50%)":HEX[c][0]}"></span><i>${esc(cName(c))}</i></label>`).join("")}</div></div>`;}
@@ -652,6 +657,19 @@ function vesselSVG(v){
   }
   return "";
 }
+/* a bouquet built from the real flower photos: greenery at the back, then flowers from the top down so the front ones overlap */
+function photoBouquet(order,vessel,label){
+  const n=order.length,cx=100,cy=vessel==="bowl"?112:vessel==="box"?108:vessel==="wrap"?92:90,sx=vessel==="bowl"?58:40+Math.min(n,16)*.9,sy=vessel==="bowl"?28:28+Math.min(n,16)*.7;
+  const base=n<=2?78:n<=4?66:n<=7?58:n<=11?52:46;
+  const pts=order.map((k,i)=>{const tt=(i+.5)/n,ang=i*2.39996,d=n===1?0:Math.sqrt(tt);return {k,x:cx+Math.cos(ang)*d*sx,y:cy+Math.sin(ang)*d*sy,g:F[baseOf(k)].green};});
+  pts.sort((a,b)=>(b.g-a.g)||(a.y-b.y));
+  let s=`<svg class="pc" viewBox="0 0 200 200" role="img" aria-label="${esc(label||"")}"><defs><radialGradient id="pcbg" cx=".45" cy=".42" r=".75"><stop offset="0" stop-color="#5c222c"/><stop offset="1" stop-color="#340e18"/></radialGradient></defs><rect width="200" height="200" fill="url(#pcbg)"/>`;
+  if(vessel==="wrap"||vessel==="vase"||vessel==="jar"){const ey=vessel==="vase"?170:182;for(let i=0;i<Math.min(n,9);i++)s+=`<path d="M${cx+(i-4)*5},${cy+10} L${cx+(i-4)*2},${ey}" stroke="#5f7d4e" stroke-width="2.5"/>`;}
+  pts.forEach(p=>{const ck=skey(baseOf(p.k),colOf(p.k)),c=CUT_OK[ck],sz=base*(p.g?1.35:1);
+    if(c){const w=c.ar>=1?sz:sz*c.ar,h=c.ar>=1?sz/c.ar:sz;s+=`<image href="${c.src}" x="${(p.x-w/2).toFixed(1)}" y="${(p.y-h/2).toFixed(1)}" width="${w.toFixed(1)}" height="${h.toFixed(1)}"/>`;}
+    else s+=bloom(p.x,p.y,sz*.42,look(p.k));});
+  return s+vesselSVG(vessel)+"</svg>";
+}
 function art(item,label){
   let s=`<svg viewBox="0 0 200 200" role="img" aria-label="${esc(label||"")}">`;
   if(item.type==="single"){
@@ -670,6 +688,7 @@ function art(item,label){
   if(n) s+=`<ellipse cx="${cx}" cy="${cy+6}" rx="${sx+10}" ry="${sy+8}" fill="var(--stem)" opacity=".35"/>`;
   const order=[...blooms].sort((a,b)=>(F[baseOf(b)].green?1:0)-(F[baseOf(a)].green?1:0));
   const pal=item.pal&&PALETTES[item.pal];
+  if(!pal&&n&&order.some(k=>CUT_OK[skey(baseOf(k),colOf(k))]))return photoBouquet(order,vessel,label);
   order.forEach((fid,i)=>{const tt=(i+.5)/n,ang=i*2.39996,d=Math.sqrt(tt);let f=look(fid);if(pal&&!f.green)f={...f,color:pal[i%pal.length],center:pal[(i+2)%pal.length]};const x=cx+Math.cos(ang)*d*sx,y=cy+Math.sin(ang)*d*sy,r=r0*(f.kind==="cluster"?1.25:1);
     s+=bloom(x,y,r,f);});
   return s+vesselSVG(vessel)+"</svg>";
@@ -1040,7 +1059,7 @@ function validate(){
 function placeOrder(){
   readCheckout();if(!validate()){const e=document.querySelector(".err:not([hidden])");e&&e.scrollIntoView({behavior:"smooth",block:"center"});return;}
   const total=updateCheckout();
-  S.order={no:"HG-"+String(Math.floor(1000+Math.random()*9000)),items:S.cart.map(c=>({...c})),total,co:{...CO}};
+  S.order={no:"KQ-"+String(Math.floor(1000+Math.random()*9000)),items:S.cart.map(c=>({...c})),total,co:{...CO}};
   S.cart=[];saveCart();updateBadge();S.view="done";render();window.scrollTo(0,0);
 }
 function renderDone(){
