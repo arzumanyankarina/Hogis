@@ -61,7 +61,7 @@ header.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backgroun
 .logo svg{width:32px;height:42px;flex:none}
 .logo .wm{display:flex;flex-direction:column;line-height:1}
 .logo .wm b{font-weight:500;font-size:28px;letter-spacing:.32em;margin-right:-.32em}
-.logo .wm b{display:flex;align-items:center}.logo .wm .wm-sep{display:inline-block;width:1px;height:.8em;background:currentColor;opacity:.5;margin:0 .45em 0 .15em}.logo .wm b span[lang=hy]{font-family:"Noto Serif Armenian",serif;font-weight:400;font-size:.82em;letter-spacing:.22em}
+.logo .wm b{display:flex;align-items:flex-end;line-height:.72;text-transform:none;letter-spacing:.03em;margin-right:0;font-size:34px}.logo .wm img.wm-l{height:1.55em;width:auto;margin:0 0 -.26em 0}.logo .wm img.wm-ay{height:1.3em;margin:0 .04em -.1em 0}.logo .wm b span[lang=hy]{font-size:.8em;letter-spacing:.06em;font-weight:500}.logo .wm .wm-sep{align-self:center}.logo .wm small{margin-top:.4em}.logo .wm .wm-sep{display:inline-block;width:1px;height:.8em;background:currentColor;opacity:.5;margin:0 .45em 0 .15em}.logo .wm b span[lang=hy]{font-family:"Noto Serif Armenian",serif;font-weight:400;font-size:.82em;letter-spacing:.22em}
 .logo .wm small{font-size:16px;font-style:italic;color:#c8d9e3;margin-top:4px;letter-spacing:.04em}
 .bar-in .spacer{flex:1}
 .prefs{display:flex;gap:6px}
@@ -286,7 +286,7 @@ svg[role="img"] :is(circle,ellipse,path,rect):not(.nk *){stroke:#f7f3ee;stroke-w
 footer{text-align:center;border-top:1px solid var(--line);padding-block:40px}
 .sig{display:flex;flex-direction:column;align-items:center;gap:6px;margin-bottom:18px;color:var(--ink)}
 .sig svg{width:40px;height:52px}
-.sig b{font-family:var(--display);font-weight:500;font-size:30px;letter-spacing:.32em;margin-right:-.32em}
+.sig b{font-family:var(--display);font-weight:600;font-size:44px;display:flex;align-items:flex-end;line-height:.72;margin-bottom:10px}.sig b img{height:1.55em;margin-bottom:-.26em}.sig b img.wm-ay{height:1.3em;margin-bottom:-.1em}.sig b span[lang=hy]{font-family:"Noto Serif Armenian",serif;font-weight:500;font-size:.8em;letter-spacing:.06em;color:inherit}
 .sig span{font-family:"Noto Serif Armenian",Georgia,serif;letter-spacing:.3em;color:var(--glacier);font-size:16px}
 .sig i{color:var(--glacier);font-size:20px}
 @media (max-width:860px){
@@ -304,7 +304,7 @@ footer{text-align:center;border-top:1px solid var(--line);padding-block:40px}
   .bar-in{gap:8px}
   .prefs select{padding:6px 6px;font-size:15px}
   .logo .wm small{display:none}
-  .logo .wm b{font-size:19px;letter-spacing:.14em;margin-right:-.14em}.logo .wm b span[lang=hy]{letter-spacing:.08em}.logo .wm .wm-sep{margin:0 .3em 0 .05em}
+  .logo .wm b{font-size:26px;letter-spacing:.02em;margin-right:0}.logo .wm b span[lang=hy]{letter-spacing:.08em}.logo .wm .wm-sep{margin:0 .3em 0 .05em}
   .section-head h2{font-size:28px}
 }
 @media (prefers-reduced-motion: no-preference){
@@ -320,7 +320,7 @@ footer{text-align:center;border-top:1px solid var(--line);padding-block:40px}
   <div class="wrap bar-in">
     <button class="logo" id="home-btn" aria-label="Ari">
       <svg viewBox="0 0 100 130" aria-hidden="true"><path d="M50 30c-9 0-15 7-15 14c0 9 7 14 15 14c9 0 15-7 15-15c0-7-5-11-11-11c-5 0-9 4-9 9c0 4 3 7 7 7" fill="none" stroke="#f7f3ee" stroke-width="4" stroke-linecap="round"/><path d="M50 58C50 74 48 92 50 118" fill="none" stroke="#f7f3ee" stroke-width="4" stroke-linecap="round"/><path d="M50 86C58 78 68 77 74 72C68 86 59 90 50 90Z" fill="#c8d9e3" stroke="#f7f3ee" stroke-width="2.4" stroke-linejoin="round"/></svg>
-      <span class="wm"><b>ARI<i class="wm-sep" aria-hidden="true"></i><span lang="hy">ԱՐԻ</span></b><small id="brand-name">floral atelier</small></span>
+      <span class="wm"><b id="wm-name"></b><small id="brand-name">floral atelier</small></span>
     </button>
     <div class="spacer"></div>
     <div class="prefs">
@@ -335,7 +335,7 @@ footer{text-align:center;border-top:1px solid var(--line);padding-block:40px}
 
 <main id="app"></main>
 
-<footer><div class="wrap"><div class="sig"><svg viewBox="0 0 100 130" aria-hidden="true"><path d="M50 30c-9 0-15 7-15 14c0 9 7 14 15 14c9 0 15-7 15-15c0-7-5-11-11-11c-5 0-9 4-9 9c0 4 3 7 7 7" fill="none" stroke="#f7f3ee" stroke-width="2.6" stroke-linecap="round"/><path d="M50 58C50 74 48 92 50 118" fill="none" stroke="#f7f3ee" stroke-width="2.6" stroke-linecap="round"/><path d="M50 86C58 78 68 77 74 72C68 86 59 90 50 90Z" fill="#c8d9e3" stroke="#f7f3ee" stroke-width="1.6" stroke-linejoin="round"/></svg><b>ARI</b><span>Արի</span><i>floral atelier</i></div><p id="footer-txt"></p></div></footer>
+<footer><div class="wrap"><div class="sig"><svg viewBox="0 0 100 130" aria-hidden="true"><path d="M50 30c-9 0-15 7-15 14c0 9 7 14 15 14c9 0 15-7 15-15c0-7-5-11-11-11c-5 0-9 4-9 9c0 4 3 7 7 7" fill="none" stroke="#f7f3ee" stroke-width="2.6" stroke-linecap="round"/><path d="M50 58C50 74 48 92 50 118" fill="none" stroke="#f7f3ee" stroke-width="2.6" stroke-linecap="round"/><path d="M50 86C58 78 68 77 74 72C68 86 59 90 50 90Z" fill="#c8d9e3" stroke="#f7f3ee" stroke-width="1.6" stroke-linejoin="round"/></svg><b id="sig-name"></b><i id="sig-tag">floral atelier</i></div><p id="footer-txt"></p></div></footer>
 
 <div id="layer"></div>
 <div class="toast" id="toast" role="status" hidden></div>
@@ -541,7 +541,7 @@ hy:{
  jewelryNote:"Կկապվենք ձեզ հետ՝ զարդը ընտրելու համար։ Նշված է նվազագույն գինը։",fromP:"{p}-ից",
  minCustom:"Անհատական պատվերը՝ {p}-ից։",belowMin:"Անհատական պատվերը՝ {p}-ից։ Ավելացրեք ծաղիկներ կամ ընտրեք ավելի մեծ տարա։",
  fact3:"Ծաղիկների լուսանկարը՝ առաքումից առաջ",cardHand:"Մենք այն կգրենք ձեռքով։",
- brand:"Արի · ծաղիկների ատելիե",shopName:"Արի ծաղիկների ատելիե",
+ brand:"ծաղիկների ատելիե",shopName:"Արի ծաղիկների ատելիե",
  footer:"Նախատիպ · ծաղիկներն ու գները պայմանական են · վճարումը համաձայնեցվում է պատվերից հետո"
 }};
 
@@ -654,15 +654,23 @@ function expand(flowers,max){
   return list;
 }
 const TIE=134;
-function bowSVG(c,y){const k="rgba(0,0,0,.3)",h="rgba(255,255,255,.4)";
-  return `<g class="nk" stroke="${k}" stroke-width=".8" stroke-linejoin="round"><path d="M98,${y+3} C88,${y+24} 74,${y+44} 58,200 L69,200 C82,${y+46} 95,${y+26} 102,${y+4}Z" fill="${c}"/><path d="M101,${y+3} C114,${y+22} 128,${y+42} 136,200 L147,200 C138,${y+40} 120,${y+18} 104,${y+2}Z" fill="${c}"/>
-  <path d="M100,${y} C93,${y-22} 69,${y-20} 73,${y-5} C75,${y+7} 92,${y+5} 100,${y}Z" fill="${c}"/><path d="M100,${y} C107,${y-22} 131,${y-20} 127,${y-5} C125,${y+7} 108,${y+5} 100,${y}Z" fill="${c}"/>
-  <path d="M97,${y-1} C90,${y-12} 80,${y-12} 79,${y-6}" fill="none" stroke="${k}" stroke-width="1.2"/><path d="M103,${y-1} C110,${y-12} 120,${y-12} 121,${y-6}" fill="none" stroke="${k}" stroke-width="1.2"/>
-  <path d="M95,${y-6} C88,${y-17} 76,${y-16} 75,${y-8}" fill="none" stroke="${h}" stroke-width="1.6"/><path d="M106,${y-8} C112,${y-17} 124,${y-16} 125,${y-8}" fill="none" stroke="${h}" stroke-width="1.6"/>
-  <path d="M99,${y+8} C90,${y+30} 78,${y+50} 64,198" fill="none" stroke="${h}" stroke-width="1.4"/><path d="M104,${y+8} C116,${y+30} 130,${y+50} 141,198" fill="none" stroke="${h}" stroke-width="1.4"/>
-  <ellipse cx="100" cy="${y}" rx="5.5" ry="6.5" fill="${c}"/></g>`;}
+/* satin ribbon tied over the stems: shaded with gradients so it reads as real satin */
+function shade(hex,a){const n=parseInt(hex.slice(1),16),r=n>>16,g=n>>8&255,b=n&255,t=a<0?0:255,p=Math.abs(a);const f=v=>Math.round(v+(t-v)*p);return `rgb(${f(r)},${f(g)},${f(b)})`;}
+function bowSVG(c,y){const id="rb"+c.slice(1),D=shade(c,-.42),d=shade(c,-.2),L=shade(c,.5),l=shade(c,.22);
+  const g=(n,x1,y1,x2,y2,st)=>`<linearGradient id="${id}${n}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}">${st.map(([o,col])=>`<stop offset="${o}" stop-color="${col}"/>`).join("")}</linearGradient>`;
+  return `<g class="nk"><defs>${g("a",0,0,1,0,[[0,D],[.35,c],[.55,L],[.7,c],[1,d]])}${g("b",0,0,0,1,[[0,l],[.4,c],[1,D]])}${g("c",0,0,1,1,[[0,d],[.45,L],[.6,c],[1,D]])}
+  <filter id="${id}s" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur in="SourceAlpha" stdDeviation="1.6"/><feOffset dx=".8" dy="1.6"/><feComponentTransfer><feFuncA type="linear" slope=".45"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+  <g filter="url(#${id}s)">
+  <path d="M90,${y-7} L110,${y-10} L111,${y-1} L89,${y+2}Z" fill="url(#${id}b)"/><path d="M89,${y+1} L111,${y-2} L111,${y+6} L89,${y+9}Z" fill="url(#${id}a)"/>
+  <path d="M98,${y+3} C93,${y+22} 84,${y+40} 66,198 L79,199 C90,${y+44} 98,${y+26} 103,${y+5}Z" fill="url(#${id}c)"/>
+  <path d="M101,${y+3} C112,${y+18} 121,${y+30} 124,${y+44} C127,${y+56} 131,${y+62} 140,198 L128,199 C121,${y+60} 117,${y+50} 114,${y+40} C110,${y+28} 106,${y+16} 104,${y+5}Z" fill="url(#${id}a)"/>
+  <path d="M100,${y} C96,${y-10} 86,${y-22} 76,${y-19} C68,${y-16} 70,${y-4} 78,${y+1} C85,${y+5} 94,${y+3} 100,${y}Z" fill="url(#${id}b)"/>
+  <path d="M100,${y} C91,${y-4} 82,${y-9} 78,${y-12} C82,${y-6} 90,${y-1} 100,${y}Z" fill="${D}" opacity=".55"/>
+  <path d="M100,${y} C104,${y-10} 114,${y-23} 125,${y-20} C133,${y-17} 131,${y-4} 122,${y+1} C115,${y+5} 106,${y+3} 100,${y}Z" fill="url(#${id}c)"/>
+  <path d="M100,${y} C109,${y-4} 118,${y-9} 122,${y-12} C118,${y-6} 110,${y-1} 100,${y}Z" fill="${D}" opacity=".55"/>
+  <path d="M95,${y-4} C94,${y-1} 95,${y+4} 98,${y+6} C102,${y+7} 105,${y+4} 105,${y} C105,${y-4} 103,${y-6} 100,${y-6} C97,${y-6} 95,${y-5} 95,${y-4}Z" fill="url(#${id}b)"/></g></g>`;}
 function vesselSVG(v,col,paper){
-  if(v==="wrap"){const c=(STY.wrap.sw[col])||"#7a1d2e";let s="";if(paper)s+=`<path d="M50,110 L100,196 L150,110 L132,118 L100,104 L68,118 Z" fill="#c9a77a"/><path d="M68,118 L100,196 L132,118" fill="#b8935f"/>`;else s+=`<g class="nk"><rect x="90" y="${TIE-5}" width="20" height="10" rx="2" fill="${c}" stroke="rgba(0,0,0,.3)" stroke-width=".8"/></g>`;return s+bowSVG(c,paper?150:TIE);}
+  if(v==="wrap"){const c=(STY.wrap.sw[col])||"#7a1d2e";return bowSVG(c,TIE);}
   switch(v){
     case "vase":return `<path d="M72,128 Q66,160 78,192 L122,192 Q134,160 128,128 Z" fill="#cfe3e8" fill-opacity=".55" stroke="#7fa2ab" stroke-width="2"/><path d="M80,170 L120,170" stroke="#9fc1c9" stroke-width="2"/>`;
     case "box":return `<rect x="48" y="128" width="104" height="58" rx="6" fill="#2b2b2b"/><ellipse cx="100" cy="128" rx="52" ry="8" fill="#3d3d3d"/><rect x="48" y="150" width="104" height="8" fill="#d8b46a"/>`;
@@ -712,15 +720,19 @@ const contName=(v,col)=>"cont-"+v+(CONT[v].cols?"-"+(CONT[v].cols.includes(col)?
 Object.keys(CONT).forEach(v=>(CONT[v].cols||[""]).forEach(c=>{const nm=contName(v,c);CONT[v].layers.forEach(l=>[PHOTO_DIR,""].forEach(dir=>{const im=new Image();im.onload=()=>{const k=nm+"-"+l;if(CONT_OK[k])return;CONT_OK[k]=dir+k+".png";clearTimeout(photoRefresh.h);photoRefresh.h=setTimeout(()=>{photoRefresh();if(typeof updateBuilder==="function")updateBuilder();},150);};im.src=dir+nm+"-"+l+".png";}));}));
 const contReady=(v,col)=>CONT[v]&&CONT[v].layers.every(l=>CONT_OK[contName(v,col)+"-"+l]);
 /* a bouquet built from the real flower photos: greenery at the back, then flowers from the top down so the front ones overlap */
+/* average brightness of each cut-out photo: dark bouquets get a light background */
+const CUT_LUM={"amaranthus":0.354,"anemone":0.275,"anthurium-green":0.386,"anthurium-red":0.047,"anthurium-white":0.576,"blush-peach":0.266,"blush-pink":0.177,"blush-white":0.343,"calla-burgundy":0.043,"calla-white":0.446,"carnation-peach":0.368,"carnation-pink":0.406,"carnation-red":0.108,"carnation-striped":0.249,"carnation-white":0.425,"celosia-green":0.324,"celosia-red":0.041,"chrysanthemum-burgundy":0.05,"chrysanthemum-white":0.554,"dahlia-burgundy":0.031,"dahlia-orange":0.165,"dahlia-pink":0.266,"dahlia-red":0.111,"eucalyptus":0.172,"freesia":0.352,"gerbera-red":0.015,"gerbera-white":0.535,"gladiolus-pink":0.244,"gladiolus-purple":0.391,"gladiolus-white":0.606,"gladiolus-yellow":0.479,"gyp":0.408,"hydrangea-blue":0.36,"hydrangea-green":0.413,"hydrangea-pink":0.433,"hydrangea-white":0.536,"lilac":0.255,"lily-white":0.556,"lilyvalley":0.593,"lisianthus-burgundy":0.082,"lisianthus-pink":0.455,"lisianthus-purple":0.584,"lisianthus-white":0.65,"mimosa":0.21,"narcissus-white":0.45,"narcissus-yellow":0.429,"peony-burgundy":0.033,"peony-coral":0.253,"peony-pink":0.266,"peony-white":0.645,"poppy":0.272,"protea":0.103,"ranunculus-orange":0.226,"ranunculus-peach":0.333,"ranunculus-pink":0.328,"ranunculus-red":0.079,"ranunculus-white":0.516,"ranunculus-yellow":0.405,"rose-burgundy":0.019,"rose-peach":0.339,"rose-pink":0.223,"rose-red":0.04,"rose-white":0.575,"rose-yellow":0.463,"statice-pink":0.238,"statice-purple":0.079,"statice-white":0.365,"stock-pink":0.402,"stock-purple":0.302,"stock-white":0.374,"strelitzia":0.208,"sunflower":0.306,"tulip-orange":0.213,"tulip-peach":0.38,"tulip-pink":0.238,"tulip-purple":0.1,"tulip-red":0.082,"tulip-striped":0.279,"tulip-white":0.345,"tulip-yellow":0.489};
 function photoBouquet(order,vessel,label,col,paper){
-  const n=order.length,tied=vessel==="wrap"&&!paper;let cx=100,cy=vessel==="bowl"?112:vessel==="box"?108:tied?70:vessel==="wrap"?92:90,sx=vessel==="bowl"?58:40+Math.min(n,16)*.9,sy=vessel==="bowl"?28:28+Math.min(n,16)*.7;
+  const n=order.length,tied=vessel==="wrap";let cx=100,cy=vessel==="bowl"?112:vessel==="box"?108:tied?70:vessel==="wrap"?92:90,sx=vessel==="bowl"?58:40+Math.min(n,16)*.9,sy=vessel==="bowl"?28:28+Math.min(n,16)*.7;
   let base=n<=2?78:n<=4?66:n<=7?58:n<=11?52:46;
   const C0=contReady(vessel,col)?CONT[vessel]:null,cn=C0?contName(vessel,col):"",C=C0&&C0.geo?{...C0,...C0.geo[cn.split("-").pop()]}:C0;
   if(C&&C.r!=null)Object.assign(C,{cx:C.x+C.w/2,cy:C.y+C.r*C.h-4,sx:C.w*.4,sy:9});
   if(C){cx=C.cx;cy=C.cy;sx=C.sx+Math.min(n,16)*.5;sy=C.sy+Math.min(n,16)*.5;base*=C.k;}
   const pts=order.map((k,i)=>{const tt=(i+.5)/n,ang=i*2.39996,d=n===1?0:Math.sqrt(tt);return {k,x:cx+Math.cos(ang)*d*sx,y:cy+Math.sin(ang)*d*sy,g:F[baseOf(k)].green};});
   pts.sort((a,b)=>(b.g-a.g)||(a.y-b.y));
-  let s=`<svg class="pc" viewBox="0 0 200 200" role="img" aria-label="${esc(label||"")}"><defs><radialGradient id="pcbg" cx=".45" cy=".42" r=".75"><stop offset="0" stop-color="#5c222c"/><stop offset="1" stop-color="#340e18"/></radialGradient></defs><rect width="200" height="200" fill="url(#pcbg)"/>`;
+  const lum=h=>{const n=parseInt(String(h).slice(1),16);if(isNaN(n))return 1;const f=v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4);};return .2126*f(n>>16)+.7152*f(n>>8&255)+.0722*f(n&255);};
+  const fl=order.filter(k=>!F[baseOf(k)].green),dark=fl.filter(k=>{const c=CUT_OK[skey(baseOf(k),colOf(k))],nm=c&&c.src.split("cut-").pop().replace(".png","");return nm&&CUT_LUM[nm]!=null?CUT_LUM[nm]<.11:lum(look(k).color)<.2;}).length,light=fl.length&&dark/fl.length>=.35;
+  let s=`<svg class="pc${light?" pc-light":""}" viewBox="0 0 200 200" role="img" aria-label="${esc(label||"")}"><defs>${light?`<radialGradient id="pcbgL" cx=".45" cy=".42" r=".75"><stop offset="0" stop-color="#fdfaf4"/><stop offset="1" stop-color="#ece3d4"/></radialGradient>`:`<radialGradient id="pcbg" cx=".45" cy=".42" r=".75"><stop offset="0" stop-color="#5c222c"/><stop offset="1" stop-color="#340e18"/></radialGradient>`}</defs><rect width="200" height="200" fill="url(#${light?"pcbgL":"pcbg"})"/>`;
   if(C&&CONT_OK[cn+"-back"])s+=`<image href="${CONT_OK[cn+"-back"]}" x="${C.x}" y="${C.y}" width="${C.w}" height="${C.h}"/>`;
   if(C&&C.stems){const bx=C.x+C.w/2,by=C.y+C.h-6;pts.forEach((p,i)=>{if(i%2&&pts.length>8)return;s+=`<path d="M${p.x.toFixed(1)},${p.y.toFixed(1)} Q${((p.x+bx)/2).toFixed(1)},${(C.y+4).toFixed(1)} ${(bx+(p.x-bx)*.18).toFixed(1)},${by}" stroke="#5f7d4e" stroke-width="1.6" fill="none" opacity=".9"/>`;});}
   if(C&&C.inside)s+=`<ellipse cx="${C.x+C.w/2}" cy="${C.y+4}" rx="${C.w/2-3}" ry="7" fill="#1e0b10"/>`;
@@ -791,7 +803,9 @@ function renderChrome(){
   $("#lang-lbl").textContent=t("lang");$("#cur-lbl").textContent=t("cur");
   $("#sel-lang").value=LANG;$("#sel-cur").value=CUR;
   $("#footer-txt").textContent=t("footer");
-  $("#brand-name").textContent=t("brand");
+  $("#brand-name").textContent=t("brand");$("#sig-tag").textContent=t("brand");
+  const wm=LANG==="hy"?`<img class="wm-l wm-ay" src="ari-letter-ayb.svg" alt=""><span lang="hy">ՐԻ</span>`:`<img class="wm-l" src="ari-letter-a.svg" alt="">ri`;
+  $("#wm-name").innerHTML=wm;$("#wm-name").setAttribute("aria-label",LANG==="hy"?"Արի":"Ari");$("#sig-name").innerHTML=wm;
   updateBadge();
 }
 

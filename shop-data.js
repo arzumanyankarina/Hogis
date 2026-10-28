@@ -470,7 +470,7 @@ bouquets: [
   {
     id: "b-tulip", show: true, price: 16000,
     size: "petite", badge: "value",
-    flowers: { tulip: 15 },
+    flowers: { "tulip:orange": 15 },
     occasions: ["mother","thanks","home"],
     height: 40, wrapping: "white", vaseDays: "5–7",
     en: { name: "Tulip Market", about: "Fifteen orange tulips, tied loosely like at a flower market. Give them room to grow." },
@@ -546,7 +546,7 @@ arrangements: [
     hy: { name: "Բարձր ծաղկաման", about: "Մեր ամենամեծ կոմպոզիցիան՝ շուշաններ, հորտենզիա և լիզիանթուս ծանր ապակե ծաղկամանում։" },
   },
   {
-    id: "a-mini", show: true, price: 15000,
+    id: "a-mini", show: false, price: 15000,
     size: "petite", badge: "value", container: "jar",
     flowers: { ranunculus: 3, carnation: 2, gyp: 1 },
     occasions: ["thanks","birthday","home"],
