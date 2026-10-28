@@ -1,5 +1,5 @@
 /* =====================================================================
-   HOGIS · SHOP DATA  (shop-data.js)
+   ARI · SHOP DATA  (shop-data.js)
    This is the only file you need to edit to change the shop.
    Change only the words inside "quotes" and the numbers.
    Keep every comma, bracket and quote mark exactly where it is.
@@ -14,7 +14,7 @@
    .jpg or .png both work. Anything without a photo keeps its drawing.
    ===================================================================== */
 
-window.HOGIS = {
+window.ARI = {
 
 /* ---------- 1. GENERAL SETTINGS ---------- */
 settings: {
@@ -35,7 +35,14 @@ settings: {
   minCustom: 15000,
   workFee: 2000,
   // "Create your own": price of each container.
-  containers: { wrap: 1000, vase: 5000, box: 4000, basket: 3500, bowl: 4500 },
+  // wrap = hand-tied with a satin ribbon (ribbon is free; 0 shows "free").
+  containers: { wrap: 0, vase: 5000, box: 4000, basket: 3500, bowl: 4500, other: 3500 },
+  // Hand-tied: extra price when the client ticks "Add wrapping paper".
+  paper: 500,
+
+  // Your WhatsApp number with country code. Orders are sent here.
+  // Example: "+374 99 123456". Leave "" to switch WhatsApp orders off.
+  whatsapp: "+37433973736",
 
   // "Personal bouquet": number of stems and price for each size.
   personal: {
@@ -93,7 +100,7 @@ flowers: [
     id: "peony", show: true,
 //          Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov    Dec
     price: [ 4200,  4200,  5800,  4200,  1800,  1800,  2800,  4200,     0,     0,  4200,  4200 ],
-    colours: ["pink","white","coral"],
+    colours: ["pink","white","coral","burgundy"],
     bestMonths: [5,7], vaseDays: "5–7",
     shape: "peony", colour: "#ee8fb0", centre: "#f6c7d6", filler: false,
     en: { name: "Peony", about: "Big ruffled blooms that open from tight buds.", care: "Keep cool. Warm water helps buds open." },
@@ -104,7 +111,7 @@ flowers: [
     id: "tulip", show: true,
 //          Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov    Dec
     price: [  800,  1100,  1500,  1100,   800,     0,     0,     0,     0,  1100,   800,  1100 ],
-    colours: ["red","pink","white","yellow","orange","purple"],
+    colours: ["red","pink","white","yellow","orange","purple","striped","peach"],
     bestMonths: [1,5], vaseDays: "5–7",
     shape: "tulip", colour: "#f27a3a", centre: "#c4561e", filler: false,
     en: { name: "Tulip", about: "Cup-shaped heads that keep growing in the vase.", care: "Cold water, keep away from fruit." },
@@ -115,7 +122,7 @@ flowers: [
     id: "ranunculus", show: true,
 //          Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov    Dec
     price: [ 1500,  2000,  2800,  2000,  1500,  2000,     0,     0,     0,  2000,  1500,  2000 ],
-    colours: ["yellow","white","pink","peach","orange"],
+    colours: ["yellow","white","pink","peach","orange","red"],
     bestMonths: [2,5], vaseDays: "7–10",
     shape: "rose", colour: "#f6c64a", centre: "#c88f19", filler: false,
     en: { name: "Ranunculus", about: "Paper-thin layered petals.", care: "Shallow water, trim stems often." },
@@ -170,7 +177,7 @@ flowers: [
     id: "lisianthus", show: true,
 //          Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov    Dec
     price: [ 1800,  1800,  2300,  1800,  1300,   900,   900,   900,  1300,  1300,  1300,  1800 ],
-    colours: ["purple","white","pink"],
+    colours: ["purple","white","pink","burgundy"],
     bestMonths: null, vaseDays: "10–14",
     shape: "tulip", colour: "#a98bd3", centre: "#e9e2f3", filler: false,
     en: { name: "Lisianthus", about: "Soft ruffled petals, like a rose and a poppy at once.", care: "Remove spent buds so new ones open." },
@@ -192,7 +199,7 @@ flowers: [
     id: "calla", show: true,
 //          Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov    Dec
     price: [ 2500,  2500,  2500,  2500,  2500,  2500,  2500,  2500,  2500,  2500,  2500,  2500 ],
-    colours: ["white"],
+    colours: ["white","burgundy"],
     bestMonths: null, vaseDays: "10–14",
     shape: "lily", colour: "#f7f3ea", centre: "#e8c34a", filler: false,
     en: { name: "Calla lily", about: "Smooth, sculptural cups on long clean stems. Very elegant.", care: "Shallow water, change it every 2 days. Recut the stems." },
@@ -225,7 +232,7 @@ flowers: [
     id: "stock", show: true,
 //          Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov    Dec
     price: [ 1500,  1500,  1800,  1500,  1200,  1200,  1200,  1200,  1200,  1500,  1500,  1500 ],
-    colours: ["pink"],
+    colours: ["pink","purple","white"],
     bestMonths: [4, 6], vaseDays: "7–10",
     shape: "cluster", colour: "#f2b8c6", centre: "#e08aa2", filler: false,
     en: { name: "Stock", about: "Soft ruffled spikes with a warm clove scent.", care: "Remove leaves below the water and change it every 2 days." },
@@ -269,7 +276,7 @@ flowers: [
     id: "gladiolus", show: true,
 //          Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov    Dec
     price: [ 1500,  1500,  1800,  1500,  1200,  1000,  1000,  1000,  1000,  1200,  1500,  1500 ],
-    colours: ["white"],
+    colours: ["white","pink","purple","yellow"],
     bestMonths: [7, 9], vaseDays: "7–10",
     shape: "lily", colour: "#fbf7f2", centre: "#e6ddd0", filler: false,
     en: { name: "Gladiolus", about: "Tall elegant spikes that open from the bottom up.", care: "Tall vase, deep water. Pinch off the top bud for straight stems." },
@@ -280,7 +287,7 @@ flowers: [
     id: "celosia", show: true,
 //          Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov    Dec
     price: [ 1500,  1500,  1800,  1500,  1500,  1200,  1200,  1200,  1200,  1200,  1500,  1500 ],
-    colours: ["red"],
+    colours: ["red","green"],
     bestMonths: [7, 10], vaseDays: "10–14",
     shape: "peony", colour: "#c2264b", centre: "#7e1631", filler: false,
     en: { name: "Celosia", about: "Velvety crests with a texture like coral. Lasts a long time.", care: "Little water and change it often. Dries well too." },
@@ -291,7 +298,7 @@ flowers: [
     id: "chrysanthemum", show: true,
 //          Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov    Dec
     price: [ 1000,  1000,  1200,  1000,  1000,  1000,  1000,  1000,   900,   900,   900,  1000 ],
-    colours: ["white"],
+    colours: ["white","burgundy"],
     bestMonths: [9, 11], vaseDays: "14–21",
     shape: "ray", colour: "#fbf7f2", centre: "#e8d27a", filler: false,
     en: { name: "Chrysanthemum", about: "Full, round heads that stay fresh for weeks.", care: "Remove lower leaves and change water every 3 days." },
@@ -319,6 +326,72 @@ flowers: [
     en: { name: "Anemone", about: "Soft pink petals around a dark velvet centre.", care: "Shallow cool water, top it up daily." },
     ru: { name: "Анемона", about: "Нежно-розовые лепестки вокруг тёмной бархатной серединки.", care: "Немного прохладной воды, доливайте каждый день." },
     hy: { name: "Անեմոն", about: "Նուրբ վարդագույն թերթեր՝ մուգ թավշյա միջուկի շուրջ։", care: "Քիչ զով ջուր, ամեն օր ավելացրեք։" },
+  },
+  {
+    id: "statice", show: true,
+//          Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov    Dec
+    price: [  900,   900,  1100,   900,   800,   700,   700,   700,   700,   800,   900,   900 ],
+    colours: ["purple","white","pink"],
+    bestMonths: [6, 9], vaseDays: "14–21",
+    shape: "gyp", colour: "#7d5fd0", centre: "#5d3a8c", filler: true,
+    en: { name: "Statice", about: "Papery clusters of tiny flowers that keep their colour, even when dried.", care: "Little water. Lasts for weeks and dries beautifully." },
+    ru: { name: "Статица", about: "Бумажные соцветия из крошечных цветков. Сохраняют цвет даже в сухом виде.", care: "Немного воды. Стоит неделями и красиво сохнет." },
+    hy: { name: "Ստատիցե", about: "Թղթանման ծաղկաբույլեր՝ մանրիկ ծաղիկներով։ Գույնը պահում են նույնիսկ չորանալիս։", care: "Քիչ ջուր։ Մնում է շաբաթներով և գեղեցիկ է չորանում։" },
+  },
+  {
+    id: "dahlia", show: true,
+//          Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov    Dec
+    price: [    0,     0,     0,     0,     0,     0,  1500,  1500,  1500,  1500,     0,     0 ],
+    colours: ["pink","red","burgundy","orange"],
+    bestMonths: [7, 10], vaseDays: "4–6",
+    shape: "peony", colour: "#e8a1ad", centre: "#b45a6e", filler: false,
+    en: { name: "Dahlia", about: "Round, many-petalled heads, from soft blush to deep burgundy. A late-summer favourite.", care: "Recut the stems and change the water every day." },
+    ru: { name: "Георгин", about: "Круглые многолепестковые головки, от нежно-розового до глубокого бордо. Любимец конца лета.", care: "Подрезайте стебли и меняйте воду каждый день." },
+    hy: { name: "Գեորգին", about: "Կլոր, բազմաթերթ գլխիկներ՝ նուրբ վարդագույնից մինչև մուգ բորդո։ Ամառվա վերջի սիրելին։", care: "Ամեն օր կտրեք ցողունները և փոխեք ջուրը։" },
+  },
+  {
+    id: "gerbera", show: true,
+//          Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov    Dec
+    price: [  800,   800,  1000,   800,   800,   700,   700,   700,   700,   800,   800,  1000 ],
+    colours: ["white","red"],
+    bestMonths: null, vaseDays: "7–10",
+    shape: "ray", colour: "#fbf7f2", centre: "#3a2a1a", filler: false,
+    en: { name: "Gerbera", about: "A cheerful daisy-like flower with a clean, graphic shape.", care: "Shallow water only, so the stems stay firm." },
+    ru: { name: "Гербера", about: "Яркий цветок, похожий на ромашку, с чистой графичной формой.", care: "Наливайте немного воды, чтобы стебли оставались крепкими." },
+    hy: { name: "Գերբերա", about: "Երիցուկի նման ուրախ ծաղիկ՝ մաքուր, գրաֆիկ ձևով։", care: "Միայն քիչ ջուր, որպեսզի ցողունները ամուր մնան։" },
+  },
+  {
+    id: "narcissus", show: true,
+//          Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov    Dec
+    price: [    0,   700,   600,   600,     0,     0,     0,     0,     0,     0,     0,     0 ],
+    colours: ["yellow","white"],
+    bestMonths: [2, 4], vaseDays: "5–7",
+    shape: "lily", colour: "#f6c64a", centre: "#f29a1e", filler: false,
+    en: { name: "Narcissus", about: "The first flower of spring, with a light, sweet scent.", care: "Keep in a separate vase for a day before mixing with other flowers." },
+    ru: { name: "Нарцисс", about: "Первый цветок весны с лёгким сладким ароматом.", care: "Подержите сутки в отдельной вазе, прежде чем ставить с другими цветами." },
+    hy: { name: "Նարգիզ", about: "Գարնան առաջին ծաղիկը՝ թեթև, քաղցր բույրով։", care: "Մեկ օր պահեք առանձին ծաղկամանում, հետո միայն խառնեք այլ ծաղիկների հետ։" },
+  },
+  {
+    id: "protea", show: true,
+//          Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov    Dec
+    price: [ 6000,  6000,  6500,  6000,  6000,  6000,  6000,  6000,  6000,  6000,  6000,  6500 ],
+    colours: ["pink"],
+    bestMonths: null, vaseDays: "10–14",
+    shape: "peony", colour: "#e48aa0", centre: "#f3e6e8", filler: false,
+    en: { name: "King protea", about: "A large, sculptural flower from South Africa. One stem makes a statement.", care: "Little water, change it every few days. Dries beautifully." },
+    ru: { name: "Протея", about: "Крупный скульптурный цветок из Южной Африки. Одного стебля достаточно.", care: "Немного воды, меняйте раз в несколько дней. Красиво сохнет." },
+    hy: { name: "Պրոտեա", about: "Խոշոր, քանդակային ծաղիկ Հարավային Աֆրիկայից։ Մեկ ցողունն էլ բավական է։", care: "Քիչ ջուր, փոխեք մի քանի օրը մեկ։ Գեղեցիկ է չորանում։" },
+  },
+  {
+    id: "strelitzia", show: true,
+//          Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov    Dec
+    price: [ 4500,  4500,  5000,  4500,  4500,  4500,  4500,  4500,  4500,  4500,  4500,  5000 ],
+    colours: ["orange"],
+    bestMonths: null, vaseDays: "10–14",
+    shape: "lily", colour: "#f27a3a", centre: "#3a4fa0", filler: false,
+    en: { name: "Bird of paradise", about: "Bright orange and blue flower shaped like a bird in flight.", care: "Warm room, fresh water every few days." },
+    ru: { name: "Стрелиция", about: "Яркий оранжево-синий цветок в форме летящей птицы.", care: "Тёплое место, свежая вода раз в несколько дней." },
+    hy: { name: "Ստրելիցիա", about: "Վառ նարնջագույն և կապույտ ծաղիկ՝ թռչող թռչունի տեսքով։", care: "Տաք սենյակ, թարմ ջուր մի քանի օրը մեկ։" },
   },
   {
     id: "eucalyptus", show: true,
