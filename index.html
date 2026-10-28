@@ -718,12 +718,19 @@ const CONT={basket:{x:8,y:28,w:184,h:173,cx:100,cy:118,sx:64,sy:20,k:1.05,layers
 const CONT_OK={};
 const contName=(v,col)=>"cont-"+v+(CONT[v].cols?"-"+(CONT[v].cols.includes(col)?col:CONT[v].cols[0]):"");
 Object.keys(CONT).forEach(v=>(CONT[v].cols||[""]).forEach(c=>{const nm=contName(v,c);CONT[v].layers.forEach(l=>[PHOTO_DIR,""].forEach(dir=>{const im=new Image();im.onload=()=>{const k=nm+"-"+l;if(CONT_OK[k])return;CONT_OK[k]=dir+k+".png";clearTimeout(photoRefresh.h);photoRefresh.h=setTimeout(()=>{photoRefresh();if(typeof updateBuilder==="function")updateBuilder();},150);};im.src=dir+nm+"-"+l+".png";}));}));
+/* hand-tied: a real hand holding the stems (from Karinka's photo) + a white satin ribbon layer recoloured to the chosen ribbon colour.
+   Photo is 404x340 px; the stem bundle top sits at px (296,80). Shown 136x115 in the 200x200 picture, left edge at x=0. */
+const HAND={x:0,y:91,w:136,h:115},HAND_OK={};
+["hand","ribbon"].forEach(l=>[PHOTO_DIR,""].forEach(dir=>{const im=new Image();im.onload=()=>{if(HAND_OK[l])return;HAND_OK[l]=dir+"cont-wrap-"+l+".png";clearTimeout(photoRefresh.h);photoRefresh.h=setTimeout(()=>{photoRefresh();if(typeof updateBuilder==="function")updateBuilder();},150);};im.src=dir+"cont-wrap-"+l+".png";}));
+const handReady=()=>HAND_OK.hand&&HAND_OK.ribbon;
+function ribbonImg(col){const hex=(STY.wrap.sw[col])||"#7a1d2e",n=parseInt(hex.slice(1),16),r=((n>>16)/255).toFixed(3),g=((n>>8&255)/255).toFixed(3),b=((n&255)/255).toFixed(3),id="rbf"+hex.slice(1);
+  return `<filter id="${id}" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="${r} 0 0 0 0 0 ${g} 0 0 0 0 0 ${b} 0 0 0 0 0 1 0"/></filter><image href="${HAND_OK.ribbon}" x="${HAND.x}" y="${HAND.y}" width="${HAND.w}" height="${HAND.h}" filter="url(#${id})"/>`;}
 const contReady=(v,col)=>CONT[v]&&CONT[v].layers.every(l=>CONT_OK[contName(v,col)+"-"+l]);
 /* a bouquet built from the real flower photos: greenery at the back, then flowers from the top down so the front ones overlap */
 /* average brightness of each cut-out photo: dark bouquets get a light background */
 const CUT_LUM={"amaranthus":0.354,"anemone":0.275,"anthurium-green":0.386,"anthurium-red":0.047,"anthurium-white":0.576,"blush-peach":0.266,"blush-pink":0.177,"blush-white":0.343,"calla-burgundy":0.043,"calla-white":0.446,"carnation-peach":0.368,"carnation-pink":0.406,"carnation-red":0.108,"carnation-striped":0.249,"carnation-white":0.425,"celosia-green":0.324,"celosia-red":0.041,"chrysanthemum-burgundy":0.05,"chrysanthemum-white":0.554,"dahlia-burgundy":0.031,"dahlia-orange":0.165,"dahlia-pink":0.266,"dahlia-red":0.111,"eucalyptus":0.172,"freesia":0.352,"gerbera-red":0.015,"gerbera-white":0.535,"gladiolus-pink":0.244,"gladiolus-purple":0.391,"gladiolus-white":0.606,"gladiolus-yellow":0.479,"gyp":0.408,"hydrangea-blue":0.36,"hydrangea-green":0.413,"hydrangea-pink":0.433,"hydrangea-white":0.536,"lilac":0.255,"lily-white":0.556,"lilyvalley":0.593,"lisianthus-burgundy":0.082,"lisianthus-pink":0.455,"lisianthus-purple":0.584,"lisianthus-white":0.65,"mimosa":0.21,"narcissus-white":0.45,"narcissus-yellow":0.429,"peony-burgundy":0.033,"peony-coral":0.253,"peony-pink":0.266,"peony-white":0.645,"poppy":0.272,"protea":0.103,"ranunculus-orange":0.226,"ranunculus-peach":0.333,"ranunculus-pink":0.328,"ranunculus-red":0.079,"ranunculus-white":0.516,"ranunculus-yellow":0.405,"rose-burgundy":0.019,"rose-peach":0.339,"rose-pink":0.223,"rose-red":0.04,"rose-white":0.575,"rose-yellow":0.463,"statice-pink":0.238,"statice-purple":0.079,"statice-white":0.365,"stock-pink":0.402,"stock-purple":0.302,"stock-white":0.374,"strelitzia":0.208,"sunflower":0.306,"tulip-orange":0.213,"tulip-peach":0.38,"tulip-pink":0.238,"tulip-purple":0.1,"tulip-red":0.082,"tulip-striped":0.279,"tulip-white":0.345,"tulip-yellow":0.489};
 function photoBouquet(order,vessel,label,col,paper){
-  const n=order.length,tied=vessel==="wrap";let cx=100,cy=vessel==="bowl"?112:vessel==="box"?108:tied?70:vessel==="wrap"?92:90,sx=vessel==="bowl"?58:40+Math.min(n,16)*.9,sy=vessel==="bowl"?28:28+Math.min(n,16)*.7;
+  const n=order.length,tied=vessel==="wrap";let cx=100,cy=vessel==="bowl"?112:vessel==="box"?108:tied?(handReady()?80:70):vessel==="wrap"?92:90,sx=vessel==="bowl"?58:40+Math.min(n,16)*.9,sy=vessel==="bowl"?28:28+Math.min(n,16)*.7;
   let base=n<=2?78:n<=4?66:n<=7?58:n<=11?52:46;
   const C0=contReady(vessel,col)?CONT[vessel]:null,cn=C0?contName(vessel,col):"",C=C0&&C0.geo?{...C0,...C0.geo[cn.split("-").pop()]}:C0;
   if(C&&C.r!=null)Object.assign(C,{cx:C.x+C.w/2,cy:C.y+C.r*C.h-4,sx:C.w*.4,sy:9});
@@ -736,12 +743,14 @@ function photoBouquet(order,vessel,label,col,paper){
   if(C&&CONT_OK[cn+"-back"])s+=`<image href="${CONT_OK[cn+"-back"]}" x="${C.x}" y="${C.y}" width="${C.w}" height="${C.h}"/>`;
   if(C&&C.stems){const bx=C.x+C.w/2,by=C.y+C.h-6;pts.forEach((p,i)=>{if(i%2&&pts.length>8)return;s+=`<path d="M${p.x.toFixed(1)},${p.y.toFixed(1)} Q${((p.x+bx)/2).toFixed(1)},${(C.y+4).toFixed(1)} ${(bx+(p.x-bx)*.18).toFixed(1)},${by}" stroke="#5f7d4e" stroke-width="1.6" fill="none" opacity=".9"/>`;});}
   if(C&&C.inside)s+=`<ellipse cx="${C.x+C.w/2}" cy="${C.y+4}" rx="${C.w/2-3}" ry="7" fill="#1e0b10"/>`;
+  else if(tied&&handReady()){const ax=HAND.x+HAND.w*296/404,ay=HAND.y+HAND.h*80/340;const sp=pts.filter((p,i)=>pts.length<=14||i%2===0);s+=`<g class="nk" fill="none" stroke-linecap="round">`;sp.forEach((p,i)=>{const dx=p.x-ax;s+=`<path d="M${p.x.toFixed(1)},${p.y.toFixed(1)} Q${(ax+dx*.4).toFixed(1)},${(ay-14).toFixed(1)} ${(ax+dx*.08).toFixed(1)},${(ay+4).toFixed(1)}" stroke-width="1.8" stroke="${["#4f6b3a","#5d7a44","#45603a"][i%3]}"/>`;});s+=`</g><image href="${HAND_OK.hand}" x="${HAND.x}" y="${HAND.y}" width="${HAND.w}" height="${HAND.h}"/>`;}
   else if(tied){const sp=pts.filter((p,i)=>pts.length<=14||i%2===0);s+=`<g class="nk" stroke="#5f7d4e" fill="none" stroke-linecap="round">`;sp.forEach((p,i)=>{const dx=p.x-100,tx=100+dx*.1,bx=100+(i-(sp.length-1)/2)*(22/Math.max(sp.length,1))+dx*.06;s+=`<path d="M${p.x.toFixed(1)},${p.y.toFixed(1)} Q${(100+dx*.45).toFixed(1)},${(TIE-26).toFixed(1)} ${tx.toFixed(1)},${TIE} L${bx.toFixed(1)},184" stroke-width="3.2" stroke="${["#6f9a52","#82ab62","#5e8a46"][i%3]}"/>`;});s+=`</g>`;}
   else if(vessel==="wrap"||vessel==="vase"||vessel==="jar"){const ey=vessel==="vase"?170:182;for(let i=0;i<Math.min(n,9);i++)s+=`<path d="M${cx+(i-4)*5},${cy+10} L${cx+(i-4)*2},${ey}" stroke="#5f7d4e" stroke-width="2.5"/>`;}
   pts.forEach(p=>{const ck=skey(baseOf(p.k),colOf(p.k)),c=CUT_OK[ck],sz=base*(p.g?1.35:1);
     if(c){const w=c.ar>=1?sz:sz*c.ar,h=c.ar>=1?sz/c.ar:sz;s+=`<image href="${c.src}" x="${(p.x-w/2).toFixed(1)}" y="${(p.y-h/2).toFixed(1)}" width="${w.toFixed(1)}" height="${h.toFixed(1)}"/>`;}
     else s+=bloom(p.x,p.y,sz*.42,look(p.k));});
   if(C)return s+`<image href="${CONT_OK[cn+"-front"]}" x="${C.x}" y="${C.y}" width="${C.w}" height="${C.h}"/></svg>`;
+  if(tied&&handReady())return s+ribbonImg(col)+"</svg>";
   return s+vesselSVG(vessel,col,paper)+"</svg>";
 }
 function art(item,label){

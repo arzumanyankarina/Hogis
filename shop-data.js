@@ -36,7 +36,7 @@ settings: {
   workFee: 2000,
   // "Create your own": price of each container.
   // wrap = hand-tied with a satin ribbon (ribbon is free; 0 shows "free").
-  containers: { wrap: 0, vase: 5000, box: 4000, basket: 3500, bowl: 4500, other: 3500 },
+  containers: { wrap: 0, vase: 5000, box: 4000, basket: 3500, bowl: 4500, other: 100 },
   // Hand-tied: extra price when the client ticks "Add wrapping paper".
   paper: 500,
 
