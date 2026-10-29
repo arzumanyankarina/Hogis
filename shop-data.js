@@ -44,6 +44,18 @@ settings: {
   // Example: "+374 99 123456". Leave "" to switch WhatsApp orders off.
   whatsapp: "+37433973736",
 
+  // AUTOMATIC ORDERS (the client never leaves the website).
+  // Telegram (safe way): address of your Cloudflare relay, e.g. "https://ari-orders.yourname.workers.dev".
+  orderRelay: "https://ari-orders.arzumanyankarina98.workers.dev",
+  // Telegram (direct way, NOT recommended: the code is public): bot code + your chat number.
+  telegramBot: "",
+  telegramChat: "",
+  // Email address that receives every order (the first order sends you
+  // one activation email from FormSubmit: click the button in it once).
+  orderEmail: "hogisyerevan@gmail.com",
+  // Optional: one fixed payment link (bank / Idram). It is emailed to clients who gave an email.
+  paymentLink: "",
+
   // "Personal bouquet": number of stems and price for each size.
   personal: {
     petite:    { stems: 7,  price: 18000 },
