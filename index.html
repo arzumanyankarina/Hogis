@@ -7,7 +7,7 @@
 <title>Ari Floral Atelier</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Noto+Serif+Armenian:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@400;500;600&family=Noto+Serif+Armenian:wght@400;500&family=Noto+Sans+Armenian:wght@400;500;600&display=swap">
 <style>
 [hidden]{display:none!important}
 html{color-scheme:light}
@@ -313,29 +313,312 @@ footer{text-align:center;border-top:1px solid var(--line);padding-block:40px}
   .drawer{animation:slide .25s ease}
   @keyframes slide{from{transform:translateX(30px);opacity:.6}to{transform:none;opacity:1}}
 }
+
+/* ===== Figma look (Karinka's design, Oct 2026): paper background, wine accents, Italiana + DM Sans ===== */
+:root{--bg:#fbf8f2;--surface:#fffdf9;--surface-2:#eadbd5;--ink:#211b1c;--muted:rgba(33,27,28,.62);--line:rgba(33,27,28,.16);
+  --accent:#762d3e;--accent-ink:#fff;--accent-soft:#f3e7e3;--glacier:#762d3e;--brand:#fbf8f2;--brand-ink:#211b1c;--gold:#762d3e;--stem:#89917d;
+  --wine:#762d3e;--wine-dark:#4b1825;--cream:#f5efe6;--blush:#eadbd5;--paper:#fbf8f2;--shadow:0 18px 40px -24px rgba(33,27,28,.35);
+  --display:"Italiana","Cormorant Garamond","Noto Serif Armenian",Georgia,serif;--body:"DM Sans","Noto Sans","Noto Sans Armenian",system-ui,sans-serif;--mono:var(--body);color-scheme:light}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;font-weight:400;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--display);font-weight:400}
+a{color:inherit}
+.eyebrow{color:var(--wine);font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;margin:0 0 20px}
+html[lang="hy"] .eyebrow{letter-spacing:.08em}
+/* announcement + header */
+.announce{display:flex;justify-content:space-between;align-items:center;background:var(--wine-dark);color:var(--cream);font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:8px 4.5%}
+.announce .ann-d{opacity:.66}
+header.bar{background:rgba(251,248,242,.96);color:var(--ink);border-bottom:1px solid var(--line);backdrop-filter:blur(6px)}
+header.bar .bar-in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:96px;padding:0 4.5%;max-width:none;gap:16px}
+.mainnav{display:flex;gap:clamp(18px,2.6vw,40px);grid-column:1;grid-row:1}
+.mainnav a,.prefs select,.cart-btn{font-family:var(--body);font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--ink)}
+.mainnav a{position:relative;padding:6px 0}
+.mainnav a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--wine);transform:scaleX(0);transform-origin:right;transition:transform .25s ease}
+.mainnav a:hover::after{transform:scaleX(1);transform-origin:left}
+.logo{grid-column:2;grid-row:1;display:flex;align-items:center;gap:12px;color:var(--ink)}
+.logo .mark{background:var(--wine);width:58px;height:62px;padding:5px;object-fit:contain;flex:none}
+.logo .wm{display:flex;flex-direction:column;line-height:1}
+.logo .wm b{font-family:var(--display);font-weight:400;font-size:27px;letter-spacing:.22em;margin-right:-.22em;line-height:1;display:block}
+html[lang="hy"] .logo .wm b{font-family:"Noto Serif Armenian",serif;font-size:24px;letter-spacing:.16em}
+.logo .wm small{color:var(--wine);font-family:var(--display);font-style:normal;font-size:9px;letter-spacing:.14em;margin-top:5px;text-transform:uppercase;display:block}
+html[lang="hy"] .logo .wm small,html[lang="ru"] .logo .wm small{font-family:var(--body);font-size:9px}
+.prefs{grid-column:3;justify-self:end;display:flex;align-items:center;gap:14px}
+.prefs select{border:0;border-bottom:1px solid transparent;border-radius:0;background:transparent;padding:6px 2px;cursor:pointer;width:auto}
+.prefs select:hover{border-bottom-color:var(--wine)}
+.cart-btn{background:transparent;border:0;color:var(--ink);padding:6px 0;display:flex;align-items:center;gap:7px;border-radius:0}
+.cart-btn .cart-count,.cart-count{background:var(--wine);color:#fff;border-radius:50%;min-width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:9px;padding:0 4px}
+header.bar :focus-visible{outline-color:var(--wine)}
+select option,select optgroup{background:#fff;color:var(--ink)}
+select option:checked{background:var(--blush);color:var(--ink)}
+/* hero */
+.hero2{display:grid;grid-template-columns:47% 53%;min-height:640px}
+.hero-copy{background:var(--cream);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:80px 10% 90px}
+.hero2 h1{font-size:clamp(46px,5.4vw,86px);letter-spacing:-.03em;line-height:.98;margin:0 0 28px;max-width:670px}
+html[lang="hy"] .hero2 h1,html[lang="ru"] .hero2 h1{letter-spacing:-.01em;font-size:clamp(38px,4.4vw,68px);line-height:1.06}
+.hero2 h1 em{color:var(--wine);display:block;font-style:normal}
+.hero-desc{color:rgba(33,27,28,.68);font-size:14px;line-height:1.8;max-width:430px;margin:0}
+.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:28px;margin-top:36px}
+.button{display:inline-flex;align-items:center;justify-content:center;gap:24px;min-height:54px;padding:0 25px;border:1px solid var(--wine);font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;transition:background .2s,color .2s;cursor:pointer}
+.button .arr,.text-link .arr{width:18px;height:18px}
+.button.primary{background:var(--wine);color:#fff}
+.button.primary:hover{background:var(--wine-dark)}
+.button.light{border-color:var(--cream);color:var(--cream);background:transparent;position:relative;z-index:2}
+.button.light:hover{background:var(--cream);color:var(--wine)}
+.text-link{color:var(--wine);border-bottom:1px solid currentColor;font-size:11px;font-weight:500;letter-spacing:.06em;padding:6px 0 4px;text-decoration:none;display:inline-flex;align-items:center;gap:16px}
+.text-link.dark{color:var(--ink)}
+.hero-visual{position:relative;overflow:hidden;min-height:640px;background:var(--blush)}
+.hero-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 62%,rgba(24,11,13,.38));pointer-events:none}
+.hero-visual>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .9s ease}
+.hero-visual:hover>img{transform:scale(1.025)}
+.hero-stamp{position:absolute;left:40px;top:38px;width:124px;height:124px;border:1px solid rgba(245,239,230,.7);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--cream);z-index:2}
+.hero-stamp img{width:46px;height:50px;object-fit:contain}
+.hero-stamp span{font-family:var(--display);font-size:9px;letter-spacing:.1em;text-transform:uppercase;margin-top:4px;text-align:center;max-width:96px}
+.image-caption{position:absolute;left:28px;bottom:24px;color:#fff;font-size:9px;letter-spacing:.18em;text-transform:uppercase;margin:0;z-index:2}
+/* promise strip */
+.promise{display:grid;grid-template-columns:repeat(3,1fr);align-items:center;border-block:1px solid var(--line);padding:18px 4.5%}
+.promise p{font-family:var(--display);font-size:17px;margin:0;text-align:center}
+.promise p+p{border-left:1px solid var(--line)}
+.promise span{color:var(--wine);font-family:var(--body);font-size:8px;letter-spacing:.1em;margin-right:12px;vertical-align:middle}
+/* collection */
+.sec{padding:110px 6%}
+.sec-head{display:grid;grid-template-columns:1.3fr .7fr;align-items:end;gap:30px;margin-bottom:50px}
+.sec-head .eyebrow{margin-bottom:16px}
+.sec-head h2,.story h2,.custom-card h2{font-size:clamp(40px,4vw,64px);line-height:1.05;margin:0}
+html[lang="hy"] :is(.sec-head h2,.story h2,.custom-card h2),html[lang="ru"] :is(.sec-head h2,.story h2,.custom-card h2){font-size:clamp(32px,3.2vw,50px)}
+.sec-head>p{color:var(--muted);line-height:1.8;margin:0;max-width:440px}
+.tabs{justify-content:flex-start;gap:6px 38px;padding:0;border-bottom:1px solid var(--line);margin-bottom:34px;flex-wrap:wrap}
+.tab{border:0;background:none;border-radius:0;color:rgba(33,27,28,.48);font-family:var(--body);font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:0 0 12px;position:relative}
+.tab[aria-selected="true"]{background:none;color:var(--wine);border:0}
+.tab[aria-selected="true"]::after{content:"";position:absolute;left:0;bottom:-1px;width:100%;height:2px;background:var(--wine)}
+html[lang="hy"] .tab{letter-spacing:.04em;font-size:12px;text-transform:none}
+.section-head{flex-direction:row;justify-content:space-between;align-items:baseline;text-align:left;margin:0 0 22px;gap:12px}
+.section-head h2{font-size:30px;font-weight:400;letter-spacing:0}
+.section-head p{color:var(--muted);font-size:13px;max-width:56ch;margin:0}
+.occ{justify-content:flex-start;gap:8px;margin:0 0 28px}
+.occ button{background:transparent;border:1px solid var(--line);border-radius:999px;color:var(--ink);font-size:11px;letter-spacing:.06em;padding:6px 14px}
+.occ button[aria-pressed="true"]{background:var(--wine);border-color:var(--wine);color:#fff;font-weight:500}
+.grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:40px 26px;padding-bottom:20px}
+.card{background:transparent;border:0;border-radius:0;overflow:visible}
+.card .art{aspect-ratio:1/1;background:var(--blush);overflow:hidden;border-radius:0}
+.card .art svg.pc,.card .art img.ph{width:100%;height:100%;display:block;object-fit:cover}
+svg.pc > rect,svg.pc image{stroke:none!important}
+.card .art img,.card .art svg{transition:transform .6s ease}
+.card:hover .art img,.card:hover .art svg{transform:scale(1.035)}
+.card .body{padding:18px 2px 0;gap:8px}
+.card h3{font-size:24px;font-weight:400;line-height:1.15}
+.card .price{font-size:13px;font-weight:500}
+.card .blurb{color:rgba(33,27,28,.55);font-size:12px;line-height:1.6}
+.chip{background:transparent;border:0;padding:0;color:var(--wine);font-size:8px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;border-radius:0}
+.chip.hot{background:var(--paper);border:0;color:var(--wine)}
+.chip.tier{background:transparent;border:1px solid var(--wine);color:var(--wine);padding:2px 6px}
+/* buttons, panels, fields */
+.btn{border:1px solid var(--wine);background:transparent;color:var(--wine);border-radius:0;font-family:var(--body);font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:12px 20px;min-height:44px}
+.btn.primary{background:var(--wine);border-color:var(--wine);color:#fff}
+.btn.primary:hover{background:var(--wine-dark);border-color:var(--wine-dark);filter:none}
+.btn.ghost,.btn:not(.primary){border-color:var(--wine);color:var(--wine);background:transparent}
+.btn:not(.primary):hover{background:var(--accent-soft)}
+html[lang="hy"] .btn,html[lang="hy"] .cart-btn,html[lang="hy"] .chip{letter-spacing:.04em;text-transform:none;font-size:12px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:0}
+.qty{border-radius:0;border-color:var(--line)}
+textarea,input[type=text],input[type=tel],input[type=email],input[type=date],select{background:#fff;border:1px solid var(--line);border-radius:0;color:var(--ink);font-family:var(--body);font-size:14px}
+.prefs select{background:transparent;border:0;border-bottom:1px solid transparent}
+.opt label{border-radius:0;background:#fff;border-color:var(--line)}
+.opt input:checked + label{background:var(--accent-soft);border-color:var(--wine);box-shadow:inset 0 0 0 1px var(--wine)}
+.stem-row.on{border-color:var(--wine)}
+.toast{background:var(--ink);color:#fff;border-radius:0;font-size:12px;letter-spacing:.04em}
+.linkish{color:var(--wine);font-size:12px}
+.hint{color:var(--muted)}
+.err{color:#a3223a}
+.note-banner{background:var(--accent-soft);color:var(--ink);border-radius:0}
+svg[role="img"] :is(circle,ellipse,path,rect):not(.nk *){stroke:#762d3e;stroke-opacity:.28}
+.modal-card,.drawer,#layer .sheet{background:var(--paper);color:var(--ink)}
+/* story */
+.story{display:grid;grid-template-columns:1.05fr .95fr;min-height:680px;background:var(--blush)}
+.story-image{position:relative;min-height:560px;background:#d9c6bf}
+.story-image img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.story-copy{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:80px 13%}
+.story-copy .mark{background:var(--wine);width:100px;height:108px;padding:7px;object-fit:contain;margin-bottom:28px}
+.story-copy .eyebrow{margin-bottom:14px}
+.story-copy>p:not(.eyebrow){color:rgba(33,27,28,.68);line-height:1.9;margin:26px 0 30px;max-width:480px}
+/* custom banner */
+.custom-card{position:relative;overflow:hidden;background:var(--wine);color:#fff;display:flex;flex-direction:column;align-items:center;text-align:center;padding:90px 8%}
+.custom-card::before,.custom-card::after{content:"";position:absolute;width:280px;height:280px;border:1px solid rgba(245,239,230,.25);border-radius:50%}
+.custom-card::before{left:-140px;top:-130px}.custom-card::after{right:-90px;bottom:-170px}
+.custom-card .eyebrow{color:var(--blush)}
+.custom-card h2{max-width:700px}
+.custom-card>p:not(.eyebrow){color:rgba(255,255,255,.72);line-height:1.8;margin:26px auto 30px;max-width:560px}
+/* how it works */
+.how{padding-top:0}
+.service-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+.service-grid article{padding:34px 9% 10px 0}
+.service-grid article+article{border-left:1px solid var(--line);padding-left:9%}
+.service-grid span{color:var(--wine);font-size:9px;letter-spacing:.14em}
+.service-grid h3{font-size:30px;margin:16px 0 12px}
+.service-grid p{color:rgba(33,27,28,.58);font-size:13px;line-height:1.7;max-width:300px;margin:0}
+/* footer */
+footer.foot{background:var(--wine-dark);color:var(--cream);text-align:left;border:0;padding:70px 6% 30px}
+.foot-in{display:grid;grid-template-columns:1.5fr repeat(2,1fr);gap:45px;align-items:start}
+.footer-brand{display:flex;align-items:center;gap:15px}
+.footer-brand .mark{width:86px;height:92px;object-fit:contain}
+.footer-brand div{display:flex;flex-direction:column}
+.footer-brand strong{font-family:var(--display);font-weight:400;font-size:40px;letter-spacing:.2em;line-height:1}
+html[lang="hy"] .footer-brand strong{font-family:"Noto Serif Armenian",serif;font-size:34px;letter-spacing:.14em}
+.footer-brand span{color:var(--blush);font-family:var(--display);font-size:10px;letter-spacing:.14em;margin-top:7px;text-transform:uppercase;font-style:normal}
+.footer-column{display:flex;flex-direction:column;gap:6px;font-size:12px}
+.footer-column p{color:var(--blush);font-size:8px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;margin:0 0 9px}
+.footer-column a{text-decoration:none;transition:opacity .15s}.footer-column a:hover{opacity:.65}
+.copyright{grid-column:1/-1;border-top:1px solid rgba(245,239,230,.16);color:rgba(245,239,230,.45);font-size:9px;letter-spacing:.1em;text-transform:uppercase;margin:30px 0 0;padding-top:24px}
+main .wrap{max-width:none;padding-left:6%;padding-right:6%}
+html[lang="hy"] :is(.announce,.mainnav a,.button,.prefs select,.image-caption,.hero-stamp span,.logo .wm small,.footer-brand span,.footer-column p,.copyright){text-transform:none;letter-spacing:.04em}
+@media (max-width:1020px){
+  header.bar .bar-in{height:80px;grid-template-columns:auto 1fr}
+  .mainnav{display:none}
+  .logo{grid-column:1}
+  .prefs{grid-column:2}
+  .sec{padding:84px 5%}
+}
+@media (max-width:760px){
+  .announce{justify-content:center;text-align:center}.announce .ann-d{display:none}
+  header.bar .bar-in{padding:0 16px;height:72px;gap:8px}
+  .logo{gap:9px}.logo .mark{width:44px;height:48px;padding:4px}
+  .logo .wm b{font-size:21px}.logo .wm small{font-size:7px}
+  .prefs{gap:8px}.prefs select{font-size:10px;letter-spacing:.04em;padding:4px 0}
+  .cart-btn .lbl{display:none}
+  .hero2{display:flex;flex-direction:column}
+  .hero-visual{min-height:440px;order:1}
+  .hero-copy{order:2;padding:64px 7% 70px}
+  .hero2 h1{font-size:clamp(44px,13vw,64px)}
+  .hero-stamp{width:96px;height:96px;left:18px;top:18px}.hero-stamp img{width:36px;height:40px}
+  .promise{grid-template-columns:1fr;padding:0 6%}
+  .promise p{text-align:left;padding:15px 0}.promise p+p{border-left:0;border-top:1px solid var(--line)}
+  .sec{padding:70px 16px}
+  main .wrap{padding-left:16px;padding-right:16px}
+  .sec-head{display:block}.sec-head>p{margin-top:20px}
+  .sec-head h2,.story h2,.custom-card h2{font-size:42px}
+  .tabs{gap:6px 22px;overflow-x:auto;flex-wrap:nowrap}
+  .tab{white-space:nowrap}
+  .section-head{flex-direction:column;align-items:flex-start}
+  .story{grid-template-columns:1fr}.story-image{min-height:420px}.story-copy{padding:64px 7%}
+  .custom-card{padding:72px 7%}
+  .service-grid{grid-template-columns:1fr}
+  .service-grid article{padding:26px 0}.service-grid article+article{border-left:0;border-top:1px solid var(--line);padding-left:0}
+  .foot-in{grid-template-columns:1fr 1fr}.footer-brand{grid-column:1/-1;margin-bottom:10px}
+}
+
+/* ornate wordmark, as in Karinka's logos: Ari (EN/RU), ԱՐԻ (HY) */
+.logo .mark{display:none}
+.logo .wm b.orn,.footer-brand strong.orn{display:flex;align-items:flex-end;font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;letter-spacing:.02em;margin-right:0;line-height:.72}
+.logo .wm b.orn{font-size:40px;color:var(--wine)}
+.orn img{height:1.55em;width:auto;margin:0 .02em -.26em 0}
+.orn img.ay{height:1.3em;margin-bottom:-.06em}
+.orn span[lang=hy]{font-family:"Noto Serif Armenian",serif;font-weight:400;font-size:.82em;letter-spacing:.22em}
+.logo .wm small{margin-top:12px}
+html[lang="hy"] .logo .wm b.orn{font-family:"Noto Serif Armenian",serif;font-size:36px;letter-spacing:.02em}
+.footer-brand strong.orn{font-size:52px;color:var(--cream)}
+.footer-brand .mark{display:none}
+.footer-brand span{margin-top:14px}
+@media (max-width:760px){.logo .wm b.orn{font-size:30px}.logo .wm small{margin-top:9px}}
+
+.hero-stamp .st-row{display:flex;align-items:center;gap:3px}
+.hero-stamp .st-v{display:flex;flex-direction:column;align-items:center;font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:15px;line-height:1;letter-spacing:0;color:var(--cream)}
+.hero-stamp .st-v i{font-style:normal;display:block;padding:1px 0}
+.hero-stamp .st-v[lang=hy]{font-family:"Noto Serif Armenian",serif;font-weight:400;font-size:13px}
+@media (max-width:760px){.hero-stamp .st-v{font-size:12px}.hero-stamp .st-v[lang=hy]{font-size:11px}}
+
+.hero-stamp .st-row img{width:52px;height:56px}.hero-stamp .st-v{font-size:17px}.hero-stamp span{font-size:10px;letter-spacing:.24em;margin-top:6px}
+
+.logo .wm b.orn{font-family:"Noto Serif Armenian",serif;font-size:36px;letter-spacing:.02em}
+.logo .wm small,.footer-brand span{font-family:"Noto Sans Armenian",var(--body);text-transform:none;letter-spacing:.06em;font-size:11px}
+@media (max-width:760px){.logo .wm b.orn{font-size:28px}.logo .wm small{font-size:9px}}
+
+/* final logo: ARI by Karina, Yerevan (raster, cream / wine) */
+.logo .wm small,.footer-brand span#sig-tag{display:none}
+.logo .wm b.orn{line-height:0}
+.logo .wm b.orn img.lg{height:80px;width:auto;margin:0;display:block}
+.footer-brand strong.orn img.lg{height:150px;width:auto;margin:0;display:block}
+.hero-stamp img.stw{width:78px;height:auto;margin-top:6px}
+.hero-stamp span{margin-top:8px}
+.story-copy .mark2{width:150px;height:auto;padding:16px 18px;object-fit:contain}
+@media (max-width:760px){.logo .wm b.orn img.lg{height:58px}.hero-stamp img.stw{width:60px}}
+
+/* ===== ARI by Karina Typography Standards v1.0 (Karinka, 2026-10-29) ===== */
+:root{--wine:#650d1c;--wine-dark:#410714;--ivory:#fff0e5;--paper:#f8f2ec;--rose:#b9858b;
+  --bg:#f8f2ec;--surface:#fffaf6;--surface-2:#efe1dc;--ink:#322429;--muted:#78666a;--line:rgba(50,36,41,.16);
+  --accent:#650d1c;--accent-soft:#f3e3df;--glacier:#650d1c;--gold:#650d1c;--cream:#fff0e5;--blush:#efe1dc;--brand:#f8f2ec;--brand-ink:#322429;
+  --display:"Cormorant Garamond",Georgia,serif;--body:"DM Sans",Arial,sans-serif;--mono:var(--body)}
+html[lang="hy"]{--display:"Noto Serif Armenian",serif;--body:"Noto Sans Armenian",sans-serif}
+body{font-family:var(--body);font-size:16px;line-height:1.6;color:var(--ink);background:var(--paper)}
+h1,h2,h3,.sec-head h2,.story h2,.custom-card h2,.service-grid h3,.card h3,.promise p,.section-head h2{font-family:var(--display);font-weight:400}
+/* sizes */
+.hero2 h1{font-size:clamp(38px,5.6vw,80px);line-height:1.05;letter-spacing:-.01em}
+html[lang="hy"] .hero2 h1,html[lang="ru"] .hero2 h1{font-size:clamp(36px,4.6vw,64px);line-height:1.1;letter-spacing:0}
+.hero2 h1 em{font-style:italic;font-weight:300}
+html[lang="hy"] .hero2 h1 em{font-style:normal}
+.sec-head h2,.story h2,.custom-card h2{font-size:clamp(30px,3.6vw,52px);line-height:1.12}
+html[lang="hy"] :is(.sec-head h2,.story h2,.custom-card h2),html[lang="ru"] :is(.sec-head h2,.story h2,.custom-card h2){font-size:clamp(28px,3vw,44px)}
+.section-head h2{font-size:clamp(28px,3vw,36px)}
+.service-grid h3{font-size:32px}
+.card h3{font-size:26px;line-height:1.15}
+.promise p{font-size:20px}
+.hero-desc,.sec-head>p,.story-copy>p:not(.eyebrow),.custom-card>p:not(.eyebrow){font-size:17px;line-height:1.7}
+.service-grid p,.card .blurb,.section-head p{font-size:15px;line-height:1.6}
+.mainnav a,.prefs select,.cart-btn{font-size:13px;letter-spacing:.06em}
+.btn,.button{font-family:var(--body);font-size:14px;font-weight:600;letter-spacing:.08em}
+.tab{font-size:13px;letter-spacing:.08em}
+.occ button{font-size:13px}
+.eyebrow,.image-caption,.footer-column p,.copyright,.announce{font-size:12px;letter-spacing:.14em}
+.footer-column{font-size:14px}
+.card .price,.price{font-family:var(--body);font-size:15px;font-weight:500}
+.chip{font-size:10px;letter-spacing:.12em}
+textarea,input[type=text],input[type=tel],input[type=email],input[type=date],select{font-size:16px}
+/* Armenian: no uppercase, no wide tracking */
+html[lang="hy"] :is(.eyebrow,.image-caption,.footer-column p,.copyright,.announce,.mainnav a,.btn,.button,.tab,.chip,.cart-btn,.prefs select,.hero-stamp span){text-transform:none;letter-spacing:.02em}
+/* colours */
+.announce,footer.foot{background:var(--wine-dark);color:var(--ivory)}
+.hero-copy{background:var(--ivory)}
+.custom-card{background:var(--wine)}
+.custom-card .eyebrow{color:#e6c9cc}
+.story{background:#efe1dc}
+.story-copy .mark2{background:var(--wine)}
+.footer-brand span,.footer-column p{color:#d9b6ba}
+.button.primary,.btn.primary,.occ button[aria-pressed="true"],.cart-count{background:var(--wine);border-color:var(--wine)}
+.button.primary:hover,.btn.primary:hover{background:var(--wine-dark);border-color:var(--wine-dark)}
+.eyebrow,.text-link,.tab[aria-selected="true"],.chip,.linkish{color:var(--wine)}
+.tab[aria-selected="true"]::after,.mainnav a::after{background:var(--wine)}
+.hero-visual::after{background:linear-gradient(180deg,rgba(24,6,10,.18),transparent 30%,transparent 60%,rgba(24,6,10,.45))}
+@media (max-width:760px){.hero2 h1{font-size:clamp(38px,11vw,46px)}.mainnav a,.prefs select{font-size:14px}.btn,.button{font-size:15px}.card h3{font-size:23px}.sec-head h2,.story h2,.custom-card h2{font-size:30px}}
 </style>
 </head>
 <body>
+<div class="announce"><span id="ann-1">Free delivery across Yerevan</span><span class="ann-d" id="ann-2">Every bouquet is made to order</span></div>
 <header class="bar">
-  <div class="wrap bar-in">
+  <div class="bar-in">
+    <nav class="mainnav" aria-label="Main">
+      <a href="#collection" data-go="collection" id="nav-shop">Shop flowers</a>
+      <a href="#story" data-go="story" id="nav-story">Our story</a>
+      <a href="#collection" data-go="custom" id="nav-custom">Create your own</a>
+    </nav>
     <button class="logo" id="home-btn" aria-label="Ari">
-      <svg viewBox="0 0 100 130" aria-hidden="true"><path d="M50 30c-9 0-15 7-15 14c0 9 7 14 15 14c9 0 15-7 15-15c0-7-5-11-11-11c-5 0-9 4-9 9c0 4 3 7 7 7" fill="none" stroke="#f7f3ee" stroke-width="4" stroke-linecap="round"/><path d="M50 58C50 74 48 92 50 118" fill="none" stroke="#f7f3ee" stroke-width="4" stroke-linecap="round"/><path d="M50 86C58 78 68 77 74 72C68 86 59 90 50 90Z" fill="#c8d9e3" stroke="#f7f3ee" stroke-width="2.4" stroke-linejoin="round"/></svg>
-      <span class="wm"><b id="wm-name"></b><small id="brand-name">floral atelier</small></span>
+      <img class="mark" src="ari-mark.svg" alt="">
+      <span class="wm"><b id="wm-name">ARI</b><small id="brand-name">floral atelier</small></span>
     </button>
-    <div class="spacer"></div>
     <div class="prefs">
       <label class="sr" for="sel-lang" id="lang-lbl">Language</label>
       <select id="sel-lang"><option value="hy">Հայ</option><option value="en">EN</option><option value="ru">РУ</option></select>
       <label class="sr" for="sel-cur" id="cur-lbl">Currency</label>
       <select id="sel-cur"><option value="AMD">֏ AMD</option><option value="USD">$ USD</option><option value="EUR">€ EUR</option><option value="RUB">₽ RUB</option></select>
+      <button class="cart-btn" id="cart-btn"><span class="lbl" id="cart-lbl">Basket</span><span class="cart-count" id="cart-count">0</span></button>
     </div>
-    <button class="cart-btn" id="cart-btn"><span class="lbl" id="cart-lbl">Basket</span><span class="cart-count" id="cart-count">0</span></button>
   </div>
 </header>
 
 <main id="app"></main>
 
-<footer><div class="wrap"><div class="sig"><svg viewBox="0 0 100 130" aria-hidden="true"><path d="M50 30c-9 0-15 7-15 14c0 9 7 14 15 14c9 0 15-7 15-15c0-7-5-11-11-11c-5 0-9 4-9 9c0 4 3 7 7 7" fill="none" stroke="#f7f3ee" stroke-width="2.6" stroke-linecap="round"/><path d="M50 58C50 74 48 92 50 118" fill="none" stroke="#f7f3ee" stroke-width="2.6" stroke-linecap="round"/><path d="M50 86C58 78 68 77 74 72C68 86 59 90 50 90Z" fill="#c8d9e3" stroke="#f7f3ee" stroke-width="1.6" stroke-linejoin="round"/></svg><b id="sig-name"></b><i id="sig-tag">floral atelier</i></div><p id="footer-txt"></p></div></footer>
+<footer class="foot"><div class="foot-in">
+  <div class="footer-brand"><img class="mark" src="ari-mark-light.svg" alt=""><div><strong id="sig-name">ARI</strong><span id="sig-tag">floral atelier</span></div></div>
+  <div class="footer-column"><p id="f-studio">Studio</p><span id="f-city">Yerevan, Armenia</span><span id="f-deliv">Free delivery across Yerevan</span></div>
+  <div class="footer-column"><p id="f-contact">Contact</p><a href="tel:+37433973736">+374 33 97 37 36</a><a href="mailto:hogisyerevan@gmail.com">hogisyerevan@gmail.com</a></div>
+  <p class="copyright" id="footer-txt"></p>
+</div></footer>
 
 <div id="layer"></div>
 <div class="toast" id="toast" role="status" hidden></div>
@@ -406,7 +689,7 @@ en:{
  sendBy:"Send me the payment details by",
  summary:"Order summary",collection:"Collection",eveningLine:"Evening window",total:"Total",pickWindow:"pick a time window",paySent:"Payment details are sent to you after you order.",
  fxNote:"Prices are set in Armenian dram. Amounts in {cur} are approximate.",
- place:"Place order",sending:"Sending your order…",sentOk:"Your order has been sent to us",sentHint:"We'll be in touch soon to confirm.",sendFail:"We couldn't send your order. Please check your internet connection and press Place order again.",payMsg:"Hello! Thank you for your order {no} at Ari floral atelier. Total: {total}.",payLinkTxt:"You can pay here: {link}",
+ place:"Place order",ann1:"Free delivery across Yerevan",ann2:"Every bouquet is made to order",navShop:"Shop flowers",navStory:"Our story",navCustom:"Create your own",h2Eyebrow:"Floral atelier · Yerevan",h2Title1:"Flowers that say",h2Title2:" what words cannot.",h2Text:"Season-led bouquets, composed by hand and delivered with care. Made for gestures both grand and quiet.",h2Btn:"Explore the collection",h2Link:"Create a custom bouquet",h2Alt:"An artful arrangement of seasonal flowers",stamp:"Est. 2026",caption:"Ari floral atelier · Yerevan",prLabel:"What we promise",pr1:"Delivery on the day you choose",pr2:"Handwritten card",pr3:"Seasonal flowers",colEyebrow:"The current edit",colTitle:"Flowers, in their finest form",colText:"Each bouquet is a little different, guided by the season and made from the freshest stems available that morning.",stAlt:"A florist's table covered with seasonal flowers",stEyebrow:"A note from the atelier",stTitle:"Led by nature, shaped by hand.",stText:"Ari means “come” in Armenian: an invitation to pause, gather and notice what is beautiful. Our bouquets celebrate natural movement, unexpected colour and the character of every stem.",stLink:"Shop the collection",cuEyebrow:"Made only for you",cuTitle:"Your feeling, translated into flowers.",cuText:"Choose the flowers, the colours and the container, or upload a photo you love. We will make a one-of-a-kind bouquet just for them.",cuBtn:"Start your custom bouquet",hwEyebrow:"How ordering works",hw1t:"Choose",hw1p:"Pick a bouquet, a personal zodiac bouquet, or build your own.",hw2t:"Pick the day",hw2p:"Tell us when and where. Delivery across Yerevan is free.",hw3t:"We confirm",hw3p:"We confirm your order and send payment details the way you prefer.",fStudio:"Studio",fCity:"Yerevan, Armenia",fContact:"Contact",sending:"Sending your order…",sentOk:"Your order has been sent to us",sentHint:"We'll be in touch soon to confirm.",sendFail:"We couldn't send your order. Please check your internet connection and press Place order again.",payMsg:"Hello! Thank you for your order {no} at Ari floral atelier. Total: {total}.",payLinkTxt:"You can pay here: {link}",
  eDate:"Choose a delivery date.",ePast:"That date isn't available. Choose a later date.",eSlot:"Choose a time window.",eAddr:"Fill in: {list}.",eName:"Add your name.",eEmail:"Add an email address so we can reach you.",ePhone:"Add your phone number.",
  thanks:"Thank you, {name}!",order:"Order",doneText:"We'll send your payment details via {how} to {to}. Your order is confirmed once payment arrives.",
  protoNote:"This is a prototype, so nothing was actually sent.",waTitle:"Last step: send the order to us on WhatsApp",waBtn:"Send order on WhatsApp",waHint:"WhatsApp opens with your order already written. Just press Send.",waPhoto:"Send the reference photo",waPhotoHint:"When your phone asks, choose WhatsApp and our chat. On a computer the photo is saved instead: attach it in the WhatsApp chat.",waNew:"New order",payBy:"Payment details via",dDeliverTo:"Deliver to",dCollect:"Collect from",shopName:"Our shop",items:"Items",backShop:"Back to the shop",
@@ -418,7 +701,7 @@ en:{
  minCustom:"Custom orders start at {p}.",belowMin:"Custom orders start at {p}. Add a few more stems or a bigger container.",
  fact3:"Photo of your flowers before they leave",cardHand:"We write it by hand.",
  brand:"floral atelier",shopName:"Ari floral atelier",
- footer:"Prototype · flowers and prices are placeholders · payment is arranged after ordering"
+ footer:"© 2026 Ari floral atelier"
 },
 ru:{
  basket:"Корзина",lang:"Язык",cur:"Валюта",
@@ -468,7 +751,7 @@ ru:{
  sendBy:"Куда отправить реквизиты для оплаты",
  summary:"Ваш заказ",collection:"Самовывоз",eveningLine:"Вечерняя доставка",total:"Итого",pickWindow:"выберите время",paySent:"Реквизиты для оплаты придут после заказа.",
  fxNote:"Цены установлены в армянских драмах. Суммы в {cur} приблизительные.",
- place:"Оформить заказ",sending:"Отправляем заказ…",sentOk:"Ваш заказ отправлен нам",sentHint:"Мы скоро свяжемся с вами для подтверждения.",sendFail:"Не удалось отправить заказ. Проверьте подключение к интернету и нажмите «Оформить заказ» ещё раз.",payMsg:"Здравствуйте! Спасибо за заказ {no} в цветочном ателье Ари. Сумма: {total}.",payLinkTxt:"Оплатить можно здесь: {link}",
+ place:"Оформить заказ",ann1:"Бесплатная доставка по Еревану",ann2:"Каждый букет собираем под заказ",navShop:"Цветы",navStory:"О нас",navCustom:"Создать свой",h2Eyebrow:"Цветочное ателье · Ереван",h2Title1:"Цветы, которые скажут",h2Title2:" то, что не скажут слова.",h2Text:"Сезонные букеты, собранные вручную и доставленные с заботой. Для больших и тихих жестов.",h2Btn:"Смотреть коллекцию",h2Link:"Собрать свой букет",h2Alt:"Композиция из сезонных цветов",stamp:"С 2026",caption:"Цветочное ателье Ари · Ереван",prLabel:"Наши обещания",pr1:"Доставка в выбранный вами день",pr2:"Открытка от руки",pr3:"Сезонные цветы",colEyebrow:"Сейчас в ателье",colTitle:"Цветы в лучшем виде",colText:"Каждый букет немного особенный: его подсказывает сезон, а собираем мы его из самых свежих цветов этого утра.",stAlt:"Стол флориста с сезонными цветами",stEyebrow:"Слово ателье",stTitle:"Вдохновлено природой, создано руками.",stText:"«Ари» по-армянски значит «приходи»: приглашение остановиться, собраться вместе и заметить красоту. Наши букеты — это естественное движение, неожиданный цвет и характер каждого стебля.",stLink:"Перейти к цветам",cuEyebrow:"Только для вас",cuTitle:"Ваши чувства на языке цветов.",cuText:"Выберите цветы, цвета и упаковку или загрузите фото, которое вам нравится. Мы соберём неповторимый букет.",cuBtn:"Собрать свой букет",hwEyebrow:"Как сделать заказ",hw1t:"Выберите",hw1p:"Готовый букет, именной букет по знаку зодиака или свой собственный.",hw2t:"Выберите день",hw2p:"Укажите, когда и куда. Доставка по Еревану бесплатная.",hw3t:"Мы подтвердим",hw3p:"Мы подтвердим заказ и пришлём реквизиты для оплаты удобным вам способом.",fStudio:"Ателье",fCity:"Ереван, Армения",fContact:"Контакты",sending:"Отправляем заказ…",sentOk:"Ваш заказ отправлен нам",sentHint:"Мы скоро свяжемся с вами для подтверждения.",sendFail:"Не удалось отправить заказ. Проверьте подключение к интернету и нажмите «Оформить заказ» ещё раз.",payMsg:"Здравствуйте! Спасибо за заказ {no} в цветочном ателье Ари. Сумма: {total}.",payLinkTxt:"Оплатить можно здесь: {link}",
  eDate:"Выберите дату доставки.",ePast:"Эта дата недоступна. Выберите более позднюю.",eSlot:"Выберите время доставки.",eAddr:"Заполните: {list}.",eName:"Укажите ваше имя.",eEmail:"Укажите email, чтобы мы могли связаться с вами.",ePhone:"Укажите номер телефона.",
  thanks:"Спасибо, {name}!",order:"Заказ",doneText:"Мы отправим реквизиты для оплаты через {how} на {to}. Заказ подтверждается после оплаты.",
  protoNote:"Это прототип, поэтому ничего не отправлено.",waTitle:"Последний шаг: отправьте заказ нам в WhatsApp",waBtn:"Отправить заказ в WhatsApp",waHint:"WhatsApp откроется с готовым текстом заказа. Просто нажмите «Отправить».",waPhoto:"Отправить фото-образец",waPhotoHint:"Когда телефон спросит, выберите WhatsApp и наш чат. На компьютере фото сохранится: прикрепите его в чате WhatsApp.",waNew:"Новый заказ",payBy:"Реквизиты для оплаты через",dDeliverTo:"Адрес доставки",dCollect:"Самовывоз",shopName:"Наш магазин",items:"Товары",backShop:"Вернуться в магазин",
@@ -480,7 +763,7 @@ ru:{
  minCustom:"Своя композиция от {p}.",belowMin:"Своя композиция от {p}. Добавьте ещё цветов или выберите основу побольше.",
  fact3:"Фото цветов перед отправкой",cardHand:"Мы подпишем её от руки.",
  brand:"цветочное ателье",shopName:"Цветочное ателье Ари",
- footer:"Прототип · цветы и цены условные · оплата согласуется после заказа"
+ footer:"© 2026 Цветочное ателье Ари"
 },
 hy:{
  basket:"Զամբյուղ",lang:"Լեզու",cur:"Արժույթ",
@@ -530,7 +813,7 @@ hy:{
  sendBy:"Ուր ուղարկել վճարման տվյալները",
  summary:"Պատվերի ամփոփում",collection:"Վերցնել խանութից",eveningLine:"Երեկոյան առաքում",total:"Ընդամենը",pickWindow:"ընտրեք ժամը",paySent:"Վճարման տվյալները կստանաք պատվերից հետո։",
  fxNote:"Գները սահմանված են ՀՀ դրամով։ {cur}-ով գումարները մոտավոր են։",
- place:"Պատվիրել",sending:"Պատվերն ուղարկվում է…",sentOk:"Ձեր պատվերն ուղարկվել է մեզ",sentHint:"Շուտով կկապվենք Ձեզ հետ՝ հաստատելու համար։",sendFail:"Չհաջողվեց ուղարկել պատվերը։ Ստուգեք ինտերնետ կապը և կրկին սեղմեք «Պատվիրել»։",payMsg:"Բարև Ձեզ։ Շնորհակալություն Արի ծաղիկների ատելիեում {no} պատվերի համար։ Գումարը՝ {total}։",payLinkTxt:"Կարող եք վճարել այստեղ՝ {link}",
+ place:"Պատվիրել",ann1:"Անվճար առաքում Երևանում",ann2:"Յուրաքանչյուր ծաղկեփունջ պատրաստվում է պատվերով",navShop:"Ծաղիկներ",navStory:"Մեր մասին",navCustom:"Ստեղծել ձերը",h2Eyebrow:"Ծաղիկների ատելիե · Երևան",h2Title1:"Ծաղիկներ, որոնք կասեն",h2Title2:" այն, ինչ բառերը չեն կարող։",h2Text:"Սեզոնային ծաղկեփնջեր՝ պատրաստված ձեռքով և առաքված հոգատարությամբ։ Մեծ ու փոքր բոլոր առիթների համար։",h2Btn:"Դիտել հավաքածուն",h2Link:"Ստեղծել ձեր ծաղկեփունջը",h2Alt:"Սեզոնային ծաղիկների կոմպոզիցիա",stamp:"2026-ից",caption:"Արի ծաղիկների ատելիե · Երևան",prLabel:"Մեր խոստումները",pr1:"Առաքում ձեր ընտրած օրը",pr2:"Ձեռագիր բացիկ",pr3:"Սեզոնային ծաղիկներ",colEyebrow:"Այժմ ատելիեում",colTitle:"Ծաղիկներ՝ իրենց լավագույն տեսքով",colText:"Յուրաքանչյուր ծաղկեփունջ մի փոքր յուրահատուկ է՝ ըստ սեզոնի և պատրաստված այդ առավոտվա ամենաթարմ ծաղիկներից։",stAlt:"Ծաղկավաճառի սեղան՝ սեզոնային ծաղիկներով",stEyebrow:"Ատելիեից",stTitle:"Բնության ոգեշնչմամբ, ձեռքով ստեղծված։",stText:"«Արի»-ն հրավեր է՝ կանգ առնել, հավաքվել և նկատել գեղեցիկը։ Մեր ծաղկեփնջերը տոնում են բնական շարժումը, անսպասելի գույները և յուրաքանչյուր ցողունի բնավորությունը։",stLink:"Դիտել ծաղիկները",cuEyebrow:"Միայն ձեզ համար",cuTitle:"Ձեր զգացմունքը՝ ծաղիկների լեզվով։",cuText:"Ընտրեք ծաղիկները, գույներն ու տարան կամ վերբեռնեք ձեր սիրած լուսանկարը։ Մենք կպատրաստենք եզակի ծաղկեփունջ։",cuBtn:"Սկսել ձեր ծաղկեփունջը",hwEyebrow:"Ինչպես պատվիրել",hw1t:"Ընտրեք",hw1p:"Պատրաստի ծաղկեփունջ, կենդանակերպով անվանական ծաղկեփունջ կամ ձեր սեփականը։",hw2t:"Ընտրեք օրը",hw2p:"Նշեք՝ երբ և ուր։ Առաքումը Երևանում անվճար է։",hw3t:"Մենք կհաստատենք",hw3p:"Մենք կհաստատենք պատվերը և կուղարկենք վճարման տվյալները ձեզ հարմար եղանակով։",fStudio:"Ատելիե",fCity:"Երևան, Հայաստան",fContact:"Կապ",sending:"Պատվերն ուղարկվում է…",sentOk:"Ձեր պատվերն ուղարկվել է մեզ",sentHint:"Շուտով կկապվենք Ձեզ հետ՝ հաստատելու համար։",sendFail:"Չհաջողվեց ուղարկել պատվերը։ Ստուգեք ինտերնետ կապը և կրկին սեղմեք «Պատվիրել»։",payMsg:"Բարև Ձեզ։ Շնորհակալություն Արի ծաղիկների ատելիեում {no} պատվերի համար։ Գումարը՝ {total}։",payLinkTxt:"Կարող եք վճարել այստեղ՝ {link}",
  eDate:"Ընտրեք առաքման օրը։",ePast:"Այդ օրը հասանելի չէ։ Ընտրեք ավելի ուշ օր։",eSlot:"Ընտրեք առաքման ժամը։",eAddr:"Լրացրեք՝ {list}։",eName:"Նշեք ձեր անունը։",eEmail:"Նշեք էլ. փոստը, որ կարողանանք կապվել ձեզ հետ։",ePhone:"Նշեք ձեր հեռախոսահամարը։",
  thanks:"Շնորհակալություն, {name}։",order:"Պատվեր",doneText:"Վճարման տվյալները կուղարկենք {to} ({how})։ Պատվերը հաստատվում է վճարումը ստանալուց հետո։",
  protoNote:"Սա նախատիպ է, ուստի ոչինչ չի ուղարկվել։",waTitle:"Վերջին քայլը՝ ուղարկեք պատվերը մեզ WhatsApp-ով",waBtn:"Ուղարկել պատվերը WhatsApp-ով",waHint:"WhatsApp-ը կբացվի պատվերի պատրաստի տեքստով։ Պարզապես սեղմեք «Ուղարկել»։",waPhoto:"Ուղարկել նմուշի լուսանկարը",waPhotoHint:"Երբ հեռախոսը հարցնի, ընտրեք WhatsApp-ը և մեր զրույցը։ Համակարգչում լուսանկարը կպահպանվի․ կցեք այն WhatsApp-ի զրույցում։",waNew:"Նոր պատվեր",payBy:"Վճարման տվյալները՝",dDeliverTo:"Առաքման հասցե",dCollect:"Վերցնել",shopName:"Մեր խանութը",items:"Ապրանքներ",backShop:"Վերադառնալ խանութ",
@@ -542,7 +825,7 @@ hy:{
  minCustom:"Անհատական պատվերը՝ {p}-ից։",belowMin:"Անհատական պատվերը՝ {p}-ից։ Ավելացրեք ծաղիկներ կամ ընտրեք ավելի մեծ տարա։",
  fact3:"Ծաղիկների լուսանկարը՝ առաքումից առաջ",cardHand:"Մենք այն կգրենք ձեռքով։",
  brand:"ծաղիկների ատելիե",shopName:"Արի ծաղիկների ատելիե",
- footer:"Նախատիպ · ծաղիկներն ու գները պայմանական են · վճարումը համաձայնեցվում է պատվերից հետո"
+ footer:"© 2026 Արի ծաղիկների ատելիե"
 }};
 
 function pickLang(){try{const s=localStorage.getItem("snb-lang");if(I18N[s])return s;}catch(e){}
@@ -832,9 +1115,10 @@ function renderChrome(){
   $("#lang-lbl").textContent=t("lang");$("#cur-lbl").textContent=t("cur");
   $("#sel-lang").value=LANG;$("#sel-cur").value=CUR;
   $("#footer-txt").textContent=t("footer");
-  $("#brand-name").textContent=t("brand");$("#sig-tag").textContent=t("brand");
+  $("#brand-name").textContent="ծաղիկների ատելիե";$("#sig-tag").textContent="ծաղիկների ատելիե";
   const wm=LANG==="hy"?`<img class="wm-l wm-ay" src="ari-letter-ayb.svg" alt=""><span lang="hy">ՐԻ</span>`:`<img class="wm-l" src="ari-letter-a.svg" alt="">ri`;
-  $("#wm-name").innerHTML=wm;$("#wm-name").setAttribute("aria-label",LANG==="hy"?"Արի":"Ari");$("#sig-name").innerHTML=wm;
+  /* one logo for every language: ornate Ա + ՐԻ (Karinka, 2026-10-29) */
+const orn=dark=>`<img class="lg" src="${dark?"ari-logo-full-cream.png":"ari-logo-full-wine.png"}" alt="ARI by Karina · Yerevan">`;$("#wm-name").innerHTML=orn(false);$("#wm-name").className="orn";$("#wm-name").setAttribute("aria-label","Արի · Ari");$("#wm-name").setAttribute("aria-label","Արի · Ari");$("#sig-name").innerHTML=orn(true);$("#sig-name").className="orn";[["ann-1","ann1"],["ann-2","ann2"],["nav-shop","navShop"],["nav-story","navStory"],["nav-custom","navCustom"],["f-studio","fStudio"],["f-city","fCity"],["f-deliv","ann1"],["f-contact","fContact"]].forEach(([id,k])=>{const el=document.getElementById(id);if(el)el.textContent=t(k);});
   updateBadge();
 }
 
@@ -843,22 +1127,35 @@ const TABS=[{id:"single",list:SINGLES},{id:"bouquet",list:BOUQUETS},{id:"arrange
 function renderShop(){
   const tab=TABS.find(x=>x.id===S.tab);
   app.innerHTML=`
-  <section class="wrap hero">
-    <div>
-      <p class="eyebrow">${t("eyebrowHero")}</p>
-      <h1 style="margin-top:10px">${t("heroTitle")}</h1>
-      <p>${t("heroText")}</p>
-      <div class="hero-facts"><span>${t("fact2")}</span><span>${t("fact3")}</span></div>
+  <section class="hero2">
+    <div class="hero-copy">
+      <p class="eyebrow">${t("h2Eyebrow")}</p>
+      <h1>${t("h2Title1")}<em>${t("h2Title2")}</em></h1>
+      <p class="hero-desc">${t("h2Text")}</p>
+      <div class="hero-actions"><a class="button primary" href="#collection" data-go="collection">${t("h2Btn")}<svg class="arr" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-linecap="round"/></svg></a><a class="text-link" href="#collection" data-go="custom">${t("h2Link")}</a></div>
     </div>
-    <div class="hero-art"><svg viewBox="0 0 100 130" aria-hidden="true"><path d="M50 30c-9 0-15 7-15 14c0 9 7 14 15 14c9 0 15-7 15-15c0-7-5-11-11-11c-5 0-9 4-9 9c0 4 3 7 7 7" fill="none" stroke="#f7f3ee" stroke-width="2.6" stroke-linecap="round"/><path d="M50 58C50 74 48 92 50 118" fill="none" stroke="#f7f3ee" stroke-width="2.6" stroke-linecap="round"/><path d="M50 86C58 78 68 77 74 72C68 86 59 90 50 90Z" fill="#c8d9e3" stroke="#f7f3ee" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+    <div class="hero-visual"><img src="https://images.unsplash.com/photo-1457089328109-e5d9bd499191?auto=format&fit=crop&w=1400&q=85" alt="${esc(t("h2Alt"))}"><div class="hero-stamp" aria-hidden="true"><img class="stw" src="ari-logo-word-cream.png" alt=""><span>Est. 2026</span></div><p class="image-caption">${t("caption")}</p></div>
   </section>
-  <div class="wrap">
+  <section class="promise" aria-label="${esc(t("prLabel"))}"><p><span>01</span>${t("pr1")}</p><p><span>02</span>${t("pr2")}</p><p><span>03</span>${t("pr3")}</p></section>
+  <section class="sec" id="collection">
+    <div class="sec-head"><div><p class="eyebrow">${t("colEyebrow")}</p><h2>${t("colTitle")}</h2></div><p>${t("colText")}</p></div>
     <div class="tabs" role="tablist">
       ${TABS.map(x=>`<button class="tab" role="tab" id="tab-${x.id}" aria-selected="${x.id===S.tab}" data-tab="${x.id}">${t("tab_"+x.id)}${x.list?`<span class="n">${x.list.length}</span>`:""}</button>`).join("")}
     </div>
     <div class="section-head"><h2>${tab.id==="custom"?t("title_custom"):t("tab_"+tab.id)}</h2><p>${t("sub_"+tab.id)}</p></div>
     <div id="tab-body"></div>
-  </div>`;
+  </section>
+  <section class="story" id="story">
+    <div class="story-image"><img src="https://images.unsplash.com/photo-1531120364508-a6b656c3e78d?auto=format&fit=crop&w=1200&q=85" alt="${esc(t("stAlt"))}" loading="lazy"></div>
+    <div class="story-copy"><img class="mark mark2" src="ari-logo-word-cream.png" alt=""><p class="eyebrow">${t("stEyebrow")}</p><h2>${t("stTitle")}</h2><p>${t("stText")}</p>
+      <a class="text-link dark" href="#collection" data-go="collection">${t("stLink")}<svg class="arr" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-linecap="round"/></svg></a></div>
+  </section>
+  <section class="sec"><div class="custom-card"><p class="eyebrow">${t("cuEyebrow")}</p><h2>${t("cuTitle")}</h2><p>${t("cuText")}</p>
+    <a class="button light" href="#collection" data-go="custom">${t("cuBtn")}<svg class="arr" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-linecap="round"/></svg></a></div></section>
+  <section class="sec how"><p class="eyebrow">${t("hwEyebrow")}</p><div class="service-grid">
+    <article><span>01</span><h3>${t("hw1t")}</h3><p>${t("hw1p")}</p></article>
+    <article><span>02</span><h3>${t("hw2t")}</h3><p>${t("hw2p")}</p></article>
+    <article><span>03</span><h3>${t("hw3t")}</h3><p>${t("hw3p")}</p></article></div></section>`;
   const body=$("#tab-body");
   if(tab.id==="custom")renderBuilder(body);
   else if(tab.id==="personal")renderPersonal(body);
@@ -1254,6 +1551,9 @@ function render(){
 }
 
 /* ---------- events ---------- */
+document.addEventListener("click",e=>{const a=e.target.closest("[data-go]");if(!a)return;e.preventDefault();const g=a.dataset.go;
+  const need=S.view!=="shop"||(g==="custom"&&S.tab!=="custom");if(typeof closeLayer==="function")closeLayer();S.view="shop";if(g==="custom")S.tab="custom";if(need)render();
+  requestAnimationFrame(()=>{const el=document.getElementById(g==="story"?"story":"collection");if(el)el.scrollIntoView({behavior:"smooth",block:"start"});});});
 document.addEventListener("click",e=>{
   const b=e.target.closest("button,[data-close]");if(!b)return;
   const d=b.dataset;
