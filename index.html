@@ -586,6 +586,15 @@ html[lang="hy"] :is(.eyebrow,.image-caption,.footer-column p,.copyright,.announc
 .tab[aria-selected="true"]::after,.mainnav a::after{background:var(--wine)}
 .hero-visual::after{background:linear-gradient(180deg,rgba(24,6,10,.18),transparent 30%,transparent 60%,rgba(24,6,10,.45))}
 @media (max-width:760px){.hero2 h1{font-size:clamp(38px,11vw,46px)}.mainnav a,.prefs select{font-size:14px}.btn,.button{font-size:15px}.card h3{font-size:23px}.sec-head h2,.story h2,.custom-card h2{font-size:30px}}
+.preview .stage.has-pg{aspect-ratio:auto;place-items:stretch;background:transparent}
+.pg{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}
+.pg figure{margin:0;background:var(--surface-2);border-radius:10px;overflow:hidden}
+.pg img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover}
+.pg figcaption{padding:8px 10px;font-size:14px;line-height:1.3}
+.pg figcaption b{font-weight:600;margin-right:2px}
+.pg3 figure:first-child{grid-column:1/-1}.pg3 figure:first-child img{aspect-ratio:2/1}
+.preview .stage.has-zod{overflow:hidden;background:#3a0f19}
+.preview .stage img.zod{width:100%;height:100%;object-fit:cover;display:block}
 </style>
 </head>
 <body>
@@ -1074,7 +1083,7 @@ function art(item,label){
   if(n) s+=`<ellipse cx="${cx}" cy="${cy+6}" rx="${sx+10}" ry="${sy+8}" fill="var(--stem)" opacity=".35"/>`;
   const order=[...blooms].sort((a,b)=>(F[baseOf(b)].green?1:0)-(F[baseOf(a)].green?1:0));
   const pal=item.pal&&PALETTES[item.pal];
-  if(!pal&&n&&order.some(k=>CUT_OK[skey(baseOf(k),colOf(k))]))return photoBouquet(order,vessel,label,item.sty,paper);
+  if(n&&order.some(k=>CUT_OK[skey(baseOf(k),colOf(k))]))return photoBouquet(order,vessel,label,item.sty,paper);
   order.forEach((fid,i)=>{const tt=(i+.5)/n,ang=i*2.39996,d=Math.sqrt(tt);let f=look(fid);if(pal&&!f.green)f={...f,color:pal[i%pal.length],center:pal[(i+2)%pal.length]};const x=cx+Math.cos(ang)*d*sx,y=cy+Math.sin(ang)*d*sy,r=r0*(f.kind==="cluster"?1.25:1);
     s+=bloom(x,y,r,f);});
   return s+vesselSVG(vessel,item.sty,paper)+"</svg>";
@@ -1219,9 +1228,17 @@ function openDetail(id){
 
 /* ---------- personal bouquet ---------- */
 function persSign(q){const d=+q.day,m=+q.month;if(d&&m&&d<=DAYS_IN[m-1])return signOf(d,m);return q.sign||"";}
-function persFlowers(sign,size,fl){fl=fl||signFl(sign);const n=PERS_SIZES[size].stems,g=size==="petite"?1:size==="signature"?3:5;
-  const a=Math.round((n-g)*.5),b=Math.round((n-g)*.3),c=n-g-a-b;const out={};[[fl[0],a],[fl[1],b],[fl[2],c]].forEach(([id,k])=>{out[id]=(out[id]||0)+k;});out.eucalyptus=g;return out;}
-function persItem(q){const sg=q.sign;return {type:"bouquet",flowers:persFlowers(sg,q.size,q.fl),pal:q.pal};}
+const PAL_PREF={blush:["pink","peach","white"],bold:["red","orange","yellow","pink"],white:["white","green"],sunset:["orange","peach","yellow","pink"],romance:["burgundy","red","pink"],lilac:["purple","lilac","lavender","blue","white"]};
+/* pick the flower colour that fits the chosen palette, preferring colours we have a real photo of */
+function palCol(id,pal){const cs=COLS[id]||["_"],pref=PAL_PREF[pal]||[];const ok=c=>CUT_OK[skey(id,c)];for(const c of pref)if(cs.includes(c)&&ok(c))return c;const any=cs.find(ok);if(any)return any;for(const c of pref)if(cs.includes(c))return c;return cs[0];}
+function persFlowers(sign,size,fl,pal){fl=fl||signFl(sign);const n=PERS_SIZES[size].stems,g=size==="petite"?1:size==="signature"?3:5;
+  const a=Math.round((n-g)*.5),b=Math.round((n-g)*.3),c=n-g-a-b;const out={};[[fl[0],a],[fl[1],b],[fl[2],c]].forEach(([id,k])=>{const key=skey(id,palCol(id,pal));out[key]=(out[key]||0)+k;});out[skey("eucalyptus")]=g;return out;}
+/* personal bouquet picture: the real photo of each flower in it, with how many stems */
+function persGallery(fl){const ks=Object.keys(fl).filter(k=>fl[k]>0);if(!ks.length||!ks.every(k=>PHOTO_OK[k]))return "";
+  return `<div class="pg pg${ks.length}">${ks.map(k=>`<figure><img src="${photoSrc(k)}" alt=""><figcaption><b>${fl[k]}</b> ${esc(fName(baseOf(k)))}${multi(baseOf(k))?" · "+esc(cName(colOf(k))):""}</figcaption></figure>`).join("")}</div>`;}
+/* real bouquet photo per sign + palette (photos/zodiac-<sign>-<palette>.jpg); loaded on demand */
+const ZOD={};function zodSrc(sg,pal){const k=sg+"-"+pal;if(!(k in ZOD)){ZOD[k]=null;const im=new Image();im.onload=()=>{ZOD[k]=im.src;if(typeof updatePersonal==="function")updatePersonal();if(typeof renderCart==="function")try{renderCart();}catch(e){}};im.onerror=()=>{if(im.src.indexOf(PHOTO_DIR)>=0)im.src="zodiac-"+k+".jpg";};im.src=PHOTO_DIR+"zodiac-"+k+".jpg";}return ZOD[k];}
+function persItem(q){const sg=q.sign;return {type:"bouquet",flowers:persFlowers(sg,q.size,q.fl,q.pal),pal:q.pal};}
 function renderPersonal(el){
   const q=S.pers;
   const months=Array.from({length:12},(_,i)=>`<option value="${i+1}" ${+q.month===i+1?"selected":""}>${esc(monthName(i+1))}</option>`).join("");
@@ -1260,8 +1277,8 @@ function updatePersonal(){
   $("#pn-sign").value=sg;$("#pn-signhint").textContent=fromBirth?t("pnFromBirth")+": "+t("sg_"+sg):"";
   $("#pn-title").textContent=q.name?t("pnFor",{name:q.name}):t("pnForNone");
   if(!sg){stage.innerHTML=`<p class="hint" style="padding:24px;text-align:center">${t("pnPick")}</p>`;$("#pn-why").textContent="";$("#pn-lines").innerHTML="";$("#pn-add").disabled=true;return;}
-  const fl=persFlowers(sg,q.size);
-  stage.innerHTML=art({type:"bouquet",flowers:fl,pal:q.pal},t("pnForNone"));
+  const fl=persFlowers(sg,q.size,null,q.pal);
+  const zs=zodSrc(sg,q.pal);stage.innerHTML=zs?`<img class="ph zod" src="${zs}" alt="${esc(t("sg_"+sg))}">`:persGallery(fl)||art({type:"bouquet",flowers:fl,pal:q.pal},t("pnForNone"));stage.classList.toggle("has-pg",!!stage.querySelector(".pg"));stage.classList.toggle("has-zod",!!zs);
   $("#pn-why").textContent=t("pnWhy",{sign:t("sg_"+sg),element:t("el_"+SIGNS[sg][0]),flowers:[...new Set(signFl(sg))].map(fName).join(", ")});
   $("#pn-lines").innerHTML=`<div><span>${t("tier_"+q.size)} · ${t("pal_"+q.pal)}</span><span class="mono">${money(PERS_SIZES[q.size].price)}</span></div>`;
   $("#pn-add").disabled=false;
@@ -1354,7 +1371,7 @@ function addCustom(){
 }
 
 /* ---------- cart ---------- */
-function thumb(c){if(c.personal)return art(persItem(c.personal),lineName(c));return c.custom?art({type:"arrangement",vessel:c.custom.vessel,flowers:c.custom.stems,sty:c.custom.sty,paper:c.custom.paper},lineName(c)):art({...byId(c.id),col:c.col},lineName(c));}
+function thumb(c){if(c.personal){const zs=zodSrc(c.personal.sign,c.personal.pal);if(zs)return `<img class="ph" src="${zs}" alt="${esc(lineName(c))}">`;const it=persItem(c.personal),k0=Object.keys(it.flowers)[0];return PHOTO_OK[k0]?`<img class="ph" src="${photoSrc(k0)}" alt="${esc(lineName(c))}">`:art(it,lineName(c));}return c.custom?art({type:"arrangement",vessel:c.custom.vessel,flowers:c.custom.stems,sty:c.custom.sty,paper:c.custom.paper},lineName(c)):art({...byId(c.id),col:c.col},lineName(c));}
 function openCart(){
   const items=S.cart;
   layer.innerHTML=`<div class="scrim" data-close></div>
